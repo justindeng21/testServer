@@ -13,10 +13,10 @@ class Server {
         this.app.use(express_1.default.static(__dirname));
         this.app.use(body_parser_1.default.json({ limit: '35mb' }));
         this.app.use(function (req, res, next) {
-            res.header("Access-Control-Allow-Origin", "https://privacy.evidon.com");
             res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+            res.header('Content-Security-Policy', `default-src 'self'; script-src 'self' https://ajax.googleapis.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://*.cloudfront.net https://uploads-ssl.webflow.com https://www.googletagmanager.com https://www.google-anylytics.com; script-src-elem 'self' https://.cookstreetconsulting.com https://www.cookstreetconsulting.com https://assets.adobedtm.com https://*.evidon.com https://ajax.googleapis.com https://www.googletagmanager.com https://*.cloudfront.net https://assets-global.website-files.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; style-src-elem self https://assets-global.website-files.com; style-src 'self' https://assets-global.website-files.com https://uploads-ssl.webflow.com https://fonts.googleapis.com; object-src 'none'; base-uri 'self'; connect-src 'self' https://*.evidon.com https://www.google-anylytics.com https://webflow.com; font-src 'self' data: https://uploads-ssl.webflow.com https://fonts.gstatic.com; frame-src 'self'; img-src 'self' https://assets-global.website-files.com https://uploads-ssl.webflow.com https://www.googletagmanager.com https://www.google-anylytics.com; manifest-src 'self'; media-src 'self'; worker-src 'none'; report-to csp-endpoint;`);
             next();
         }, body_parser_1.default.urlencoded({
             extended: true,
