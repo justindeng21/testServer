@@ -16,7 +16,7 @@ class Server {
             res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-            res.header('Content-Security-Policy', `default-src 'self'; script-src https://*.evidon.com 'sha256-2K17b9jtsgXm2KLxbkpN/aIaQAEtmnvRsvJhxANSR9g='`);
+            res.header('Content-Security-Policy', `default-src 'self'; script-src https://*.evidon.com 'sha256-Mv5lkGGCYhR8nbNQ5AgrkUsbtx9KqInvIUjrWjZCVEw='`);
             next();
         }, body_parser_1.default.urlencoded({
             extended: true,
