@@ -16,7 +16,7 @@ class Server {
             res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-            res.header('Content-Security-Policy', `default-src 'self' data: *.betrad.com *.evidon.com *.evidon.com ajax.googleapis.com assets-global.website-files.com assets.adobedtm.com cdn.jsdelivr.net cdnjs.cloudflare.com d3e54v103j8qbb.cloudfront.net uploads-ssl.webflow.com www.adobe.com www.googletagmanager.com 'nonce-nounsafeinline';`);
+            //res.header('Content-Security-Policy',`default-src 'self' data: *.betrad.com *.evidon.com *.evidon.com ajax.googleapis.com assets-global.website-files.com assets.adobedtm.com cdn.jsdelivr.net cdnjs.cloudflare.com d3e54v103j8qbb.cloudfront.net uploads-ssl.webflow.com www.adobe.com www.googletagmanager.com 'nonce-nounsafeinline';`)
             next();
         }, body_parser_1.default.urlencoded({
             extended: true,
