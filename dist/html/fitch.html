@@ -58,7 +58,7 @@
             date = new Date(); 
             date.setTime(date.getTime() + (minutes * 60 * 1000)); 
             document.cookie = "ssDisabled=1; expires=" + date.toUTCString() + "; path=/; Secure; SameSite=Lax;"; 
-            //fetch("https://www.fitchratings.com/__ssobj/opt-out");
+            fetch("https://www.fitchratings.com/__ssobj/opt-out");
         };
         window.evidon.closeCallback = function() {
 
@@ -70,11 +70,11 @@
 
         };
         window.evidon.priorConsentCallback = function(categories, vendors, cookies) {
-            console.log("In priorConsentCallback: ", categories);
-            if (categories && !categories.all && !categories.performance) {
-                console.log('SiteSpectOptOut')
-                ssevidonf_optout();
-            }
+
+        };
+
+        window.evidon.consentChangedCallback = function(categories, vendors, cookies) {
+
         }
                 
 
