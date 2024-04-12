@@ -74,9 +74,10 @@
         };
         window.evidon.priorConsentCallback = function(categories, vendors, cookies) {
             console.log("In priorConsentCallback: ", categories);
-            // if (categories && !categories.all && !categories.performance) {
-            //     ssevidonf_optout();
-            // }
+            if (categories && !categories.all && !categories.performance) {
+                console.log('SiteSpectOptOut')
+                ssevidonf_optout();
+            }
         }
                 
 
