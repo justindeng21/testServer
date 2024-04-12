@@ -97,7 +97,9 @@
             window.evidon.consentWithdrawnCallback = function() {
                 console.log("In consentWithdrawnCallback");
 
-                if(window.evidon.notice.regulationConsentTypeId !== 2) ssevidonf_optout();
+                if(window.evidon.notice.regulationConsentTypeId !== 2){
+                    ssevidonf_optout();
+                } 
                 
             };
             window.evidon.consentDeclinedCallback = function() {
