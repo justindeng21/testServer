@@ -6,95 +6,119 @@
 		
 		
 
-        <script type="text/javascript">
-            (function (id) {
-                function append(scriptid, url, async) {
-                    var d = document, sn = 'script', f = d.getElementsByTagName(sn)[0];
-                    if (!f) f = d.head;
-                    var s = d.createElement(sn);
-                    s.async = async;
-                    s.id = scriptid;
-                    s.src = url;
-                    s.charset = 'utf-8';
-                    f.parentNode.insertBefore(s, f);
-                }
-        
-                function is2parttld(value) {
-                    var tldindicators = ['co', 'com', 'info', 'web', 'info', 'gov', 'edu', 'biz', 'net', 'org'];
-                    var countryindicators = ['uk', 'us', 'fr', 'es', 'de', 'at', 'au', 'ae', 'be', 'br', 'ca', 'ch', 'cn', 'co', 'cz', 'dk', 'eg', 'eu', 'fi', 'gb', 'gr', 'hk', 'hr', 'hu', 'ie', 'in', 'jp', 'mx', 'nl', 'no', 'nz', 'pl', 'ro', 'ru', 'se'];
-                    return (tldindicators.indexOf(value) !== -1 || countryindicators.indexOf(value) !== -1);
-                }
-        
-                function getRootDomain() {
-                    var parts = window.location.hostname.split('.');
-                    if (parts.length === 2) rootDomain = parts[0];
-                    else if (parts.length > 2) {
-                        // see if the next to last value is a common tld
-                        var part = parts[parts.length - 2];
-                        if (is2parttld(part)) {
-                            rootDomain = parts[parts.length - 3]; // go back one more
-                        }
-                        else {
-                            rootDomain = part;
-                        }
-                    }
-        
-                    return rootDomain;
-                }
-        
-                window.evidon = {};
-                window.evidon.id = id;
-                window.evidon.test = false;  // set to true for non-production testing.
-                //window.evidon.userid = '';
-        
-                var cdn = '//c.evidon.com/', rootDomain = getRootDomain(), noticecdn = cdn + 'sitenotice/';
-                append('evidon-notice', noticecdn + 'evidon-sitenotice-tag.js', false);
-                append('evidon-location', cdn + 'geo/country.js', true);
-                append('evidon-themes', noticecdn + id + '/snthemes.js', true);
-                if (rootDomain) append('evidon-settings', noticecdn + id + '/' + rootDomain + (window.evidon.test ? '/test' : '') + '/settingsV2.js', true);
+<script type="text/javascript">
+    (function (id) {
+        function append(scriptid, url, async) {
+            var d = document, sn = 'script', f = d.getElementsByTagName(sn)[0];
+            if (!f) f = d.head;
+            var s = d.createElement(sn);
+            s.async = async;
+            s.id = scriptid;
+            s.src = url;
+            s.charset = 'utf-8';
+            f.parentNode.insertBefore(s, f);
+        }
 
-            })(5478);
-        </script>
+        function is2parttld(value) {
+            var tldindicators = ['co', 'com', 'info', 'web', 'info', 'gov', 'edu', 'biz', 'net', 'org'];
+            var countryindicators = ['uk', 'us', 'fr', 'es', 'de', 'at', 'au', 'ae', 'be', 'br', 'ca', 'ch', 'cn', 'co', 'cz', 'dk', 'eg', 'eu', 'fi', 'gb', 'gr', 'hk', 'hr', 'hu', 'ie', 'in', 'jp', 'mx', 'nl', 'no', 'nz', 'pl', 'ro', 'ru', 'se'];
+            return (tldindicators.indexOf(value) !== -1 || countryindicators.indexOf(value) !== -1);
+        }
+
+        function getRootDomain() {
+            var parts = window.location.hostname.split('.');
+            if (parts.length === 2) rootDomain = parts[0];
+            else if (parts.length > 2) {
+                // see if the next to last value is a common tld
+                var part = parts[parts.length - 2];
+                if (is2parttld(part)) {
+                    rootDomain = parts[parts.length - 3]; // go back one more
+                }
+                else {
+                    rootDomain = part;
+                }
+            }
+
+            return rootDomain;
+        }
+
+        window.evidon = {};
+        window.evidon.id = id;
+        window.evidon.test = false;  // set to true for non-production testing.
+        //window.evidon.userid = '';
+
+        var cdn = '//c.evidon.com/', rootDomain = getRootDomain(), noticecdn = cdn + 'sitenotice/';
+        append('evidon-notice', noticecdn + 'evidon-sitenotice-tag.js', false);
+        append('evidon-location', cdn + 'geo/country.js', true);
+        append('evidon-themes', noticecdn + id + '/snthemes.js', true);
+        if (rootDomain) append('evidon-settings', noticecdn + id + '/' + rootDomain + (window.evidon.test ? '/test' : '') + '/settingsV2.js', true);
+
+        const ssevidonf_optout = function() { 
+            var minutes = 525600, 
+            date = new Date(); 
+            date.setTime(date.getTime() + (minutes * 60 * 1000)); 
+            document.cookie = "ssDisabled=1; expires=" + date.toUTCString() + "; path=/; Secure; SameSite=Lax;"; 
+            fetch("https://www.fitchratings.com/__ssobj/opt-out");
+        };
+        window.evidon.closeCallback = function() {
+            console.log('Close czallback')
+
+        };
+        window.evidon.consentWithdrawnCallback = function() {
+            console.log('Consent withdraw callback')
+
+        };
+        window.evidon.consentDeclinedCallback = function() {
+            console.log('Consent declined callback')
+
+        };
+        window.evidon.priorConsentCallback = function(categories, vendors, cookies) {
+            console.log('Prior consent callback')
+
+        };
+
+        window.evidon.consentChangedCallback = function(categories, vendors, cookies) {
+            console.log('Consent changed callback')
+        }
+                
+
+    })(5478);
+</script>
 
 <script>
-(function() {
-    //console.log("SSConsent Setup");
-    var ssintv1=setInterval( function() {
-        if(window.evidon && window.evidon.notice){
-            const ssevidonf_optout = function() {
-                console.log('SiteSpect Optout Logic')
-                var minutes = 525600, 
-                date = new Date(); 
-                date.setTime(date.getTime() + (minutes * 60 * 1000)); 
-                document.cookie = "ssDisabled=1; expires=" + date.toUTCString() + "; path=/; Secure; SameSite=Lax;"; 
-                fetch("https://www.fitchratings.com/__ssobj/opt-out");
-            }
-            window.evidon.closeCallback = function() {
-                console.log("In closeCallback");
-                ssevidonf_optout();
-            };
-            window.evidon.consentWithdrawnCallback = function() {
-                console.log("In consentWithdrawnCallback");
-
-                if(window.evidon.notice.regulationConsentTypeId !== 2){
-                    console.log('what')
-                } 
-                
-            };
-            window.evidon.consentDeclinedCallback = function() {
-                console.log("In consentDeclinedCallback");
-                ssevidonf_optout();
-            };
-            window.evidon.priorConsentCallback = function(categories, vendors, cookies) {
-                console.log("In priorConsentCallback: ", categories);
-                if (categories && !categories.all && !categories.performance) {
-                    ssevidonf_optout();
+    (function() {
+        //console.log("SSConsent Setup");
+        var ssintv1=setInterval( function() {
+            if(window.evidon && window.evidon.notice){
+                const ssevidonf_optout = function() { 
+                    var minutes = 525600, 
+                    date = new Date(); 
+                    date.setTime(date.getTime() + (minutes * 60 * 1000)); 
+                    document.cookie = "ssDisabled=1; expires=" + date.toUTCString() + "; path=/; Secure; SameSite=Lax;"; 
+                    fetch("https://www.fitchratings.com/__ssobj/opt-out");
                 }
+                window.evidon.closeCallback = function() {
+                    console.log("In closeCallback");
+                    ssevidonf_optout();
+                };
+                window.evidon.consentWithdrawnCallback = function() {
+                    console.log("In consentWithdrawnCallback");
+                    ssevidonf_optout();
+                };
+                window.evidon.consentDeclinedCallback = function() {
+                    console.log("In consentDeclinedCallback");
+                    if(window.evidon.notice.regulationConsentTypeId !== 2) ssevidonf_optout();
+                };
+                window.evidon.priorConsentCallback = function(categories, vendors, cookies) {
+                    console.log("In priorConsentCallback: ", categories);
+                    if (categories && !categories.all && !categories.performance) {
+                        ssevidonf_optout();
+                    }
+                }
+                clearInterval(ssintv1);
             }
-            clearInterval(ssintv1);
-        }
-    }, 500);
-})();
+        }, 500);
+    })();
 </script>
 		
 	</head>
