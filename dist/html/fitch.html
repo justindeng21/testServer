@@ -53,32 +53,32 @@
         append('evidon-themes', noticecdn + id + '/snthemes.js', true);
         if (rootDomain) append('evidon-settings', noticecdn + id + '/' + rootDomain + (window.evidon.test ? '/test' : '') + '/settingsV2.js', true);
 
-                const ssevidonf_optout = function() { 
-                    var minutes = 525600, 
-                    date = new Date(); 
-                    date.setTime(date.getTime() + (minutes * 60 * 1000)); 
-                    document.cookie = "ssDisabled=1; expires=" + date.toUTCString() + "; path=/; Secure; SameSite=Lax;"; 
-                    fetch("https://www.fitchratings.com/__ssobj/opt-out");
-                };
-                window.evidon.closeCallback = function() {
-                    console.log("In closeCallback");
-                    //ssevidonf_optout();
-                };
-                window.evidon.consentWithdrawnCallback = function() {
-                    console.log("In consentWithdrawnCallback");
-                    //ssevidonf_optout();
-                };
-                window.evidon.consentDeclinedCallback = function() {
-                    console.log("In consentDeclinedCallback");
-                    //ssevidonf_optout();
-                };
-                window.evidon.priorConsentCallback = function(categories, vendors, cookies) {
-                    console.log("In priorConsentCallback: ", categories);
-                    // if (categories && !categories.all && !categories.performance) {
-                    //     ssevidonf_optout();
-                    // }
-                }
-                clearInterval(ssintv1);
+        const ssevidonf_optout = function() { 
+            var minutes = 525600, 
+            date = new Date(); 
+            date.setTime(date.getTime() + (minutes * 60 * 1000)); 
+            document.cookie = "ssDisabled=1; expires=" + date.toUTCString() + "; path=/; Secure; SameSite=Lax;"; 
+            fetch("https://www.fitchratings.com/__ssobj/opt-out");
+        };
+        window.evidon.closeCallback = function() {
+            console.log("In closeCallback");
+            //ssevidonf_optout();
+        };
+        window.evidon.consentWithdrawnCallback = function() {
+            console.log("In consentWithdrawnCallback");
+            //ssevidonf_optout();
+        };
+        window.evidon.consentDeclinedCallback = function() {
+            console.log("In consentDeclinedCallback");
+            //ssevidonf_optout();
+        };
+        window.evidon.priorConsentCallback = function(categories, vendors, cookies) {
+            console.log("In priorConsentCallback: ", categories);
+            // if (categories && !categories.all && !categories.performance) {
+            //     ssevidonf_optout();
+            // }
+        }
+                
 
     })(5478);
 </script>
