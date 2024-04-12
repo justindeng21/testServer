@@ -82,7 +82,8 @@
     //console.log("SSConsent Setup");
     var ssintv1=setInterval( function() {
         if(window.evidon && window.evidon.notice){
-            const ssevidonf_optout = function() { 
+            const ssevidonf_optout = function() {
+                console.log('SiteSpect Optout Logic')
                 var minutes = 525600, 
                 date = new Date(); 
                 date.setTime(date.getTime() + (minutes * 60 * 1000)); 
