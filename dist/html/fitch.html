@@ -61,20 +61,24 @@
             fetch("https://www.fitchratings.com/__ssobj/opt-out");
         };
         window.evidon.closeCallback = function() {
+            console.log('Close callback')
 
         };
         window.evidon.consentWithdrawnCallback = function() {
+            console.log('Consent withdraw callback')
 
         };
         window.evidon.consentDeclinedCallback = function() {
+            console.log('Consent declined callback')
 
         };
         window.evidon.priorConsentCallback = function(categories, vendors, cookies) {
+            console.log('Prior consent callback')
 
         };
 
         window.evidon.consentChangedCallback = function(categories, vendors, cookies) {
-            console.log('hi')
+            console.log('Consent changed callback')
         }
                 
 
