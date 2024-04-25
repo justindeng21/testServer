@@ -16,13 +16,11 @@
                     s.charset = 'utf-8';
                     f.parentNode.insertBefore(s, f);
                 }
-
                 function is2parttld(value) {
                     var tldindicators = ['co', 'com', 'info', 'web', 'info', 'gov', 'edu', 'biz', 'net', 'org'];
                     var countryindicators = ['uk', 'us', 'fr', 'es', 'de', 'at', 'au', 'ae', 'be', 'br', 'ca', 'ch', 'cn', 'co', 'cz', 'dk', 'eg', 'eu', 'fi', 'gb', 'gr', 'hk', 'hr', 'hu', 'ie', 'in', 'jp', 'mx', 'nl', 'no', 'nz', 'pl', 'ro', 'ru', 'se'];
                     return (tldindicators.indexOf(value) !== -1 || countryindicators.indexOf(value) !== -1);
                 }
-
                 function getRootDomain() {
                     var parts = window.location.hostname.split('.');
                     if (parts.length === 2) rootDomain = parts[0];
@@ -36,10 +34,8 @@
                             rootDomain = part;
                         }
                     }
-
                     return rootDomain;
                 }
-
                 window.evidon = {};
                 window.evidon.id = id;
                 window.evidon.test = false;  // set to true for non-production testing.
