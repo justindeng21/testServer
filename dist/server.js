@@ -16,7 +16,6 @@ class Server {
             res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
             res.header('Access-Control-Allow-Credentials', 'true');
             res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-            res.header("Access-Control-Allow-Origin", "https://www.fitchratings.com/__ssobj/opt-out");
             next();
         }, body_parser_1.default.urlencoded({
             extended: true,
