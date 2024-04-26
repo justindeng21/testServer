@@ -789,7 +789,7 @@
         ;
         var aT = document.getElementById("evidon-notice");
         if (aT) {
-            var aU = aT.src;
+            var aU = '//c.evidon.com';
             var aS = aU.indexOf(".com");
             if (aS !== -1) {
                 aU = aU.substr(0, aS + 4);
