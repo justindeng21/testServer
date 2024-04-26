@@ -10,7 +10,7 @@ class CMSAPI extends server_1.Server {
         this.app.get('/dg/dg.js', (req, res) => {
             res.sendFile('/js/dg.js', { root: __dirname });
         });
-        this.app.get('/sitenotice/evidon-sitenotice-tag', (req, res) => {
+        this.app.get('/sitenotice/evidon-sitenotice-tag.js', (req, res) => {
             res.sendFile('/js/evidon-sitenotice-tag', { root: __dirname });
         });
         this.app.get('/:filename', (req, res) => {
