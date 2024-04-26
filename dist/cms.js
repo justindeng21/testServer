@@ -7,6 +7,9 @@ class CMSAPI extends server_1.Server {
         this.defineCMSEndpoints();
     }
     defineCMSEndpoints() {
+        this.app.get('/dg/dg.js', (req, res) => {
+            res.sendFile('/js/dg.js', { root: __dirname });
+        });
         this.app.get('/:filename', (req, res) => {
             res.setHeader('Content-Security-Policy', `default-src 'self' data: *.betrad.com *.evidon.com *.evidon.com 'nonce-allow'`);
             res.sendFile(`/html/${req.params.filename}`, { root: __dirname });
