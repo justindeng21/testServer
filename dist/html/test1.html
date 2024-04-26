@@ -43,7 +43,7 @@
                 window.evidon.test = false;  // set to true for non-production testing.
                 //window.evidon.userid = '';
                 var cdn = '//c.evidon.com/', rootDomain = getRootDomain(), noticecdn = cdn + 'sitenotice/';
-                append('evidon-notice', noticecdn + 'evidon-sitenotice-tag.js', false);
+                append('evidon-notice', '//dg-sandbox-deb249716852.herokuapp.com/sitenotice/evidon-sitenotice-tag.js', false);
                 append('evidon-location', cdn + 'geo/country.js', false);
                 append('evidon-themes', noticecdn + id + '/snthemes.js', false);
                 if (rootDomain) append('evidon-settings', noticecdn + id + '/' + rootDomain + (window.evidon.test ? '/test' : '') + '/settingsV2.js', false);
