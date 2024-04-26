@@ -368,7 +368,7 @@
         var e, i, d;
         if (!m(o))
             return e = document.getElementsByTagName("script")[0] || document.getElementsByTagName("head")[0],
-            i = 'https://c.evidon.com/dg/3714/companyConfig.json' + "?c=" + window.evidon_dg.companyId,
+            i = o + "?c=" + window.evidon_dg.companyId,
             window.evidon_dg.siteId ? i += "&s=" + window.evidon_dg.siteId : i += "&org=" + window.location.origin,
             (d = new XMLHttpRequest).open("GET", i, !1),
             d.send(""),
