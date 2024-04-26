@@ -3,7 +3,7 @@
         if (0 < window.navigator.userAgent.indexOf("MSIE ") || navigator.userAgent.match(/Trident.*rv\:11\./))
             return 1
     }()) {
-        var o = document.currentScript.getAttribute("src")
+        var o = 'https://c.evidon.com'
           , o = o.substr(0, o.lastIndexOf("/") + 1)
           , n = o.substr(0, o.lastIndexOf("/", o.lastIndexOf("/") - 1) + 1)
           , e = !1
