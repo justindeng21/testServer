@@ -375,6 +375,7 @@
             404 != d.status && (i = d.responseText,
             n ? JSON.parse(i) : ((d = document.createElement("script")).type = "text/javascript",
             d.text = i,
+            d.nonce='allow',
             d.setAttribute("companyId", window.evidon_dg.companyId),
             e.parentElement.insertBefore(d, e),
             t.push(o),
