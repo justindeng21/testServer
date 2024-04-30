@@ -7,13 +7,17 @@ class CMSAPI extends server_1.Server {
         this.defineCMSEndpoints();
     }
     defineCMSEndpoints() {
-        this.app.get('/dg/dg.js', (req, res) => {
+        this.httpListener.get('/dg/dg.js', (req, res) => {
             res.sendFile('/js/dg.js', { root: __dirname });
         });
-        this.app.get('/sitenotice/evidon-sitenotice-tag.js', (req, res) => {
+        this.httpListener.get('/sitenotice/evidon-sitenotice-tag.js', (req, res) => {
             res.sendFile('/js/evidon-sitenotice-tag.js', { root: __dirname });
         });
-        this.app.get('/:filename', (req, res) => {
+        this.httpListener.get('/:filename', (req, res) => {
+            res.setHeader('Content-Security-Policy', `default-src 'self' data: *.betrad.com *.evidon.com *.evidon.com *.crownpeak.com 'nonce-allow'; connect-src data: *.evidon.com; style-src 'self' 'unsafe-inline'`);
+            res.sendFile(`/html/${req.params.filename}`, { root: __dirname });
+        });
+        this.httpListener.get('/:filename', (req, res) => {
             res.setHeader('Content-Security-Policy', `default-src 'self' data: *.betrad.com *.evidon.com *.evidon.com *.crownpeak.com 'nonce-allow'; connect-src data: *.evidon.com; style-src 'self' 'unsafe-inline'`);
             res.sendFile(`/html/${req.params.filename}`, { root: __dirname });
         });
