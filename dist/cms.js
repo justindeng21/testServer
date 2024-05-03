@@ -34,7 +34,7 @@ class CMSAPI extends server_1.Server {
                 fileNames.forEach(fileName => {
                     links = links + `<a href="https://dg-sandbox-deb249716852.herokuapp.com/${fileName}">${fileName}</a>\n`;
                 });
-                res.send(links);
+                res.send(`<html><head></head><body><div styles="display: flex; flex-direction: column;">${links}</div></body></html>`);
             });
         });
         this.httpListener.get('/dg/dg.js', (req, res) => {
