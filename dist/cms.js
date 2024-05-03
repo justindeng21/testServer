@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const server_1 = require("./server");
 const fs_1 = __importDefault(require("fs"));
+const path_1 = __importDefault(require("path"));
 class CMSAPI extends server_1.Server {
     constructor() {
         super();
@@ -19,6 +20,23 @@ class CMSAPI extends server_1.Server {
         });
     }
     defineCMSEndpoints() {
+        this.httpListener.get('/', (req, res) => {
+            fs_1.default.readdir(__dirname + '/html', (err, files) => {
+                let links = '';
+                if (err) {
+                    console.error('Error reading directory:', err);
+                    return;
+                }
+                const fileNames = files.filter(file => {
+                    const filePath = path_1.default.join(__dirname + '/html', file);
+                    return fs_1.default.statSync(filePath).isFile();
+                });
+                fileNames.forEach(fileName => {
+                    links = links + `<a href="https://dg-sandbox-deb249716852.herokuapp.com/${fileName}">${fileName}</a>\n`;
+                });
+                res.send(links);
+            });
+        });
         this.httpListener.get('/dg/dg.js', (req, res) => {
             res.sendFile('/js/dg.js', { root: __dirname });
         });
