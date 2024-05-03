@@ -23,6 +23,7 @@ class CMSAPI extends server_1.Server {
         this.httpListener.get('/', (req, res) => {
             fs_1.default.readdir(__dirname + '/html', (err, files) => {
                 let links = '';
+                let nocsp = '';
                 if (err) {
                     console.error('Error reading directory:', err);
                     return;
@@ -33,8 +34,18 @@ class CMSAPI extends server_1.Server {
                 });
                 fileNames.forEach(fileName => {
                     links = links + `<a href="https://dg-sandbox-deb249716852.herokuapp.com/${fileName}">${fileName}</a>\n`;
+                    nocsp = nocsp + `<a href="https://dg-sandbox-deb249716852.herokuapp.com/nocsp/${fileName}">${fileName}</a>\n`;
                 });
-                res.send(`<html><head></head><body><div style="display: flex; flex-direction: column;">${links}</div></body></html>`);
+                res.send(`<html>
+                    <head>
+                    </head>
+                    <body>
+                        <h1>CSP</h1>
+                        <div style="display: flex; flex-direction: column;">${links}</div>
+                        <h1>NO CSP</h1>
+                        <div style="display: flex; flex-direction: column;">${nocsp}</div>
+                    </body>
+                </html>`);
             });
         });
         this.httpListener.get('/dg/dg.js', (req, res) => {
