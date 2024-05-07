@@ -62,9 +62,33 @@ class CMSAPI extends server_1.Server {
             res.sendFile(`/html/${req.params.filename}`, { root: __dirname });
         });
         this.httpListener.post('/data/collection', server_1.jsonParser, (req, res) => {
-            const data = JSON.stringify(req.body);
-            const keys = Object.keys(data);
-            console.log(keys);
+            let parsedData_ = {};
+            const data = req.body;
+            const keys = Object.keys(data).sort();
+            for (let i = 0; i <= keys.length - 1; i++) {
+                //let key = `${keys[i].split('-')[0]}-${keys[i].split('-')[1]}`
+                let key = keys[i];
+                if (key in parsedData_) {
+                    for (let j = 0; j <= data[keys[i]].length - 1; j++) {
+                        parsedData_[key].users += data[keys[i]][j].users;
+                        parsedData_[key].accepts += data[keys[i]][j].accepts;
+                        parsedData_[key].declines += data[keys[i]][j].declines;
+                    }
+                }
+                else {
+                    parsedData_[key] = {
+                        users: 0,
+                        accepts: 0,
+                        declines: 0
+                    };
+                    for (let j = 0; j <= data[keys[i]].length - 1; j++) {
+                        parsedData_[key].users += data[keys[i]][j].users;
+                        parsedData_[key].accepts += data[keys[i]][j].accepts;
+                        parsedData_[key].declines += data[keys[i]][j].declines;
+                    }
+                }
+            }
+            console.log(parsedData_);
             res.sendStatus(204);
         });
     }

@@ -1,4 +1,4 @@
-var payload ={start: 1709251200000, end: 1711843200000, noticeIds: [99255]}
+var payload ={start: 1685577600000, end: 1714435200000, noticeIds: [99255]}
 fetch('https://privacy.evidon.com/report/api/report/consent/user/',{method:'POST',headers:{'Content-Type':'Application/json'},body:JSON.stringify(payload)})
 .then((response) => response.text())
 .then((data) => {
