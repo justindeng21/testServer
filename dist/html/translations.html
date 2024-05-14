@@ -17,13 +17,13 @@
                     s.charset = 'utf-8';
                     f.parentNode.insertBefore(s, f);
                 }
-    
+        
                 function is2parttld(value) {
                     var tldindicators = ['co', 'com', 'info', 'web', 'info', 'gov', 'edu', 'biz', 'net', 'org'];
                     var countryindicators = ['uk', 'us', 'fr', 'es', 'de', 'at', 'au', 'ae', 'be', 'br', 'ca', 'ch', 'cn', 'co', 'cz', 'dk', 'eg', 'eu', 'fi', 'gb', 'gr', 'hk', 'hr', 'hu', 'ie', 'in', 'jp', 'mx', 'nl', 'no', 'nz', 'pl', 'ro', 'ru', 'se'];
                     return (tldindicators.indexOf(value) !== -1 || countryindicators.indexOf(value) !== -1);
                 }
-    
+        
                 function getRootDomain() {
                     var parts = window.location.hostname.split('.');
                     if (parts.length === 2) rootDomain = parts[0];
@@ -37,263 +37,45 @@
                             rootDomain = part;
                         }
                     }
-    
+        
                     return rootDomain;
                 }
-    
+        
                 window.evidon = {};
                 window.evidon.id = id;
                 window.evidon.test = false;  // set to true for non-production testing.
                 //window.evidon.userid = '';
-    
+                window.evidon.activeTranslationsLangCode = 'es'
                 var cdn = '//c.evidon.com/', rootDomain = getRootDomain(), noticecdn = cdn + 'sitenotice/';
                 append('evidon-notice', noticecdn + 'evidon-sitenotice-tag.js', false);
                 append('evidon-location', cdn + 'geo/country.js', true);
                 append('evidon-themes', noticecdn + id + '/snthemes.js', true);
                 if (rootDomain) append('evidon-settings', noticecdn + id + '/' + rootDomain + (window.evidon.test ? '/test' : '') + '/settingsV2.js', true);
-    
+        
                 window.evidon.priorConsentCallback = function (categories, vendors, cookies) {
                     // add the tags which need to wait for prior consent
                     // here.  This should be all your advertising tags and
                     // probably most of your social and tracking tags.
-    
-                    var script = document.createElement('script');
-                                    script.src = "https://assets.adobedtm.com/ea870d125975/c17ccfc50414/launch-EN7810f648afba4a088918b5fbd880fe44-development.min.js";
                     
-                    script.async = true;
-                    document.head.appendChild(script);
-    
-    
-                    var digitalData = {
-                        'page': {
-                            'attributes': {
-                                'country': "",
-                                'errorPage': "n/a",
-                                'language': "en-UK",
-                                'region':  ""
-                            },
-                            'category': {
-                                'pageType': "Home Page",
-                                'primaryCategory': "",
-                                'product': null,
-                                'subCategory': "n/a",
-                            },
-                            'pageInfo': {
-                                'pageName': "voluson-configurator|en|voluson",
-                                'pageURL': "https://voconf-test.easerver.at/en/voluson",
-                                'siteSection': "Home Page",
-                                }
-                        },
-                        
-                    };
-    
-                    
-                        <!-- Google Tag Manager -->
-                        (function (w, d, s, l, i) {
-                            w[l] = w[l] || [];
-                            w[l].push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
-                            var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
-                            j.async = true;
-                            j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-                            f.parentNode.insertBefore(j, f);
-                        })(window, document, 'script', 'dataLayer', 'GTM-W4V7GZG');
-                    <!-- End Google Tag Manager -->
-    
-    
-                    <!-- Global site tag (gtag.js) - Google Analytics Test with different domain -->
-                    var script2 = document.createElement('script');
-                    script2.src = "https://www.googletagmanager.com/gtag/js?id=G-HGZDC9R2X6";
-                    script2.async = true;
-    
-                    window.dataLayer = window.dataLayer || [];
-                    function gtag(){dataLayer.push(arguments);}
-                    gtag('js', new Date());
-                    gtag('config', 'G-HGZDC9R2X6');
-                    <!-- END Global site tag (gtag.js) - Google Analytics Test with different domain -->
-    
-    
-    
-                    <!-- Global site tag (gtag.js) - Google Analytics -->
-    
-                    var script2 = document.createElement('script');
-                    script2.src = "https://www.googletagmanager.com/gtag/js?id=G-3M42W6S76T";
-                    script2.async = true;
-                    window.dataLayer = window.dataLayer || [];
-                    function gtag(){dataLayer.push(arguments);}
-                    gtag('js', new Date());
-    
-                    gtag('config', 'G-3M42W6S76T');
-    
-                    <!-- END Global site tag (gtag.js) - Google Analytics -->
-    
-    
-                    
-                    <!-- Global site tag (gtag.js) - Google Ads: 862108714 -->
-                    var script2 = document.createElement('script');
-                    script2.src = "https://www.googletagmanager.com/gtag/js?id=AW-862108714";
-                    script2.async = true;
-    
-                    window.dataLayer = window.dataLayer || [];
-    
-                    function gtag() {
-                        dataLayer.push(arguments);
-                    }
-    
-                    gtag('js', new Date());
-                    gtag('config', 'AW-862108714');
-    
-                    <!-- END Global site tag (gtag.js) - Google Ads: 862108714 -->
-    
-    
-                    <!-- Global site tag (gtag.js) - Google Ads: 622467474 -->
-                    var script2 = document.createElement('script');
-                    script2.src = "https://www.googletagmanager.com/gtag/js?id=AW-622467474";
-                    script2.async = true;
-    
-                    window.dataLayer = window.dataLayer || [];
-    
-                    function gtag() {
-                        dataLayer.push(arguments);
-                    }
-    
-                    gtag('js', new Date());
-                    gtag('config', 'AW-622467474');
-    
-                    <!-- END Global site tag (gtag.js) - Google Ads: 622467474 -->
-    
-                    <!-- Wavemaker 28.05.22 START -->
-                    <!-- Global site tag (gtag.js) - Google Ads: 10842132135 -->
-                    var script2 = document.createElement('script');
-                    script2.src = "https://www.googletagmanager.com/gtag/js?id=AW-10842132135";
-                    script2.async = true;
-    
-                    window.dataLayer = window.dataLayer || [];
-                    function gtag(){dataLayer.push(arguments);}
-                    gtag('js', new Date());
-    
-                    gtag('config', 'AW-10842132135');
-                    <!-- END Global site tag (gtag.js) - Google Ads: 10842132135 -->
-    
-                    <!-- linkedIn Wavemaker -->
-                    _linkedin_partner_id = "239620";
-                    window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
-                    window._linkedin_data_partner_ids.push(_linkedin_partner_id);
-                    <!-- END linkedIn Wavemaker -->
-    
-                    (function(){var s = document.getElementsByTagName("script")[0];
-                        var b = document.createElement("script");
-                        b.type = "text/javascript";b.async = true;
-                        b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
-                        s.parentNode.insertBefore(b, s);})();
-    
-                    <!-- END Wavemaker 28.05.22 START -->
-    
-    
-                    <!-- Facebook Pixel Code -->
-    
-                    !function (f, b, e, v, n, t, s) {
-                        if (f.fbq) return;
-                        n = f.fbq = function () {
-                            n.callMethod ?
-                                n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-                        };
-                        if (!f._fbq) f._fbq = n;
-                        n.push = n;
-                        n.loaded = !0;
-                        n.version = '2.0';
-                        n.queue = [];
-                        t = b.createElement(e);
-                        t.async = !0;
-                        t.src = v;
-                        s = b.getElementsByTagName(e)[0];
-                        s.parentNode.insertBefore(t, s)
-                    }(window, document, 'script',
-                        'https://connect.facebook.net/en_US/fbevents.js');
-                    fbq('init', '2020987048133755');
-                    fbq('track', 'PageView');
-    
-    
-                    <!-- END Facebook Pixel Code -->
-    
-                    <!-- Hotjar Tracking Code  -->
-    
-                    (function (h, o, t, j, a, r) {
-                        h.hj = h.hj || function () {
-                            (h.hj.q = h.hj.q || []).push(arguments)
-                        };
-                        h._hjSettings = {hjid: 2335814, hjsv: 6};
-                        a = o.getElementsByTagName('head')[0];
-                        r = o.createElement('script');
-                        r.async = 1;
-                        r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
-                        a.appendChild(r);
-                    })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
-    
-                    <!-- END Hotjar Tracking Code  -->
-    
-                    <!-- Hotjar Tracking Code for EA  -->
-    
-                    (function(h,o,t,j,a,r){
-                        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-                        h._hjSettings={hjid:3111865,hjsv:6};
-                        a=o.getElementsByTagName('head')[0];
-                        r=o.createElement('script');r.async=1;
-                        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-                        a.appendChild(r);
-                    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-    
-                    <!-- END Hotjar Tracking Code for EA  -->
-    
-                    <!-- Yandex.Metrika counter -->
-                    (function (m, e, t, r, i, k, a) {
-                        m[i] = m[i] || function () {
-                            (m[i].a = m[i].a || []).push(arguments)
-                        };
-                        m[i].l = 1 * new Date();
-                        k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)})(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-                    ym(75571075, "init", {clickmap: true, trackLinks: true, accurateTrackBounce: true, webvisor: true});
-    
-                    <!-- Yandex.Metrika counter -->
-    
-                    <!-- Snap -->
-    
-                    (function(){var s = document.getElementsByTagName("script")[0];
-                        var b = document.createElement("script");
-                        b.type = "text/javascript";b.async = true;
-                        b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
-                        s.parentNode.insertBefore(b, s);})();
-    
-                    <!-- END Snap -->
-    
-                    <!-- nrich -->
-    
-                    var config ={
-                        cookieless: false,
-                    };
-                    !function(n,a,t,i,f,y){n[t]=n[t]||function(){(n[t].q=n[t].q||
-                        []).push(arguments)},n[t].l=1*new Date,f=a.createElement(i),f.async=true,y=a.getElementsByTagName(i)[0]
-                        ,f.src='https://serve.nrich.ai/tracker/assets/tracker.js?nto='+t,y.parentNode.insertBefore(f,y)}
-                    (window,document,'nt','script'),nt('load','291feabf-995b-4bcf-b4bf-dc58118b8bcf', config);
-    
-                    <!-- END nrich -->
                 }
-    
+        
                 window.evidon.closeCallback = function () {
                     // this is executed if the user closed a UI element without either Accepting (providing consent)
                     // or Declining (declining to provide consent).
                 }
-    
+        
                 window.evidon.consentWithdrawnCallback = function () {
                     // this is exeucted if the user withdraws consent and elects to
                     // no longer allow technologies to run on the site.
                 }
-    
+        
                 window.evidon.consentDeclinedCallback = function () {
-                    window.evidon.notice.dropSuppressionCookie(30);
+                    // this is executed if the user explicitly declines giving consent by
+                    // using a Decline button
                 }
             })(3714);
         </script>
-
+        
 
 
      
