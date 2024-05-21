@@ -41,9 +41,9 @@ class CMSAPI extends server_1.Server {
                     </head>
                     <body>
                         <h1>CSP</h1>
-                        <div style="display: flex; flex-direction: column;">${links}</div>
+                        <div style="display: flex; flex-direction: column; gap: 10%;">${links}</div>
                         <h1>NO CSP</h1>
-                        <div style="display: flex; flex-direction: column;">${nocsp}</div>
+                        <div style="display: flex; flex-direction: column; gap: 10%;">${nocsp}</div>
                     </body>
                 </html>`);
             });
