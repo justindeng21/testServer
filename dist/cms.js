@@ -33,17 +33,29 @@ class CMSAPI extends server_1.Server {
                     return fs_1.default.statSync(filePath).isFile();
                 });
                 fileNames.forEach(fileName => {
-                    links = links + `<a href="https://dg-sandbox-deb249716852.herokuapp.com/${fileName}">${fileName}</a>\n`;
-                    nocsp = nocsp + `<a href="https://dg-sandbox-deb249716852.herokuapp.com/nocsp/${fileName}">${fileName}</a>\n`;
+                    links = links + `<a class="link" href="https://dg-sandbox-deb249716852.herokuapp.com/${fileName}">${fileName}</a>\n`;
+                    nocsp = nocsp + `<a class="link" href="https://dg-sandbox-deb249716852.herokuapp.com/nocsp/${fileName}">${fileName}</a>\n`;
                 });
                 res.send(`<html>
                     <head>
+
+                        <style>
+                            .links{
+                                display: flex; 
+                                flex-direction: column;
+                                gap: 10px;
+                            }
+                            .link{
+                                text-decoration: none;
+                            }
+                        </style>
+
                     </head>
                     <body>
                         <h1>CSP</h1>
-                        <div style="display: flex; flex-direction: column; gap: 10%;">${links}</div>
+                        <div class="links">${links}</div>
                         <h1>NO CSP</h1>
-                        <div style="display: flex; flex-direction: column; gap: 10%;">${nocsp}</div>
+                        <div class="links">${nocsp}</div>
                     </body>
                 </html>`);
             });
