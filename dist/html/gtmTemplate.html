@@ -85,6 +85,7 @@
                             continue;
                         }
                         var handler = window.evidon[handlers.categories[category]];
+                        console.log(handler)
                         if (typeof handler === 'function') handler();
                     }
                     for (var vendor in vendors) {
