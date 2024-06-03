@@ -57,7 +57,6 @@
                     // add the tags which need to wait for prior consent
                     // here.  This should be all your advertising tags and
                     // probably most of your social and tracking tags.
-                    console.log(categories);
                     var handlers = {
                         categories: {
                             'creative\/ad format technology': 'handleCreativeAdFormatTechnology',
@@ -81,6 +80,7 @@
                     };
 
                     for (var category in categories) {
+                        console.log(category)
                         if (!categories[category]) continue;
                         var handler = window.evidon[handlers.categories[category]];
                         if (typeof handler === 'function') handler();
