@@ -1,6 +1,29 @@
-var payload ={start: 1685577600000, end: 1714435200000, noticeIds: [99255]}
-fetch('https://privacy.evidon.com/report/api/report/consent/user/',{method:'POST',headers:{'Content-Type':'Application/json'},body:JSON.stringify(payload)})
-.then((response) => response.text())
-.then((data) => {
-    fetch('http://localhost:3400/data/collection',{method:'post',headers:{'Content-Type':'application/json'},body:data})
-})
+"use strict";
+fetch('https://privacy.evidon.com/v3/sitenotice/api/v3/sitenotice', {
+    method: 'get',
+    headers: {
+        'content-type': 'application/json'
+    }
+}).then((response) => response.text()).then(async (body) => {
+    let res = JSON.parse(body);
+    for (let i = 0; i <= res.length - 1; i++) {
+        var response = new Promise((resolve, reject) => {
+            fetch('https://privacy.evidon.com/v3/sitenotice/api/v3/sitenotice/' + res[i].id.toString(), {
+                method: 'get'
+            })
+                .then((response) => response.text()).then((body) => {
+                let res = JSON.parse(body);
+                console.log(res);
+                fetch('https://ucpext-516b1e095e39.herokuapp.com/backup', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(res)
+                });
+                resolve('Backup Done');
+            });
+        });
+        await response;
+    }
+});

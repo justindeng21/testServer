@@ -34,7 +34,6 @@ class CMSAPI extends server_1.Server {
                 });
                 fileNames.forEach(fileName => {
                     links = links + `<a class="link" href="https://dg-sandbox-deb249716852.herokuapp.com/${fileName}">${fileName}</a>\n`;
-                    nocsp = nocsp + `<a class="link" href="https://dg-sandbox-deb249716852.herokuapp.com/nocsp/${fileName}">${fileName}</a>\n`;
                 });
                 res.send(`<html>
                     <head>
@@ -52,19 +51,11 @@ class CMSAPI extends server_1.Server {
 
                     </head>
                     <body>
-                        <h1>CSP</h1>
+                        <h1>Directory</h1>
                         <div class="links">${links}</div>
-                        <h1>NO CSP</h1>
-                        <div class="links">${nocsp}</div>
                     </body>
                 </html>`);
             });
-        });
-        this.httpListener.get('/dg/dg.js', (req, res) => {
-            res.sendFile('/js/dg.js', { root: __dirname });
-        });
-        this.httpListener.get('/sitenotice/evidon-sitenotice-tag.js', (req, res) => {
-            res.sendFile('/js/evidon-sitenotice-tag.js', { root: __dirname });
         });
         this.httpListener.get('/:filename', (req, res) => {
             res.setHeader('Content-Security-Policy', `default-src 'self' data: *.betrad.com *.evidon.com *.evidon.com *.crownpeak.com 'nonce-allow'; connect-src data: *.evidon.com; style-src 'self' 'unsafe-inline'`);
@@ -73,44 +64,10 @@ class CMSAPI extends server_1.Server {
         this.httpListener.get('/nocsp/:filename', (req, res) => {
             res.sendFile(`/html/${req.params.filename}`, { root: __dirname });
         });
-        // this.httpListener.post('/data/collection', jsonParser, (req,res)=>{
-        //     type monthlyData  = {
-        //         users: number
-        //         accepts: number
-        //         declines: number
-        //     }
-        //     interface parsedData <T> {
-        //         [key: string] : T
-        //     }
-        //     let parsedData_: parsedData <monthlyData>= {}
-        //     const data = req.body;
-        //     const keys = Object.keys(data).sort();
-        //     for(let  i = 0; i <= keys.length-1; i ++){
-        //         //let key = `${keys[i].split('-')[0]}-${keys[i].split('-')[1]}`
-        //         let key = keys[i]
-        //         if(key in parsedData_){
-        //             for(let j = 0; j <= data[keys[i]].length-1; j++){
-        //                 parsedData_[key].users += data[keys[i]][j].users
-        //                 parsedData_[key].accepts += data[keys[i]][j].accepts
-        //                 parsedData_[key].declines += data[keys[i]][j].declines
-        //             }
-        //         }
-        //         else {
-        //             parsedData_[key] = {
-        //                 users: 0,
-        //                 accepts:0,
-        //                 declines:0
-        //             }
-        //             for(let j = 0; j <= data[keys[i]].length-1; j++){
-        //                 parsedData_[key].users += data[keys[i]][j].users
-        //                 parsedData_[key].accepts += data[keys[i]][j].accepts
-        //                 parsedData_[key].declines += data[keys[i]][j].declines
-        //             }
-        //         }
-        //     }            
-        //     console.log(parsedData_)
-        //     res.sendStatus(204)
-        // })
+        this.httpListener.post('/download', (req, res) => {
+            this.writeFile('pernodricard/' + req.body.id.toString() + '.json', JSON.stringify(req.body));
+            res.sendStatus(204);
+        });
     }
 }
 const cms = new CMSAPI();
