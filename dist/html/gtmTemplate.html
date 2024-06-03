@@ -80,8 +80,10 @@
                     };
 
                     for (var category in categories) {
-                        console.log(category)
-                        if (!categories[category]) continue;
+                        if (!categories[category]){
+                            console.log(category)
+                            continue;
+                        }
                         var handler = window.evidon[handlers.categories[category]];
                         if (typeof handler === 'function') handler();
                     }
