@@ -60,10 +60,6 @@ class CMSAPI extends server_1.Server {
         this.httpListener.get('/:filename', (req, res) => {
             res.sendFile(`/html/${req.params.filename}`, { root: __dirname });
         });
-        this.httpListener.post('/download', (req, res) => {
-            this.writeFile('pernodricard/' + req.body.id.toString() + '.json', JSON.stringify(req.body));
-            res.sendStatus(204);
-        });
     }
 }
 const cms = new CMSAPI();
