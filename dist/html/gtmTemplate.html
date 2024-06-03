@@ -5,14 +5,7 @@
 		<link rel="shortcut icon" type="image/png" href="https://www.crownpeak.com/layout/icons/favicon.png">
 		<style>#content{width:80%;display: flex;flex-direction: column;margin: 0 auto;}#siteFooter{text-align: center;}#pageheading{text-align:center;}.sectionHeading{font-size:1.5em;}.contentText{font-size:1em;text-indent: 50px;}body {margin: 0;font-family: Arial;}.nav {overflow: hidden;background-color: #333;}.nav a {float: left;color: #f2f2f2;text-align: center;padding: 14px 16px;text-decoration: none;font-size: 17px;}.nav a:hover {background-color: #ddd;color: black;}    .nav a.active {background-color: #04AA6D;color: white;}</style>
 		
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            if (typeof gtag !== 'function') function gtag(){dataLayer.push(arguments);}
-            gtag('set', 'developer_id.dOGRkZj', true);
-            gtag('consent', 'default',
-            { 'ad_storage': 'denied', 'analytics_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied'}
-            );
-        </script>
+
         
         <script type="text/javascript">
             (function (id) {
@@ -65,7 +58,38 @@
                     // add the tags which need to wait for prior consent
                     // here.  This should be all your advertising tags and
                     // probably most of your social and tracking tags.
-                    
+                    var handlers = {
+                        categories: {
+                            'creative\/ad format technology': 'handleCreativeAdFormatTechnology',
+                            'data aggregator\/supplier': 'handleDataAggregatorSupplier',
+                            'data management platform': 'handleDataManagementPlatform',
+                            'marketing solutions': 'handleMarketingSolutions',
+                            'mobile': 'handleMobile',
+                            'online privacy platform': 'handleOnlinePrivacyPlatform',
+                            'optimizer': 'handleOptimizer',
+                            'other': 'handleOther',
+                            'publisher': 'handlePublisher',
+                            'research provider': 'handleResearchProvider',
+                            'retargeter': 'handleRetargeter',
+                            'social media': 'handleSocialMedia',
+                            'tag manager': 'handleTagManager',
+                            'video': 'handleVideo',
+                            'website optimization': 'handleWebsiteOptimization',
+                            'advertising': 'handleAdvertising',
+                        },
+                        vendors: {}
+                    };
+
+                    for (var category in categories) {
+                        if (!categories[category]) continue;
+                        var handler = window.evidon[handlers.categories[category]];
+                        if (typeof handler === 'function') handler();
+                    }
+                    for (var vendor in vendors) {
+                        if (!vendors[vendor]) continue;
+                        var handler = window.evidon[handlers.vendors[vendor]];
+                        if (typeof handler === 'function') handler();
+                    }
                 }
 
                 window.evidon.closeCallback = function () {
@@ -82,16 +106,10 @@
                     // this is executed if the user explicitly declines giving consent by
                     // using a Decline button
                 }
-            })(1402);
+            })(6153);
         </script>
 
-        <!-- Google Tag Manager -->
-        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-K5HBJ7LP');</script>
-        <!-- End Google Tag Manager -->
+        <script></script>
         
 	</head>
 		<body>
