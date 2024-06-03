@@ -70,6 +70,7 @@
                 'video': 'handleVideo',
                 'website optimization': 'handleWebsiteOptimization',
                 'advertising': 'handleAdvertising',
+                'all':'handleAll'
             },
             vendors: {}
         };
@@ -105,7 +106,7 @@
         // using a Decline button
     }
 
-    window.evidon.handleDataAggregatorSupplier = function (categories, vendors, cookies) {
+    window.evidon.handleAll = function (categories, vendors, cookies) {
         console.log("Hello World");
     }
 
