@@ -14,7 +14,7 @@ fetch('https://privacy.evidon.com/v3/sitenotice/api/v3/sitenotice', {
                 .then((response) => response.text()).then((body) => {
                 let res = JSON.parse(body);
                 console.log(res);
-                fetch('https://ucpext-516b1e095e39.herokuapp.com/backup', {
+                fetch('http://localhost:3400/download', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
