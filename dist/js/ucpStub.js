@@ -49,46 +49,13 @@
     if (rootDomain) append('evidon-settings', noticecdn + id + '/' + rootDomain + (window.evidon.test ? '/test' : '') + '/settingsV2.js', true);
 
     window.evidon.priorConsentCallback = function (categories, vendors, cookies) {
-        // add the tags which need to wait for prior consent
-        // here.  This should be all your advertising tags and
-        // probably most of your social and tracking tags.
-        var handlers = {
-            categories: {
-                'creative\/ad format technology': 'handleCreativeAdFormatTechnology',
-                'data aggregator\/supplier': 'handleDataAggregatorSupplier',
-                'data management platform': 'handleDataManagementPlatform',
-                'marketing solutions': 'handleMarketingSolutions',
-                'mobile': 'handleMobile',
-                'online privacy platform': 'handleOnlinePrivacyPlatform',
-                'optimizer': 'handleOptimizer',
-                'other': 'handleOther',
-                'publisher': 'handlePublisher',
-                'research provider': 'handleResearchProvider',
-                'retargeter': 'handleRetargeter',
-                'social media': 'handleSocialMedia',
-                'tag manager': 'handleTagManager',
-                'video': 'handleVideo',
-                'website optimization': 'handleWebsiteOptimization',
-                'advertising': 'handleAdvertising',
-                'all':'handleAll'
-            },
-            vendors: {}
-        };
-
-        for (var category in categories) {
-            if (!categories[category]){
-                console.log(category)
-                continue;
-            }
-            var handler = window.evidon[handlers.categories[category]];
-            console.log(handler)
-            if (typeof handler === 'function') handler();
-        }
-        for (var vendor in vendors) {
-            if (!vendors[vendor]) continue;
-            var handler = window.evidon[handlers.vendors[vendor]];
-            if (typeof handler === 'function') handler();
-        }
+        var _comscore = _comscore || []; 
+        _comscore.push({ c1: "2", c2: "3005670", cs_ucfr: 1, options: { enableFirstPartyCookie: true } });
+        (function(){ 
+            var s = document.createElement("script"), el = document.getElementsByTagName("script")[0];
+            s.async = true; s.src = "https://sb.scorecardresearch.com/cs/3005670/beacon.js"; 
+            el.parentNode.insertBefore(s, el); 
+        })();
     }
 
     window.evidon.closeCallback = function () {
@@ -105,11 +72,6 @@
         // this is executed if the user explicitly declines giving consent by
         // using a Decline button
     }
-
-    window.evidon.handleAll = function (categories, vendors, cookies) {
-        console.log("Hello World");
-    }
-
 
 })(6153);
 
