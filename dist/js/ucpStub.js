@@ -1,7 +1,5 @@
 
 (function (id) {
-
-
     console.log('Loading UCP...')
     function append(scriptid, url, async) {
         var d = document, sn = 'script', f = d.getElementsByTagName(sn)[0];
