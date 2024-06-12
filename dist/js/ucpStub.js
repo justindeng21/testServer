@@ -50,12 +50,19 @@
 
     window.evidon.priorConsentCallback = function (categories, vendors, cookies) {
 
-
-        console.log(categories);
-
-
         var _comscore = _comscore || []; 
-        _comscore.push({ c1: "2", c2: "3005670", cs_ucfr: 1, options: { enableFirstPartyCookie: true } });
+        if(categories['all']){
+            console.log('cs_ucfr:',1)
+            _comscore.push({ c1: "2", c2: "3005670", cs_ucfr: 1, options: { enableFirstPartyCookie: true } });
+        }
+        else if(!categories['all']){
+            console.log('cs_ucfr:',0)
+            _comscore.push({ c1: "2", c2: "3005670", cs_ucfr: 0, options: { enableFirstPartyCookie: true } });
+        }
+
+
+        
+        
         (function(){ 
             var s = document.createElement("script"), el = document.getElementsByTagName("script")[0];
             s.async = true; s.src = "https://sb.scorecardresearch.com/cs/3005670/beacon.js"; 
