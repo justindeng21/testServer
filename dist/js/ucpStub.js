@@ -49,6 +49,11 @@
     if (rootDomain) append('evidon-settings', noticecdn + id + '/' + rootDomain + (window.evidon.test ? '/test' : '') + '/settingsV2.js', true);
 
     window.evidon.priorConsentCallback = function (categories, vendors, cookies) {
+
+
+        console.log(categories);
+
+
         var _comscore = _comscore || []; 
         _comscore.push({ c1: "2", c2: "3005670", cs_ucfr: 1, options: { enableFirstPartyCookie: true } });
         (function(){ 
