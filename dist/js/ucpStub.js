@@ -50,6 +50,8 @@
 
     window.evidon.priorConsentCallback = function (categories, vendors, cookies) {
 
+        console.log(categories);
+
         var _comscore = _comscore || []; 
         if(categories['all']){
             console.log('cs_ucfr:',1)
