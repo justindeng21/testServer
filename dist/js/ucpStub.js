@@ -7,7 +7,7 @@ const config = { attributes: true, childList: true, subtree: true };
 // Callback function to execute when mutations are observed
 const callback = (mutationList, observer) => {
     for (const mutation of mutationList) {
-        console.log(mutation)
+        console.log(mutation.addedNodes)
     }
 };
 
