@@ -1,3 +1,26 @@
+const head = document.head
+
+
+// Options for the observer (which mutations to observe)
+const config = { attributes: true, childList: true, subtree: true };
+
+// Callback function to execute when mutations are observed
+const callback = (mutationList, observer) => {
+  for (const mutation of mutationList) {
+      console.log(mutation);
+  }
+};
+
+// Create an observer instance linked to the callback function
+const observer = new MutationObserver(callback);
+
+// Start observing the target node for configured mutations
+observer.observe(head, config);
+
+// Later, you can stop observing
+observer.disconnect();
+
+
 
 (function (id) {
     
@@ -73,27 +96,6 @@
 
 
 
-const head = document.head
-
-
-// Options for the observer (which mutations to observe)
-const config = { attributes: true, childList: true, subtree: true };
-
-// Callback function to execute when mutations are observed
-const callback = (mutationList, observer) => {
-  for (const mutation of mutationList) {
-      console.log(mutation);
-  }
-};
-
-// Create an observer instance linked to the callback function
-const observer = new MutationObserver(callback);
-
-// Start observing the target node for configured mutations
-observer.observe(head, config);
-
-// Later, you can stop observing
-observer.disconnect();
 
 
 
