@@ -70,7 +70,7 @@
 
     var script = document.querySelector('#evidon-settings');
     script.addEventListener('load', function() {
-        console.log(evidon.notice)
+        console.log(evidon.notice._getConsentedCategories())
     });
 
 })(6153);
