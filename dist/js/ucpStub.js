@@ -68,14 +68,19 @@
     }
 
 
-    var script = document.querySelector('#evidon-settings');
-    script.addEventListener('load', function() {
-        let categories = evidon.notice._getConsentedCategories()
+
+    const promise1 = new Promise((resolve, reject) => {
+        const loop = () => evidon.notice._getConsentedCategories !== undefined ? resolve(evidon.notice._getConsentedCategories()) : setTimeout(loop)
+        loop();
+    });
+
+    promise1.then((categories)=>{
         for(key in categories){
             if(categories[key])
-            console.log(key)
+                console.log(key)
         }
-    });
+    })
+
 
 })(6153);
 
