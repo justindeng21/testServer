@@ -1,4 +1,5 @@
 const head = document.head
+let appendedFiles = []
 
 
 // Options for the observer (which mutations to observe)
@@ -8,7 +9,9 @@ const config = { attributes: true, childList: true, subtree: true };
 const callback = (mutationList, observer) => {
     for (const mutation of mutationList) {
         if(mutation.addedNodes.length !== 0)
-            console.log(mutation.addedNodes[0].id)
+            if(mutation.addedNodes[0].id == 'evidon-settings'){
+                console.log(window.evidon.notice);
+            }
     }
 };
 
