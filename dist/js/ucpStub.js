@@ -50,26 +50,6 @@
 
     window.evidon.priorConsentCallback = function (categories, vendors, cookies) {
 
-        console.log(categories);
-
-        var _comscore = _comscore || []; 
-        if(categories['all']){
-            console.log('cs_ucfr:',1)
-            _comscore.push({ c1: "2", c2: "3005670", cs_ucfr: 1, options: { enableFirstPartyCookie: true } });
-        }
-        else if(!categories['all']){
-            console.log('cs_ucfr:',0)
-            _comscore.push({ c1: "2", c2: "3005670", cs_ucfr: 0, options: { enableFirstPartyCookie: true } });
-        }
-
-
-        
-        
-        (function(){ 
-            var s = document.createElement("script"), el = document.getElementsByTagName("script")[0];
-            s.async = true; s.src = "https://sb.scorecardresearch.com/cs/3005670/beacon.js"; 
-            el.parentNode.insertBefore(s, el); 
-        })();
     }
 
     window.evidon.closeCallback = function () {
@@ -88,6 +68,32 @@
     }
 
 })(6153);
+
+
+
+
+
+const head = document.head
+
+
+// Options for the observer (which mutations to observe)
+const config = { attributes: true, childList: true, subtree: true };
+
+// Callback function to execute when mutations are observed
+const callback = (mutationList, observer) => {
+  for (const mutation of mutationList) {
+      console.log(mutations);
+  }
+};
+
+// Create an observer instance linked to the callback function
+const observer = new MutationObserver(callback);
+
+// Start observing the target node for configured mutations
+observer.observe(targetNode, config);
+
+// Later, you can stop observing
+observer.disconnect();
 
 
 
