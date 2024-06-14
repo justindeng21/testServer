@@ -68,7 +68,7 @@
     }
 
 
-    var script = document.querySelector('#evidon-notice');
+    var script = document.querySelector('#evidon-settings');
     script.addEventListener('load', function() {
         let categories = evidon.notice._getConsentedCategories()
         for(key in categories){
