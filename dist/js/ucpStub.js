@@ -1,29 +1,3 @@
-const head = document.head
-let appendedFiles = []
-
-
-// Options for the observer (which mutations to observe)
-const config = { attributes: true, childList: true, subtree: true };
-
-// Callback function to execute when mutations are observed
-const callback = (mutationList, observer) => {
-    for (const mutation of mutationList) {
-        if(mutation.addedNodes.length !== 0)
-            if(mutation.addedNodes[0].id == 'evidon-settings'){
-                console.log(window.evidon.notice);
-            }
-    }
-};
-
-// Create an observer instance linked to the callback function
-const observer = new MutationObserver(callback);
-
-// Start observing the target node for configured mutations
-observer.observe(head, config);
-
-// Later, you can stop observing
-
-
 
 (function (id) {
     
@@ -92,6 +66,12 @@ observer.observe(head, config);
         // this is executed if the user explicitly declines giving consent by
         // using a Decline button
     }
+
+
+    var script = document.querySelector('#evidon-settings');
+    script.addEventListener('load', function() {
+        console.log(evidon.notice)
+    });
 
 })(6153);
 
