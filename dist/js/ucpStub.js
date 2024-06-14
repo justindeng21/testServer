@@ -22,7 +22,6 @@ const observer = new MutationObserver(callback);
 observer.observe(head, config);
 
 // Later, you can stop observing
-observer.disconnect();
 
 
 
