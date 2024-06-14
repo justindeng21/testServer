@@ -70,7 +70,7 @@
 
 
     const promise1 = new Promise((resolve, reject) => {
-        const loop = () => evidon.notice._getConsentedCategories !== undefined ? resolve(evidon.notice._getConsentedCategories()) : setTimeout(loop)
+        const loop = () => typeof evidon.notice._getConsentedCategories !== undefined ? resolve(evidon.notice._getConsentedCategories()) : setTimeout(loop)
         loop();
     });
 
