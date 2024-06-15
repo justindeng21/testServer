@@ -80,7 +80,7 @@
         console.log(window.evidon.notice._getConsentedCategories());
     }
 
-    demo(function() { console.log("function A exists"); });
+    checkEvidonObject(function() { console.log("function A exists"); });
 
     
 
