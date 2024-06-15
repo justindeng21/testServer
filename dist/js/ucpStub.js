@@ -69,18 +69,20 @@
 
 
 
-    const promise1 = new Promise((resolve, reject) => {
-        const loop = () => typeof evidon.notice._getConsentedCategories !== undefined ? resolve(evidon.notice._getConsentedCategories()) : setTimeout(loop)
-        loop();
-    });
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
 
-    promise1.then((categories)=>{
-        for(key in categories){
-            if(categories[key])
-                console.log(key)
+    async function checkEvidonObject() {
+        while(typeof window.evidon.notice._getConsentedCategories !== "function") {
+            await sleep(1000);
         }
-    })
+        console.log(window.evidon.notice._getConsentedCategories());
+    }
 
+    demo(function() { console.log("function A exists"); });
+
+    
 
 })(6153);
 
