@@ -69,7 +69,6 @@
 
 
     const jsScript = document.getElementById('evidon-settings')
-    
     jsScript.addEventListener('load', () => {
             let allOrNothingConsent = true;
             granularConsent = window.evidon.notice._getConsentedCategories();
