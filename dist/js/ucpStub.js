@@ -73,7 +73,7 @@
     jsScript.addEventListener('load', () => {
         try{
      
-            allOrNothingConsent = true;
+            let allOrNothingConsent = true;
             granularConsent = window.evidon.notice._getConsentedCategories();
             console.log(granularConsent);
 
