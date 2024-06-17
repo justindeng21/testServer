@@ -71,8 +71,6 @@
     const jsScript = document.getElementById('evidon-settings')
     
     jsScript.addEventListener('load', () => {
-        try{
-     
             let allOrNothingConsent = true;
             granularConsent = window.evidon.notice._getConsentedCategories();
             console.log(granularConsent);
@@ -83,9 +81,6 @@
             }
 
             console.log('All or nothing consent:',allOrNothingConsent);
-        }catch{
-            console.log('The method, evidon._getConsentedCategories, is not defined.');
-        }
     })
     
     
