@@ -69,7 +69,7 @@
 
 
 
-    const jsScript = document.getElementById('evidon-notice')
+    const jsScript = document.getElementById('evidon-settings')
     
     jsScript.addEventListener('load', () => {
         console.log(window.evidon.notice);
