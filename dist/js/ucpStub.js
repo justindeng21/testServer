@@ -74,7 +74,7 @@
     jsScript.addEventListener('load', () => {
         console.log(window.evidon.notice);
         try{
-            window.evidon.notice._getConsentCategories();
+            window.evidon.notice._getConsentedCategories();
         }catch{
             console.log('Method is not defined')
         }
