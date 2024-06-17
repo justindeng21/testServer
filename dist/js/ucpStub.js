@@ -1,4 +1,3 @@
-
 (function (id) {
     
     console.log('Loading UCP...')
@@ -72,11 +71,10 @@
     const jsScript = document.getElementById('evidon-settings')
     
     jsScript.addEventListener('load', () => {
-        console.log(window.evidon.notice);
         try{
-            window.evidon.notice._getConsentedCategories();
+            console.log(window.evidon.notice._getConsentedCategories());
         }catch{
-            console.log('Method is not defined')
+            console.log('The method, evidon._getConsentedCategories, is not defined.')
         }
         debugger;
     })
