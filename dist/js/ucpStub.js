@@ -68,7 +68,7 @@
 
 
 
-    const jsScript = document.getElementById('evidon-settings')
+    const jsScript = document.getElementById('evidon-notice')
     
     jsScript.addEventListener('load', () => {
             let allOrNothingConsent = true;
