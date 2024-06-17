@@ -69,19 +69,12 @@
 
 
 
-    function sleep(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
-    }
-
-    async function checkEvidonObject() {
-        while(typeof window.evidon.notice._getConsentedCategories !== "function") {
-            await sleep(1000);
-        }
-        console.log(window.evidon.notice._getConsentedCategories());
-    }
-
-    checkEvidonObject(function() { console.log("function A exists"); });
-
+    const jsScript = document.getElementById('evidon-settings')
+    
+    jsScript.addEventListener('load', () => {
+      console.log('Event Listener added')
+    })
+    
     
 
 })(6153);
