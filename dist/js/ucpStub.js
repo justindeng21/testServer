@@ -72,7 +72,12 @@
     const jsScript = document.getElementById('evidon-settings')
     
     jsScript.addEventListener('load', () => {
-      console.log(window.evidon.notice);
+        console.log(window.evidon.notice);
+        try{
+            window.evidon.notice._getConsentCategories();
+        }catch{
+            console.log('Method is not defined')
+        }
         debugger;
     })
     
