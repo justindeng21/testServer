@@ -78,8 +78,8 @@
             console.log(granularConsent);
 
 
-            for(let i = 0; i <= granularConsent; i++){
-                if(granularConsent[i] === false) allOrNothingConsent = false;
+            for(const category in granularConsent){
+                if(granularConsent[category] === false) allOrNothingConsent = false;
             }
 
             console.log('All or nothing consent:',allOrNothingConsent);
