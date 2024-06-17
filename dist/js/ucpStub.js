@@ -62,7 +62,15 @@
     }
 
     window.evidon.consentDeclinedCallback = function () {
-        // this is executed if the user explicitly declines giving consent by
+        // this is executed if the user explicitly declines giving consent bconst jsScript = document.createElement('script')
+jsScript.src =
+  'https://coolJavascript.js'
+
+jsScript.addEventListener('load', () => {
+  doSomethingNow()
+})
+
+document.body.appendChild(jsScript)y
         // using a Decline button
     }
 
@@ -77,6 +85,8 @@
             for(let i = 0; i <= granularConsent; i++){
                 if(granularConsent[i] === false) allOrNothingConsent = false;
             }
+
+            console.log('All or nothing consent:',allOrNothingConsent);
         }catch{
             console.log('The method, evidon._getConsentedCategories, is not defined.')
         }
