@@ -46,7 +46,7 @@
     append('evidon-notice', noticecdn + 'evidon-sitenotice-tag.js', false);
     append('evidon-location', cdn + 'geo/country.js', true);
     append('evidon-themes', noticecdn + id + '/snthemes.js', true);
-    if (rootDomain) append('evidon-settings', noticecdn + id + '/' + rootDomain + (window.evidon.test ? '/test' : '') + '/settingsV2.js', true);
+    if (rootDomain) append('evidon-settings', noticecdn + id + '/' + rootDomain + (window.evidon.test ? '/test' : '') + '/settingsV2.js', false);
 
     window.evidon.priorConsentCallback = function (categories, vendors, cookies) {
 
