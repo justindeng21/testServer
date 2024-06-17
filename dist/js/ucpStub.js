@@ -78,9 +78,9 @@
                 if(granularConsent[i] === false) allOrNothingConsent = false;
             }
 
-            console.log('All or nothing consent:')
+            console.log('All or nothing consent:',allOrNothingConsent);
         }catch{
-            console.log('The method, evidon._getConsentedCategories, is not defined.')
+            console.log('The method, evidon._getConsentedCategories, is not defined.');
         }
         debugger;
     })
