@@ -82,7 +82,6 @@
         }catch{
             console.log('The method, evidon._getConsentedCategories, is not defined.');
         }
-        debugger;
     })
     
     
