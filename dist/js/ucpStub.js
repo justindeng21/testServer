@@ -68,26 +68,22 @@
 
 
 
-    let myPromise = new Promise((reject,resolve)=>{
-    
+    const settings = document.getElementById('evidon-settings');
 
-        const test = ()=>{
-            if(typeof window.evidon.notice.activeSettings === "undefined") 
-                resolve();
-            else test();
-        };
+    settings.addEventListener('load',()=>{
+        let myPromise = new Promise((reject,resolve)=>{
+            const test = ()=>{
+                if(typeof window.evidon.notice.activeSettings === "undefined") 
+                    resolve();
+                else test();
+            };
+            test();
+        });
 
-        test();
-
-        
-    });
-
-    myPromise.then(function(){
-        console.log("Settings loaded");
-    });
-
-
-
+        myPromise.then(function(){
+            console.log("Settings loaded");
+        });
+    })
         
     
 
