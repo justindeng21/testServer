@@ -51,10 +51,12 @@
 
     window.evidon.closeCallback = function () {}
 
-    window.evidon.consentWithdrawnCallback = function () {}
+    window.evidon.consentWithdrawnCallback = function () {
+        console.log("Consent withdrawn callback")
+    }
 
-    window.evidon.consentChangedCallback = function () {
-        console.log("Consent Changed")
+    window.evidon.consentDeclinedCallback = function () {
+        console.log("Consent declined callback")
     }
 
 
