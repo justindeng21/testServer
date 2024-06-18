@@ -72,7 +72,7 @@
     
 
         const test = ()=>{
-            if(window.evidon.notice.activeSettings === undefined) 
+            if(typeof window.evidon.notice.activeSettings === "undefined") 
                 resolve();
             else test();
         };
