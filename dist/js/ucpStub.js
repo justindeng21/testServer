@@ -47,23 +47,14 @@
     append('evidon-themes', noticecdn + id + '/snthemes.js', true);
     if (rootDomain) append('evidon-settings', noticecdn + id + '/' + rootDomain + (window.evidon.test ? '/test' : '') + '/settingsV2.js', false);
 
-    window.evidon.priorConsentCallback = function (categories, vendors, cookies) {
+    window.evidon.priorConsentCallback = function (categories, vendors, cookies) {}
 
-    }
+    window.evidon.closeCallback = function () {}
 
-    window.evidon.closeCallback = function () {
-        // this is executed if the user closed a UI element without either Accepting (providing consent)
-        // or Declining (declining to provide consent).
-    }
+    window.evidon.consentWithdrawnCallback = function () {}
 
-    window.evidon.consentWithdrawnCallback = function () {
-
-        window.location.href = window.location.href;
-    }
-
-    window.evidon.consentDeclinedCallback = function () {
-        // this is executed if the user explicitly declines giving consent bconst jsScript = document.createElement('script')
-        // using a Decline button
+    window.evidon.consentChangedCallback = function () {
+        console.log("Consent Changed")
     }
 
 
@@ -83,34 +74,34 @@
     }
 
 
+    const test = ()=>{
+        try{
+            let granularConsent = window.evidon.notice._getConsentedCategories();
+            let allOrNothingConsent = true;
 
-
-
-    const settings = document.getElementById('evidon-settings');
-
-    settings.addEventListener('load',()=>{
-        const test = ()=>{
-            try{
-                let granularConsent = window.evidon.notice._getConsentedCategories();
-                let allOrNothingConsent = true;
-
-                for(let category in granularConsent){
-                    if(granularConsent[category] === false){
-                        allOrNothingConsent = false;
-                        break;
-                    }
+            for(let category in granularConsent){
+                if(granularConsent[category] === false){
+                    allOrNothingConsent = false;
+                    break;
                 }
-                
-                console.log("All or Nothing Consent:", allOrNothingConsent)
-                if(allOrNothingConsent)
-                    fireComScore(1)
-                else if(!allOrNothingConsent)
-                    fireComScore(0)
-
-            }catch{
-                setTimeout(test,250);
             }
-        };
+
+            console.log("All or Nothing Consent:", allOrNothingConsent)
+            if(allOrNothingConsent)
+                fireComScore(1)
+            else if(!allOrNothingConsent)
+                fireComScore(0)
+
+        }catch{
+            setTimeout(test,250);
+        }
+    };
+
+
+
+    const settings = document.getElementById("evidon-settings");
+
+    settings.addEventListener("load",()=>{
         test();
     })
         
