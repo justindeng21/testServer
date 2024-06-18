@@ -39,8 +39,8 @@ class CMSAPI extends server_1.Server {
                     const filePath = path_1.default.join(__dirname + '/js', file);
                     return fs_1.default.statSync(filePath).isFile();
                 });
-                jsFileNames.forEach(fileName => {
-                    jsLinks = jsLinks + `<a class="link" href="https://dg-sandbox-deb249716852.herokuapp.com/js/${jsFileNames}">${jsFileNames}</a>\n`;
+                jsFileNames.forEach(jsFileName => {
+                    jsLinks = jsLinks + `<a class="link" href="https://dg-sandbox-deb249716852.herokuapp.com/js/${jsFileName}">${jsFileName}</a>\n`;
                 });
                 res.send(`<html>
                     <head>
