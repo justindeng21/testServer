@@ -70,21 +70,13 @@
 
     const jsScript = document.getElementById('evidon-settings')
     jsScript.addEventListener('load', () => {
-
-        var test = () => {
-            if(typeof window.evidon.notice.activeSettings.includeSubdomains !== "undefined"){
-                let allOrNothingConsent = true;
-                granularConsent = window.evidon.notice._getConsentedCategories();
-                for(const category in granularConsent){
-                    if(granularConsent[category] === false) allOrNothingConsent = false;
-                }
-                console.log('All or nothing consent:',allOrNothingConsent);
-            }
-            else{
-                setTimeout(test, 250);
-            }
+        let allOrNothingConsent = true;
+        window.evidon.notice.activeSettings.includeSubdomains = 0
+        granularConsent = window.evidon.notice._getConsentedCategories();
+        for(const category in granularConsent){
+            if(granularConsent[category] === false) allOrNothingConsent = false;
         }
-        test()
+        console.log('All or nothing consent:',allOrNothingConsent);
     })
     
     
