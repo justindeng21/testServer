@@ -73,7 +73,22 @@
     settings.addEventListener('load',()=>{
         const test = ()=>{
             try{
-                console.log(window.evidon.notice._getConsentedCategories());
+                let granularConsent = window.evidon.notice._getConsentedCategories();
+                let allOrNothingConsent = true;
+
+                for(let category in granularConsent){
+                    if(granularConsent[category] === false){
+                        allOrNothingConsent = false;
+                        break;
+                    }
+                }
+                
+                console.log("Granular Consent:", granularConsent)
+                console.log("All or Nothing Consent:", allOrNothingConsent)
+
+                
+                
+
             }catch{
                 setTimeout(test,250);
             }
