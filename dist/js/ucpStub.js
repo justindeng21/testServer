@@ -54,7 +54,7 @@
     window.evidon.consentWithdrawnCallback = function () {}
 
     window.evidon.consentDeclinedCallback = function () {}
-    var allOrNothingConsent = true;
+
 
     const fireComScore = (consentFlag) => {
 
@@ -75,7 +75,7 @@
     const checkConsent = ()=>{
         try{
             let granularConsent = window.evidon.notice._getConsentedCategories();
-            
+            let allOrNothingConsent = true;
 
             for(let category in granularConsent){
                 if(granularConsent[category] === false){
@@ -105,14 +105,13 @@
 
 
 
+    
     document.addEventListener("click", function(e){
-        const opt = e.target.closest("#evidon-prefdiag-accept");
-      
-        if(opt){
-            checkConsent();
+        const target = e.target.closest("#evidon-withdraw-consent-yes-button");
+        
+        if(target){
+            console.log('Consent Changed');
         }
-
-
     });
         
     
