@@ -75,7 +75,9 @@
             const test = ()=>{
                 if(typeof window.evidon.notice.activeSettings === "undefined") 
                     resolve();
-                else test();
+                else{
+                    setTimeout(test,205)
+                }
             };
             test();
         });
