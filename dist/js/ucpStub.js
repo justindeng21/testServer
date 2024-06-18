@@ -70,14 +70,8 @@
 
     const jsScript = document.getElementById('evidon-settings')
     jsScript.addEventListener('load', () => {
-        let allOrNothingConsent = true;
-        let granularConsent;
-            granularConsent = window.evidon.notice._getConsentedCategories();
-        
-        for(const category in granularConsent){
-            if(granularConsent[category] === false) allOrNothingConsent = false;
-        }
-        console.log('All or nothing consent:',allOrNothingConsent);
+    
+        console.log(window.evidon.notice._getConsentLocalStorage());
     })
     
     
