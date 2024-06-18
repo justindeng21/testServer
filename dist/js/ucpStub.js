@@ -68,12 +68,16 @@
 
 
 
-    const jsScript = document.getElementById('evidon-settings')
-    jsScript.addEventListener('load', () => {
-    
-        console.log(window.evidon.notice._getConsentLocalStorage());
+    let myPromise = new Promise((reject,resolve)=>{
+        const jsScript = document.getElementById('evidon-settings');
+        jsScript.addEventListener('load', resolve);
+    }).then(()=>{
+        console.log(window.evidon.notice.activeSettings)
     })
-    
+
+
+
+        
     
 
 })(6153);
