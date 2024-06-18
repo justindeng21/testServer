@@ -67,6 +67,24 @@
     }
 
 
+    function fireComScore(consentFlag){
+
+        console.log("Consent flag pushed into _comscore:", consentFlag)
+
+        var _comscore = _comscore || []; 
+        _comscore.push({ c1: "2", c2: "3005670", cs_ucfr: consentFlag, options: { enableFirstPartyCookie: true } });
+        (function() {
+            var s = document.createElement("script"), el = document.getElementsByTagName("script")[0];
+            s.async = true; 
+            s.src = "https://sb.scorecardresearch.com/cs/3005670/beacon.js";
+            el.parentNode.insertBefore(s, el); 
+        })();
+
+    }
+
+
+
+
 
     const settings = document.getElementById('evidon-settings');
 
@@ -83,11 +101,11 @@
                     }
                 }
                 
-                console.log("Granular Consent:", granularConsent)
                 console.log("All or Nothing Consent:", allOrNothingConsent)
-
-                
-                
+                if(allOrNothingConsent)
+                    fireComScore(1)
+                else if(!allOrNothingConsent)
+                    fireComScore(0)
 
             }catch{
                 setTimeout(test,250);
