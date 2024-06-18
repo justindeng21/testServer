@@ -72,7 +72,7 @@
 
     settings.addEventListener('load',()=>{
             const test = ()=>{
-                if(typeof window.evidon.notice.activeSettings.includeSubdomains === "undefined" || typeof window.evidon.notice._getConsentedCategories === "undefined") 
+                if(typeof window.evidon.notice.activeSettings.includeSubdomains? === "undefined" || typeof window.evidon.notice._getConsentedCategories === "undefined") 
                     setTimeout(test,250);   
                 else{
                     console.log(window.evidon.notice._getConsentedCategories()); 
