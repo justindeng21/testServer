@@ -75,7 +75,9 @@
             if(window.evdon.notice.activeSettings === undefined) 
                 resolve();
             else test();
-        }();
+        };
+
+        test();
 
         
     });
