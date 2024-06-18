@@ -70,9 +70,15 @@
 
     const jsScript = document.getElementById('evidon-settings')
     jsScript.addEventListener('load', () => {
-        window.evidon.notice.activeSettings.includeSubdomains = 0;
         let allOrNothingConsent = true;
-        let granularConsent = window.evidon.notice._getConsentedCategories();
+        try{
+            granularConsent = window.evidon.notice._getConsentedCategories();
+        }
+        catch{
+            window.evidon.notice.activeSettings.includeSubdomains = 0;
+            granularConsent = window.evidon.notice._getConsentedCategories();
+        }
+        
         for(const category in granularConsent){
             if(granularConsent[category] === false) allOrNothingConsent = false;
         }
