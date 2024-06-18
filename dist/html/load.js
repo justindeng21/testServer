@@ -129,7 +129,16 @@ if (typeof umggdpr === "undefined") {
                     }
                     document.body.appendChild(newtag);
                 }
-
+                var iframes = document.getElementsByTagName("iframe");
+                for (jj = 0; jj < iframes.length; jj++) {
+                    var frameAttrs = iframes[jj].attributes;
+                    for (var xx = 0; xx < frameAttrs.length; ++xx) {
+                        if (frameAttrs[xx].nodeName == waitTagName) {
+                            iframes[jj].setAttribute('src', frameAttrs[xx].value);
+                            iframes[jj].removeAttribute(waitTagName);
+                        }
+                    }
+                }
             }
             function getRootDomain() {
                 var parts = window.location.hostname.split('.');
