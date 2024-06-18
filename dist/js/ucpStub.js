@@ -72,13 +72,7 @@
     jsScript.addEventListener('load', () => {
         let allOrNothingConsent = true;
         let granularConsent;
-        try{
             granularConsent = window.evidon.notice._getConsentedCategories();
-        }
-        catch{
-            window.evidon.notice.activeSettings.includeSubdomains = 0;
-            granularConsent = window.evidon.notice._getConsentedCategories();
-        }
         
         for(const category in granularConsent){
             if(granularConsent[category] === false) allOrNothingConsent = false;
