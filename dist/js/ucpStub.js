@@ -51,13 +51,9 @@
 
     window.evidon.closeCallback = function () {}
 
-    window.evidon.consentWithdrawnCallback = function () {
-        console.log("Consent withdrawn callback")
-    }
+    window.evidon.consentWithdrawnCallback = function () {}
 
-    window.evidon.consentDeclinedCallback = function () {
-        console.log("Consent declined callback")
-    }
+    window.evidon.consentDeclinedCallback = function () {}
 
 
     const fireComScore = (consentFlag) => {
@@ -76,7 +72,7 @@
     }
 
 
-    const test = ()=>{
+    const checkConsent = ()=>{
         try{
             let granularConsent = window.evidon.notice._getConsentedCategories();
             let allOrNothingConsent = true;
@@ -95,7 +91,7 @@
                 fireComScore(0)
 
         }catch{
-            setTimeout(test,250);
+            setTimeout(checkConsent,250);
         }
     };
 
@@ -103,8 +99,14 @@
 
     const settings = document.getElementById("evidon-settings");
 
+    const changeConsentButton = document.getElementById("evidon-prefdiag-accept");
+
     settings.addEventListener("load",()=>{
-        test();
+        checkConsent();
+    })
+
+    changeConsentButton.addEventListener("click",()=>{
+        checkConsent();
     })
         
     
