@@ -73,8 +73,8 @@
         jsScript.addEventListener('load', resolve);
     });
 
-    myPromise.then(()=>{
-        console.log("Settings loaded")
+    myPromise.then(function(){
+        console.log("Settings loaded");
     });
 
 
