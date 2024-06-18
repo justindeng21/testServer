@@ -73,9 +73,10 @@
     settings.addEventListener('load',()=>{
             const test = ()=>{
                 if(typeof window.evidon.notice.activeSettings === "undefined") 
-                    console.log(window.evidon.notice._getConsentedCategories());
+                    setTimeout(test,250);   
                 else{
-                    setTimeout(test,250);
+                    console.log(window.evidon.notice._getConsentedCategories()); 
+                    
                 }
             };
             test();
