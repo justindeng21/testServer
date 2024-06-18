@@ -58,7 +58,7 @@
     }
 
 
-    function fireComScore(consentFlag){
+    const fireComScore = (consentFlag) => {
 
         console.log("Consent flag pushed into _comscore:", consentFlag)
 
