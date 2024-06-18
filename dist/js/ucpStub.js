@@ -71,14 +71,14 @@
     const settings = document.getElementById('evidon-settings');
 
     settings.addEventListener('load',()=>{
-            const test = ()=>{
-                if(typeof window.evidon.notice.activeSettings.includeSubdomains? === "undefined" || typeof window.evidon.notice._getConsentedCategories === "undefined") 
-                    setTimeout(test,250);   
-                else{
-                    console.log(window.evidon.notice._getConsentedCategories()); 
-                }
-            };
-            test();
+        const test = ()=>{
+            try{
+                console.log(window.evidon.notice._getConsentedCategories());
+            }catch{
+                setTimeout(test,250);
+            }
+        };
+        test();
     })
         
     
