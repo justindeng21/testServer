@@ -74,8 +74,8 @@
         const test = ()=>{
             if(window.evdon.notice.activeSettings === undefined) 
                 resolve();
-            else test()
-        }
+            else test();
+        }();
 
         
     });
