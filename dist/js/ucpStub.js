@@ -71,7 +71,9 @@
     let myPromise = new Promise((reject,resolve)=>{
         const jsScript = document.getElementById('evidon-settings');
         jsScript.addEventListener('load', resolve);
-    }).then(()=>{
+    })
+
+    await myPromise.then(()=>{
         console.log("Settings loaded")
     })
 
