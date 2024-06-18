@@ -73,7 +73,7 @@
         jsScript.addEventListener('load', resolve);
     })
 
-    await myPromise.then(()=>{
+    myPromise.then(()=>{
         console.log("Settings loaded")
     })
 
