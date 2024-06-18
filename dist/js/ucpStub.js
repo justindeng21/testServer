@@ -71,20 +71,14 @@
     const settings = document.getElementById('evidon-settings');
 
     settings.addEventListener('load',()=>{
-        let myPromise = new Promise((reject,resolve)=>{
             const test = ()=>{
                 if(typeof window.evidon.notice.activeSettings === "undefined") 
                     resolve();
                 else{
-                    setTimeout(test,205)
+                    setTimeout(test,250);
                 }
             };
             test();
-        });
-
-        myPromise.then(function(){
-            console.log("Settings loaded");
-        });
     })
         
     
