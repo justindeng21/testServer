@@ -71,7 +71,7 @@
     const jsScript = document.getElementById('evidon-settings')
     jsScript.addEventListener('load', () => {
 
-        var test = ()=>{
+        var test = () => {
             if(typeof window.evidon.notice.activeSettings.includeSubdomains !== undefined){
                 let allOrNothingConsent = true;
                 granularConsent = window.evidon.notice._getConsentedCategories();
@@ -84,6 +84,7 @@
                 setTimeout(test, 250);
             }
         }
+        test()
     })
     
     
