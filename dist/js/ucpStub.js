@@ -69,8 +69,15 @@
 
 
     let myPromise = new Promise((reject,resolve)=>{
-        const jsScript = document.getElementById('evidon-settings');
-        jsScript.addEventListener('load', resolve);
+    
+
+        const test = ()=>{
+            if(window.evdon.notice.activeSettings === undefined) 
+                resolve();
+            else test()
+        }
+
+        
     });
 
     myPromise.then(function(){
