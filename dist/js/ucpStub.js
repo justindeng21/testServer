@@ -57,8 +57,8 @@
     }
 
     window.evidon.consentWithdrawnCallback = function () {
-        // this is exeucted if the user withdraws consent and elects to
-        // no longer allow technologies to run on the site.
+
+        window.location.href = window.location.href;
     }
 
     window.evidon.consentDeclinedCallback = function () {
