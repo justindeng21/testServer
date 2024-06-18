@@ -72,7 +72,7 @@
     jsScript.addEventListener('load', () => {
 
         var test = () => {
-            if(typeof window.evidon.notice.activeSettings.includeSubdomains !== undefined){
+            if(typeof window.evidon.notice.activeSettings.includeSubdomains !== "undefined"){
                 let allOrNothingConsent = true;
                 granularConsent = window.evidon.notice._getConsentedCategories();
                 for(const category in granularConsent){
