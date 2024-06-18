@@ -72,7 +72,7 @@
         const jsScript = document.getElementById('evidon-settings');
         jsScript.addEventListener('load', resolve);
     }).then(()=>{
-        console.log(window.evidon.notice.activeSettings)
+        console.log("Settings loaded")
     })
 
 
