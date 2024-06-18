@@ -99,15 +99,19 @@
 
     const settings = document.getElementById("evidon-settings");
 
-    const changeConsentButton = document.getElementById("evidon-prefdiag-accept");
-
     settings.addEventListener("load",()=>{
         checkConsent();
     })
 
-    changeConsentButton.addEventListener("click",()=>{
-        checkConsent();
-    })
+
+
+    document.addEventListener("click", function(e){
+        const target = e.target.closest("#evidon-prefdiag-accept");
+      
+        if(target){
+            checkConsent();
+        }
+    });
         
     
 
