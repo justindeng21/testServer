@@ -103,19 +103,6 @@
         checkConsent();
     })
 
-
-
-    
-    document.addEventListener("click", function(e){
-        const target = e.target.closest("#evidon-withdraw-consent-yes-button");
-        
-        if(target){
-            console.log('Consent Changed');
-        }
-    });
-        
-    
-
 })(6153);
 
 
