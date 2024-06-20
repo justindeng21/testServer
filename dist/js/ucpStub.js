@@ -73,7 +73,6 @@
 
 
     const checkConsent = ()=>{
-        console.log('Checking Consent');
         try{
             let granularConsent = window.evidon.notice._getConsentedCategories();
             let allOrNothingConsent = true;
