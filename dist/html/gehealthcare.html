@@ -79,12 +79,10 @@
             // using a Decline button
         }
 
-        const css = '.slideron{background-color:red;}';
-        let styleTag = document.createElement('style'), headTag = document.head;
-
+        let styleTag = document.createElement('style');
         styleTag.type = 'text/css';
-        styleTag.appendChild(document.createTextNode(css));
-        headTag.appendChild(styleTag)
+        styleTag.textContent = '.slideron{ background-color: red !important; }';
+        document.head.appendChild(styleTag);
 
     })(3714);
 </script>
