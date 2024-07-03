@@ -952,7 +952,7 @@
             }
             this._tpCategoryToggles = [];
             a9.getOptOutCategories(function(cL, cH) {
-                console.log(typeof cH);
+                
                 if (cL) {} else {
                     for (var cK in cH) {
                         var cI = cH[cK];
@@ -963,7 +963,7 @@
                             cI.dataSharing = a9.activecategorySet[cH[cK].id].dataSharing
                         }
                         var cJ = cF._createCategoryContent(cI);
-                        cJ.setAttribute("id",cK);
+                        cJ.setAttribute("id",cK.replace(/[^a-zA-Z ]/g, "-"));
                         cG.appendChild(cJ);
                         console.log(cK);
                     }
