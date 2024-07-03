@@ -962,9 +962,8 @@
                             cI.dataSharing = a9.activecategorySet[cH[cK].id].dataSharing
                         }
                         var cJ = cF._createCategoryContent(cI);
-                        cG.setAttribute("id","test")
+                        cJ.setAttribute("id",cK)
                         cG.appendChild(cJ)
-                        console.log("cK:",cK)
                     }
                     if (a9.consentDetailCategories) {
                         cF._onCategoryToggle(null, "thirdparty")
