@@ -952,6 +952,7 @@
             }
             this._tpCategoryToggles = [];
             a9.getOptOutCategories(function(cL, cH) {
+                console.log(typeof cH);
                 if (cL) {} else {
                     for (var cK in cH) {
                         var cI = cH[cK];
