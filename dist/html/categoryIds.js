@@ -963,9 +963,9 @@
                             cI.dataSharing = a9.activecategorySet[cH[cK].id].dataSharing
                         }
                         var cJ = cF._createCategoryContent(cI);
-                        cJ.setAttribute("id",cK.replace(/[^a-zA-Z ]/g, "_"));
+                        cJ.setAttribute("id",cK.replace(/[^a-zA-Z0-9]/g, ''));
                         cG.appendChild(cJ);
-                        console.log(cK.replace(/[^a-zA-Z ]/g, "_"));
+                        console.log(cK.replace(/[^a-zA-Z0-9]/g, ''));
                     }
                     if (a9.consentDetailCategories) {
                         cF._onCategoryToggle(null, "thirdparty")
