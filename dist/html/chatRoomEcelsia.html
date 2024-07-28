@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Chat Room Ecelsia</title>
+	</head>
+	<body>
+       <form id="login-form">
+            <input type="text" name="email">
+            <input type="text" name="userPassword">
+            <input type="submit">
+       </form>
+       <br>
+       <form id="message-form">
+            <input type="text" name="message">
+            <input type="submit">
+       </form> 
+	</body>
+        <script>
+            async function login(event) {
+                event.preventDefault();
+                var response = fetch("https://localhost:7133/api/user/login", {
+                   method: "post",
+                   credentials: 'include',
+                   headers: {
+                       "Content-Type": "application/json",  
+                   },
+                    body: JSON.stringify({ emailAddress:event.target.email.value, password: event.target.userPassword.value })
+                });
+                await response.then(response => {
+                    if(!response.ok) throw new Error("Response was not ok.");
+                    return response.json();
+                })
+                .then( data =>{
+                    console.log(data);
+                    window.senderId = data.userId;
+                    window.recipiantId = data.userId;
+                    window.exampleSocket = new WebSocket(`https://localhost:6969/ws/${data.userId}/${data.userName}`);
+                    exampleSocket.onmessage = (event) => {
+                        var messageElement = document.createElement("p");
+                        messageElement.innerText = JSON.parse(event.data).message;
+                        document.body.append(messageElement);
+                        console.log(event.data);
+                    };
+                })
+            } 
+            function sendMessage(event){
+                event.preventDefault();
+                var messagePaylod = 
+                `{  "SenderId":"${senderId}",
+                    "RecipiantId":"${recipiantId}",
+                    "ChatRoomId":"$sdfasdfa",
+                    "message":"${event.target.message.value}"
+                }`
+                exampleSocket.send(messagePaylod);
+            } 
+            var form = document.getElementById("login-form");
+            form.addEventListener('submit', login);
+            var messageForm = document.getElementById("message-form");
+            messageForm.addEventListener('submit', sendMessage);
+        </script>
+</html>
