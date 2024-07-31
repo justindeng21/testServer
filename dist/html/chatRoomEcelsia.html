@@ -18,7 +18,7 @@
         <script>
             async function login(event) {
                 event.preventDefault();
-                var response = fetch("https://localhost:7133/api/user/login", {
+                let response = fetch("https://localhost:7133/api/user/login", {
                    method: "post",
                    credentials: 'include',
                    headers: {
@@ -34,6 +34,7 @@
                     console.log(data);
                     window.senderId = data.userId;
                     window.recipiantId = data.userId;
+                    //window.bearer = data.bearer;
                     window.exampleSocket = new WebSocket(`https://localhost:6969/ws/${data.userId}/${data.userName}`);
                     exampleSocket.onmessage = (event) => {
                         var messageElement = document.createElement("p");
@@ -41,6 +42,22 @@
                         document.body.append(messageElement);
                         console.log(event.data);
                     };
+                }).then(async () => {
+                    let response = fetch(`https://localhost:7133/api/get/friends/${window.senderId}`,{
+                        method: "get",
+                        credentials:"include",
+                        header:{
+                            "Content-Type": "application/json"
+                        }
+                    })
+                    await response.then(response => {
+                        if(!response.ok) throw new Error("Could not query friends");
+                        return response.json();
+                    }).then( data => {
+                        console.log(data);
+                
+                    });
+                    
                 })
             } 
             function sendMessage(event){
