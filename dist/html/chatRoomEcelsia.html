@@ -14,6 +14,7 @@
             <input type="text" name="message">
             <input type="submit">
        </form> 
+       <br>
 	</body>
         <script>
             async function login(event) {
@@ -34,27 +35,53 @@
                     console.log(data);
                     window.senderId = data.userId;
                     window.recipiantId = data.userId;
-                    //window.bearer = data.bearer;
-                    window.exampleSocket = new WebSocket(`https://localhost:6969/ws/${data.userId}/${data.userName}`);
+                    window.bearerToken = data.bearerToken
+                    window.exampleSocket = new WebSocket(`https://localhost:6969/ws/${data.userId}/${data.userName}/${window.bearerToken}`);
                     exampleSocket.onmessage = (event) => {
                         var messageElement = document.createElement("p");
                         messageElement.innerText = JSON.parse(event.data).message;
                         document.body.append(messageElement);
-                        console.log(event.data);
                     };
+                }).then(async ()=>{
+                    let requestParams = {
+                        method: "get",
+                        credentials: "include",
+                        headers:{
+                            "Authorization": "Bearer " + window.bearerToken
+                        }
+                    };
+                    let request = fetch("https://localhost:7133/api/users", requestParams)
+                    await request.then( response => {
+                        if(!response.ok) throw new Error("Couldn't fetch users");
+                        return response.json();
+                    }).then(data => {
+                        console.log(data);
+                    })
+
                 }).then(async () => {
-                    let response = fetch(`https://localhost:7133/api/get/friends/${window.senderId}`,{
+
+                    let requestParams = {
                         method: "get",
                         credentials:"include",
-                        header:{
-                            "Content-Type": "application/json"
+                        headers:{
+                            "Authorization": "Bearer " + window.bearerToken
                         }
-                    })
+                    };
+
+                    let response = fetch(`https://localhost:7133/api/get/friends/${window.senderId}`, requestParams);
                     await response.then(response => {
                         if(!response.ok) throw new Error("Could not query friends");
                         return response.json();
                     }).then( data => {
-                        console.log(data);
+                        
+                        for(let i = 0; i <= data.length-1; i++){
+                            var friend = document.createElement("button");
+                            friend.innerText = data[i].friendId;
+                            friend.onclick = (event)=>{
+                                window.recipiantId = event.target.innerText;
+                            }
+                            document.body.append(friend);
+                        }
                 
                     });
                     
@@ -69,7 +96,9 @@
                     "message":"${event.target.message.value}"
                 }`
                 exampleSocket.send(messagePaylod);
-            } 
+            }
+            
+
             var form = document.getElementById("login-form");
             form.addEventListener('submit', login);
             var messageForm = document.getElementById("message-form");
