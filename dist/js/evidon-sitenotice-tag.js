@@ -1,5 +1,3 @@
-console.log("Hi Justin, your edited file is being loaded");
-
 (function() {
     var ac = {
         en: {
@@ -1721,6 +1719,7 @@ console.log("Hi Justin, your edited file is being loaded");
                 consentCategories: aO,
                 consentVendors: a3
             })
+            aQ.push({event: 'evidonAdvancedGoogleConsent'})
         } catch (aR) {}
         if (typeof window.evidon.enableGoogleConsentSupport === "undefined" || window.evidon.enableGoogleConsentSupport) {
             try {
@@ -1837,10 +1836,6 @@ console.log("Hi Justin, your edited file is being loaded");
             } else {
                 if (typeof aP === "object") {
                     if (Object.isEmpty(aP)) {
-
-
-
-                        
                         aQ = {
                             all: true
                         }
@@ -2296,9 +2291,8 @@ console.log("Hi Justin, your edited file is being loaded");
         if (this._isConsentGiven()) {
             if (this.consentDetailCategories) {
                 var aN = this._getConsentedCategories();
-                var aP = this._getConsentedVendors();
                 if (aN && !aN.hasOwnProperty("all")) {
-                    this._runConsentCallback(aN, aP, null)
+                    this._runConsentCallback(aN, null, null)
                 }
             } else {
                 if (this.consentDetailVendors) {
@@ -3854,4 +3848,3 @@ console.log("Hi Justin, your edited file is being loaded");
     window.evidon.events._fireEvent("apiReady", null)
 }
 )();
-
