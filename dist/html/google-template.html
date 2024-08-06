@@ -8,20 +8,15 @@
         function gtag(){dataLayer.push(arguments);}
         
         gtag('policy', 'inject_script', function(containerId, permissionId, data) {
-
-        // reference the url of the script to be injected
-        let url = data.url || '';
-
-        // if the url of the injected script exactly matches, allow it.
-        // otherwise throw an error
-        const evidonRegex = /.*\.evidon\.com/;
-        if (evidonRegex.test(evidonRegex)) {
-            console.log(url,"has been allowed"); 
-            return true;
-        } else {
-            console.log(url,"has been blocked");
-            throw 'Only permitted to inject https://scripts.example.com/analytics.js';
-        }
+            let url = data.url || '';
+            const evidonTagPattern = /.*\.evidon\.com/;
+            if (evidonRegex.test(evidonRegex)) {
+                console.log(url,"has been allowed"); 
+                return true;
+            } 
+            else {
+                throw Error(url+"has been blocked");    
+            }
         });
     </script>    
 
