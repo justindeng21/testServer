@@ -10,7 +10,24 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-K5HBJ7LP');</script>
     <!-- End Google Tag Manager -->
+   
     
+    <script>
+        gtag('policy', 'inject_script', function(containerId, permissionId, data) {
+
+        // reference the url of the script to be injected
+        let url = data.url || '';
+
+        // if the url of the injected script exactly matches, allow it.
+        // otherwise throw an error
+        if (url === 'https://scripts.example.com/analytics.js') {
+            return true;
+        } else {
+            throw 'Only permitted to inject https://scripts.example.com/analytics.js';
+        }
+        });
+    </script>    
+
     </head>
     <body>
         This page has the google template implemented.
