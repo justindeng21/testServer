@@ -15,10 +15,11 @@
         // if the url of the injected script exactly matches, allow it.
         // otherwise throw an error
         const evidonRegex = /.*\.evidon\.com/;
-        if (evidonRegex.test(url)) {
-            console.log("Allowing Evidon Scripts")
+        if (evidonRegex.test(evidonRegex)) {
+            console.log(url,"has been allowed"); 
             return true;
         } else {
+            console.log(url,"has been blocked");
             throw 'Only permitted to inject https://scripts.example.com/analytics.js';
         }
         });
