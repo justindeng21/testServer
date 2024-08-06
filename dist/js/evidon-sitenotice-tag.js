@@ -1772,6 +1772,15 @@
                         ad_user_data: aV,
                         ad_personalization: aS
                     });
+
+                    aQ.push({
+                        event: "googleConsent",
+                        ad_storage: aT,
+                        analytics_storage: aU,
+                        ad_user_data: aV,
+                        ad_personalization: aS
+                    });
+                    
                     a0("set", "ads_data_redaction", aT == "granted" ? false : true)
                 }
             } catch (aR) {}
