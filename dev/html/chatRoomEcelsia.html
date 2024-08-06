@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Chat Room Ecelsia</title>
+
+        <style>
+
+            #container{
+                display: flex;
+                flex-direction: row;
+                gap: 10%;
+            }
+            #forms{
+                display: flex;
+                flex-direction: column;
+            }
+
+        </style>
+
+
+	</head>
+	<body>
+
+
+<div id="container">
+
+    <div id="forms">
+        <form id="login-form">
+            <input type="text" name="email">
+            <input type="text" name="userPassword">
+            <input type="submit">
+        </form>
+        <br>
+        <br>
+        <form id="message-form">
+            <input type="text" name="message">
+            <input type="submit">
+        </form> 
+        <div id="messages"></div>
+    </div>
+
+
+    <div>
+       <table id="friend-table">
+            <tr>
+                <th>Friend</th>
+                <th>Message</th>
+            </tr>
+        </table>
+    </div>
+
+    <div>
+       <table id="user-table">
+            <tr>
+                <th>UserName</th>
+                <th>Add Friend</th>
+            </tr>
+        </table>
+    </div>
+    
+</div>
+
+
+
+
+
+       <br>
+	</body>
+        <script>
+            async function login(event) {
+                event.preventDefault();
+                let response = fetch("https://localhost:7133/api/user/login", {
+                   method: "post",
+                   credentials: 'include',
+                   headers: {
+                       "Content-Type": "application/json",  
+                   },
+                    body: JSON.stringify({ emailAddress:event.target.email.value, password: event.target.userPassword.value })
+                });
+                await response.then(response => {
+                    if(!response.ok) throw new Error("Response was not ok.");
+                    return response.json();
+                })
+                .then( data =>{
+                    console.log(data);
+                    window.senderId = data.userId;
+                    window.recipiantId = data.userId;
+                    window.bearerToken = data.bearerToken
+                    window.exampleSocket = new WebSocket(`https://localhost:6969/ws/${data.userId}/${data.userName}/${window.bearerToken}`);
+                    exampleSocket.onmessage = (event) => {
+                        var messageElement = document.createElement("p");
+                        messageElement.innerText = JSON.parse(event.data).message;
+                        var messageDisplay = document.getElementById("messages");
+                        messageDisplay.appendChild(messageElement);
+                        cosnole.log(event.data)
+                    };
+                }).then(async ()=>{
+                    let requestParams = {
+                        method: "get",
+                        credentials: "include",
+                        headers:{
+                            "Authorization": "Bearer " + window.bearerToken,
+                            "Content-Type":"application/json"
+                        }
+                    };
+                    let request = fetch("https://localhost:7133/api/all/users", requestParams)
+                    await request.then( response => {
+                        if(!response.ok) throw new Error("Couldn't fetch users");
+                        return response.json();
+                    }).then(data => {
+
+                        for(let i = 0; i < data.length-1; i++){
+                            let row = document.createElement("tr");
+                            let userNameColumn = document.createElement("td");
+                            let addUserButtonColumn = document.createElement("td");
+                            let addUserButton = document.createElement("button");
+                            userNameColumn.innerText = data[i].userName;
+                            addUserButton.innerText = "Add";
+                            addUserButton.onclick = () =>{
+                                const payload = {
+                                    userId: window.senderId,
+                                    friendId: data[i].friendId
+                                };
+                                const requestParams = {
+                                    method: "post",
+                                    credentials: "include",
+                                    headers: {
+                                        "Authorization":"Bearer " + window.bearerToken,
+                                        "Content-type":"application/json"
+                                    },
+                                    body: JSON.stringify(payload)
+                                };
+                                fetch("https://localhost:7133/api/new/friend", requestParams);
+                            }
+
+
+                            addUserButtonColumn.appendChild(addUserButton);
+                            row.appendChild(userNameColumn);
+                            row.appendChild(addUserButtonColumn);
+
+
+                            let table = document.getElementById("user-table");
+                            table.appendChild(row);
+
+
+                        }
+                    })
+
+                }).then(async () => {
+
+                    let requestParams = {
+                        method: "get",
+                        credentials:"include",
+                        headers:{
+                            "Authorization": "Bearer " + window.bearerToken,
+                            "Content-Type":"application/json"
+                        }
+                    };
+
+                    let response = fetch(`https://localhost:7133/api/all/friends/${window.senderId}`, requestParams);
+                    await response.then(response => {
+                        if(!response.ok) throw new Error("Could not query friends");
+                        return response.json();
+                    }).then( data => {
+                        
+                        for(let i = 0; i <= data.length-1; i++){
+                            let row = document.createElement("tr");
+                            let userNameColumn = document.createElement("td");
+                            let messageButtonColumn = document.createElement("td");
+                            let messageButton = document.createElement("button");
+                            userNameColumn.innerText = data[i].userName;
+                            messageButton.innerText = "Message";
+                            messageButton.onclick = (event)=>{
+                                window.recipiantId = data[i].friendId;
+                            }
+                            messageButtonColumn.appendChild(messageButton);
+                            row.appendChild(userNameColumn);
+                            row.appendChild(messageButtonColumn);
+                            let table = document.getElementById("friend-table");
+                            table.appendChild(row)
+                        }
+                
+                    });
+                    
+                })
+            }
+
+            function sendMessage(event){
+                event.preventDefault();
+                var messagePaylod = 
+                `{  
+                "SenderId":"${senderId}",
+                "RecipiantId":"${recipiantId}",
+                "ChatRoomId":"sdfasdfa",
+                "message":"${event.target.message.value}"
+                }`
+                exampleSocket.send(messagePaylod);
+                console.log(messagePaylod);
+            }
+            
+
+            var form = document.getElementById("login-form");
+            form.addEventListener('submit', login);
+            var messageForm = document.getElementById("message-form");
+            messageForm.addEventListener('submit', sendMessage);
+        </script>
+</html>
