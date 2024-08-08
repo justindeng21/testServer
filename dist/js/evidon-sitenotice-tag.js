@@ -1712,6 +1712,7 @@
         }
         var a3 = (a4) ? this._createListFromItem(a4) : "";
         var aO = (aN) ? this._createListFromItem(aN) : "";
+         aQ.push({event: 'evidonAdvancedGoogleConsent'})
         try {
             var aQ = window.dataLayer || [];
             aQ.push({
@@ -1719,7 +1720,7 @@
                 consentCategories: aO,
                 consentVendors: a3
             })
-            aQ.push({event: 'evidonAdvancedGoogleConsent'})
+           
         } catch (aR) {}
         if (typeof window.evidon.enableGoogleConsentSupport === "undefined" || window.evidon.enableGoogleConsentSupport) {
             try {
@@ -1767,14 +1768,6 @@
                         dataLayer.push(arguments)
                     }
                     a0("consent", "update", {
-                        ad_storage: aT,
-                        analytics_storage: aU,
-                        ad_user_data: aV,
-                        ad_personalization: aS
-                    });
-
-                    aQ.push({
-                        event: "googleConsent",
                         ad_storage: aT,
                         analytics_storage: aU,
                         ad_user_data: aV,
