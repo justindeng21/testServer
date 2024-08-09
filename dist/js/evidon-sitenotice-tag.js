@@ -1712,6 +1712,7 @@
         }
         var a3 = (a4) ? this._createListFromItem(a4) : "";
         var aO = (aN) ? this._createListFromItem(aN) : "";
+         aQ.push({event: 'evidonAdvancedGoogleConsent'})
         try {
             var aQ = window.dataLayer || [];
             aQ.push({
@@ -1719,6 +1720,10 @@
                 consentCategories: aO,
                 consentVendors: a3
             })
+<<<<<<< HEAD
+=======
+           
+>>>>>>> 349b6d2bbbdda45b4e304f0ac75b6c3f7e96a958
         } catch (aR) {}
         if (typeof window.evidon.enableGoogleConsentSupport === "undefined" || window.evidon.enableGoogleConsentSupport) {
             try {
@@ -1771,6 +1776,7 @@
                         ad_user_data: aV,
                         ad_personalization: aS
                     });
+                    
                     a0("set", "ads_data_redaction", aT == "granted" ? false : true)
                 }
             } catch (aR) {}
