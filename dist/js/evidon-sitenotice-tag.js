@@ -1719,7 +1719,6 @@
                 consentCategories: aO,
                 consentVendors: a3
             })
-            aQ.push({event: 'evidonAdvancedGoogleConsent'})
         } catch (aR) {}
         if (typeof window.evidon.enableGoogleConsentSupport === "undefined" || window.evidon.enableGoogleConsentSupport) {
             try {
