@@ -7,7 +7,6 @@ const makeInteger = require('makeInteger');
 const setDefaultConsentState = require('setDefaultConsentState');
 const gtagSet = require('gtagSet');
 const dataLayerPush = require('createQueue')('dataLayer');
-const addConsentListener = require('addConsentListener');
 
 
 var supportedRegions = {
@@ -90,37 +89,43 @@ function getRootDomain() {
   return rootDomain;
 }
 
+function debug(){
+    addEventCallback(function(ctid, eventData) {
+      logToConsole('Tag count for container ' + ctid + ': ' + eventData['tags'].length);
+    });
+}
+
 function setDefaultConsent(){
     const regions = getRegions();
+    gtagSet({'ads_data_redaction': true,'developer_id.dOGRkZj': true});
+    if(data.enableAdvancedMode){
+        gtagSet({'url_passthrough': true});
+    }
     if(regions.length === 0 || data.defaultConsentGlobally){
         log("Consent applied globally");
         setDefaultConsentState({
             'ad_storage': 'denied',
             'analytics_storage': 'denied',
             'ad_user_data': 'denied',
-            'ad_personalization': 'denied'
+            'ad_personalization': 'denied',
+            'wait_for_update': 500
         });
     }
 
     else{
+        log("Default consent with regions", regions);
         log("Consent applied to the following regions:", regions);
         setDefaultConsentState({
             'ad_storage': 'denied',
             'analytics_storage': 'denied',
             'ad_user_data': 'denied',
             'ad_personalization': 'denied',
-            'region': regions
+            'region': regions,
+            'wait_for_update': 500
         });
     }
-    gtagSet({'ads_data_redaction': true,'developer_id.dOGRkZj': true});
-  
-    if(data.enableAdvancedMode){
-        gtagSet({'url_passthrough': true});
-        log("Advanced Mode Enabled")
-    }
-    else{
-        log("Basic Mode Enabled");
-    }
+    
+    if(data.enableAdvancedMode) dataLayerPush({'event': 'evidonAdvancedGoogleConsent'});
     return;
 }
 
@@ -130,6 +135,7 @@ function defineEvidonObject(){
     setInWindow('evidon.id', makeInteger(companyId), true);
     setInWindow('evidon.test', false, true);
 }
+
 
 function injectEvidonScripts(){
     const companyId = data.companyId;
@@ -144,34 +150,42 @@ function injectEvidonScripts(){
     injectScript(settingsV3, onSuccessSettingsV3, onFailureSettingsV3, "Evidon settingsV3");
 }
 
+/* --- Define Error and Sucess Callbacks --- */
 const onSuccessEvidonSiteNoticeTag = () => {
+    log('Evidon: evidon-sitenotice-tag.js loaded sucessfully');
     data.gtmOnSuccess();
 };
 const onFailureEvidonSiteNoticeTag = () => {
+    log('Evidon: evidon-sitenotice-tag.js loading failed');
     data.gtmOnFailure();
 };
 const onSuccessCountry = () => {
+    log('Evidon: country.js loaded sucessfully');
     data.gtmOnSuccess();
 };
 const onFailureCountry = () => {
+    log('Evidon: country.js loading failed');
     data.gtmOnFailure();
 };
 const onSuccessSnThemes = () => {
+    log('Evidon: snthemes.js loaded sucessfully');
     data.gtmOnSuccess();
 };
 const onFailureSnThemes = () => {
+    log('Evidon: snthemes.js loading failed');
     data.gtmOnFailure();
 };
 const onSuccessSettingsV3 = () => {
+    log('Evidon: settingsV3.js loaded sucessfully');
     data.gtmOnSuccess();
 };
 const onFailureSettingsV3 = () => {
+    log('Evidon: settingsV3.js loading failed');
     data.gtmOnFailure();
 };
 
 setDefaultConsent();
 defineEvidonObject();
 injectEvidonScripts();
-
 
 data.gtmOnSuccess();
