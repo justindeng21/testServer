@@ -9,7 +9,7 @@ return (typeof window.ga !== 'undefined' && typeof window.dataLayer !== 'undefin
 // Function to check if the default command has been executed
 function isDefaultCommandExecuted() {
 // Replace with the specific condition for your default command
-return true;
+    return false;
 }
 // Monitor the page for changes and check the conditions
 
