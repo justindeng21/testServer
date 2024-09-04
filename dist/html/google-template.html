@@ -14,6 +14,8 @@
 
             function test(){
                 console.log("hi")
+                window.dataLayer = window.dataLayer || [];
+                dataLayer.push({"event": "evidonAdvanceConsent"})
             }
 
         </script>
