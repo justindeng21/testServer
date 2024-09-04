@@ -7,7 +7,7 @@ const makeInteger = require('makeInteger');
 const setDefaultConsentState = require('setDefaultConsentState');
 const gtagSet = require('gtagSet');
 const dataLayerPush = require('createQueue')('dataLayer');
-const addEventCallback = require('addEventCallback');
+const copyFromDataLayer = require('copyFromDataLayer');
 
 
 var supportedRegions = {
@@ -22,8 +22,6 @@ var supportedRegions = {
     caribbean: ['AI', 'AG', 'AW', 'BS', 'BB', 'BM', 'VG', 'KY', 'DM', 'DO', 'GD', 'HT', 'JM', 'AN', 'PR', 'KN', 'LC', 'VC', 'TT', 'TC', 'VI', 'GP', 'BL', 'MF'],
     centralAmerica: ['MX', 'BZ', 'CR', 'SV', 'GT', 'HN', 'NI', 'PA']
 };
-
-var isDefaultConsentSet = false;
 
 function getRegions(){
     var regions = [];
@@ -92,16 +90,9 @@ function getRootDomain() {
   return rootDomain;
 }
 
-function debugEvidon(){
-    addEventCallback(function(ctid, eventData) {
-        log(eventData);
-        if(isDefaultConsentSet === false){
-            log("ERROR: TAGS FIRED BEFORE");
-        }
-        else{
-            log("No Error");
-        }
-    });
+function checkDataLayer(){
+    const dt = copyFromDataLayer("event");
+    log(dt);    
 }
 
 function setDefaultConsent(){
@@ -122,6 +113,7 @@ function setDefaultConsent(){
     }
 
     else{
+        log("Default consent with regions", regions);
         log("Consent applied to the following regions:", regions);
         setDefaultConsentState({
             'ad_storage': 'denied',
@@ -132,7 +124,7 @@ function setDefaultConsent(){
             'wait_for_update': 500
         });
     }
-    isDefaultConsentSet = true;
+    
     if(data.enableAdvancedMode) dataLayerPush({'event': 'evidonAdvancedGoogleConsent'});
     return;
 }
@@ -192,7 +184,7 @@ const onFailureSettingsV3 = () => {
     data.gtmOnFailure();
 };
 
-debugEvidon();
+checkDataLayer();
 setDefaultConsent();
 defineEvidonObject();
 injectEvidonScripts();
