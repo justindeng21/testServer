@@ -13,18 +13,21 @@
         <script>
 
             function test(){
-                console.log("hi")
                 window.dataLayer = window.dataLayer || [];
-                dataLayer.push({"event": "evidonAdvanceConsent"})
+                    function gtag() {
+                        dataLayer.push(arguments)
+                    }
+                    gtag({
+                        "event": "evidonAdvancedGoogleConsent"
+                    });
             }
-
         </script>
    
     </head>
 
     <body>
 
-<button onclick="test()">Push Event</button>
+        <button onclick="test()"></button>
 
     </body>
 </html>
