@@ -1,3 +1,3 @@
-window.evidon.notice.testCallback = function(){
+window.evidon.testCallback = function(){
     console.log("Test Callback executed")
 }
