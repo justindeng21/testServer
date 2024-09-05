@@ -23,11 +23,9 @@ class CMSAPI extends Server{
     defineCMSEndpoints(){
 
         this.httpListener.get('/',(req,res)=>{
-            
-            let jsLinks = '';
-            let links = '';
             fs.readdir(__dirname+'/html', (err, files) => {
 
+                let links = ''
                 if (err) {
                   console.error('Error reading directory:', err);
                   return;
@@ -63,45 +61,6 @@ class CMSAPI extends Server{
                 </html>`)
     
             });
-
-            fs.readdir(__dirname+'/js', (err, files) => {
-
-                if (err) {
-                  console.error('Error reading directory:', err);
-                  return;
-                }
-                const jsfileNames = files.filter(file => {
-                  const filePath = path.join(__dirname+'/html', file);
-                  return fs.statSync(filePath).isFile();
-                });
-                jsfileNames.forEach(fileName => {
-                  jsLinks = jsLinks + `<a class="link" href="https://dg-sandbox-deb249716852.herokuapp.com/js/${fileName}">${fileName}</a>\n`;
-                });
-            
-            });
-    
-            res.send(
-            `<html>
-                <head>
-                    <style>
-                        .links{
-                            display: flex; 
-                            flex-direction: column;
-                            gap: 10px;
-                        }
-                        .link{
-                            text-decoration: none;
-                        }
-                    </style>
-                </head>
-                <body>
-                    <h1>Directory</h1>
-                    <div class="links">${links}</div>
-
-                    <div class="jslinks">${jsLinks}<>
-                </body>
-            </html>`)
-    
         }) 
 
         this.httpListener.get('/:filename',(req,res)=>{
