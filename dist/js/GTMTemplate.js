@@ -157,7 +157,7 @@ const updateGoogleConsent = (consentedVendors) => {
         'ad_storage': "denied",
         'analytics_storage': "denied",
         'ad_user_data': "denied",
-        'ad_personalization': "denied"
+        'ad_personalization': "denied" 
     };
     for (let key in consentedVendors) {
         let vendorConsent = consentedVendors[key];
@@ -168,6 +168,7 @@ const updateGoogleConsent = (consentedVendors) => {
         }
         else if (analyticsVendors[key] !== undefined && vendorConsent) consentState.analytics_storage = "granted";
     }
+    log(consentState);
     updateConsentState(consentState);
 };
 
@@ -185,17 +186,18 @@ const eventTypes = {
     "gtm.video": true
 };
 
-function checkDataLayer() {
-    var evidonDataLayer = copyFromWindow("dataLayer");
+function checkDataLayer(evidonDataLayer) {
     for (let i in evidonDataLayer) {
-        if (eventTypes[evidonDataLayer[i].event] !== undefined) {
-            log("event pushed before default Consent");
-        }
+        // if (eventTypes[evidonDataLayer[i].event] !== undefined) {
+        //     log("event pushed before default Consent");
+        // }
+        log(evidonDataLayer[i]);
     }
 }
 
 function defineUpdateMethod() {
-    setInWindow('evidon.UpdateGoogleConsent', updateGoogleConsent);
+    setInWindow('evidon.updateGoogleConsent', updateGoogleConsent);
+    setInWindow('evidon.checkDataLayer', checkDataLayer);
     return;
 }
 
