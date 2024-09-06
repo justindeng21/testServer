@@ -189,10 +189,10 @@ const eventTypes = {
 function checkDataLayer() {
     const evidonDataLayer = copyFromWindow("dataLayer")
     for (let i in evidonDataLayer) {
-        // if (eventTypes[evidonDataLayer[i].event] !== undefined) {
-        //     log("event pushed before default Consent");
-        // }
-        log(evidonDataLayer[i]);
+        if (eventTypes[evidonDataLayer[i].event] !== undefined) {
+            throw("Event pushed before default Consent");
+        }
+
     }
 }
 
