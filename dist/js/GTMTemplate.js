@@ -20,7 +20,7 @@ const country = "https://c.evidon.com/geo/country.js";
 const snThemes = "https://c.evidon.com/sitenotice/" + companyId + "/snthemes.js";
 const settingsV3 = "https://c.evidon.com/sitenotice/" + companyId + "/" + domain + "/settingsV3.js";
 
-var adVendors = {
+const adVendors = {
     80: "google-adsense",
     257: "doubleclick",
     322: "doubleclick-bid-manager-formerly-invite-media",
@@ -33,7 +33,7 @@ var adVendors = {
     6458: "google-mobile-ads",
     6608: "googleima"
 };
-var analyticsVendors = {
+const analyticsVendors = {
     81: "google-analytics"
 };
 
@@ -186,7 +186,8 @@ const eventTypes = {
     "gtm.video": true
 };
 
-function checkDataLayer(evidonDataLayer) {
+function checkDataLayer() {
+    const evidonDataLayer = copyFromWindow("dataLayer")
     for (let i in evidonDataLayer) {
         // if (eventTypes[evidonDataLayer[i].event] !== undefined) {
         //     log("event pushed before default Consent");
