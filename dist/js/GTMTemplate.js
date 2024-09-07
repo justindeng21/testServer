@@ -187,7 +187,7 @@ const eventTypes = {
 };
 
 function checkDataLayer() {
-    const evidonDataLayer = copyFromWindow("dataLayer")
+    const evidonDataLayer = copyFromWindow("dataLayer");
     for (let i in evidonDataLayer) {
         if (eventTypes[evidonDataLayer[i].event] !== undefined) {
             throw("Event pushed before default Consent");
@@ -243,13 +243,10 @@ const onSuccessSettingsV3 = () => {
 const onFailureSettingsV3 = () => {
     data.gtmOnFailure();
 };
-
 const onSuccess = () => {
-    //log('Evidon: evidonCallbacks.js loaded sucessfully');
     data.gtmOnSuccess();
 };
 const onFailure = () => {
-    //log('Evidon: settingsV3.js loading failed');
     data.gtmOnFailure();
 };
 
