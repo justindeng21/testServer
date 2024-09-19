@@ -1,5 +1,5 @@
 const checkConsentTiming = () =>{
-    console.log("%c Consent timing:", "font-size: 1rem");
+    console.log("%c","Consent timing:", "font-size: 1rem");
     if(window.google_tag_data.ics.wasSetLate) console.log("%c Consent was set late", "color: #C00");
     else console.log("%c Consent was not set late", "color: #0C0")
 }
