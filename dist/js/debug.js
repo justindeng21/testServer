@@ -1,5 +1,7 @@
-if(window.google_tag_data.ics.wasSetLate){
-    console.log("Consent was set late.");
+
+
+const checkConsentTiming = () =>{
+    if(window.google_tag_data.ics.wasSetLate) console.log("Consent was set late");
 }
 
 
@@ -19,12 +21,11 @@ const logConsent = () => {
     i = l(g[a]['default']);
     u = l(g[a]['update']);
     if (i == "" && u == "") continue;
-    t = ("\t" + a + ":" +
-      (i != "" ? "\n\t\tDefault: %c" + i : "%c")
-      + "%c" +
-      (u != "" ? "\n\t\tUpdate: %c" + u : "%c"));
-    console.log(t, i != "" ? c(i) : "",
-    "", u != "" ? c(u) : "", "");
+    t = ("\t" + a + ":" + (i != "" ? "\n\t\tDefault: %c" + i : "%c") + "%c" + (u != "" ? "\n\t\tUpdate: %c" + u : "%c"));
+    console.log(t, i != "" ? c(i) : "", "", u != "" ? c(u) : "", "");
   }
   if (i == "") console.log("No default Consent settings found");
 }
+
+checkConsentTiming();
+logConsent();
