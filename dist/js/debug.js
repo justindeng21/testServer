@@ -4,7 +4,6 @@ const checkConsentTiming = () =>{
     else console.log("%c"+"\tConsent was not set late", "color: #0C0")
 }
 
-
 const logConsent = () => {
   l = s => s == undefined ? "" : s ? "granted" : "denied";
   c = s => s == "granted" ? "color: #0C0": "color: #C00";

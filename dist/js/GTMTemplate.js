@@ -6,20 +6,14 @@ const getUrl = require('getUrl');
 const makeInteger = require('makeInteger');
 const setDefaultConsentState = require('setDefaultConsentState');
 const gtagSet = require('gtagSet');
-const dataLayerPush = require('createQueue')('dataLayer');
-const copyFromWindow = require('copyFromWindow');
-const copyFromDataLayer = require('copyFromDataLayer');
-const getCookieValues = require('getCookieValues');
 const updateConsentState = require('updateConsentState');
-const callInWindow = require('callInWindow');
-const COOKIE_NAME = '_evidon_consent_cookie';
+
 const companyId = data.companyId;
 const domain = getRootDomain();
 const evidonSiteNoticeTag = "https://c.evidon.com/sitenotice/evidon-sitenotice-tag.js";
 const country = "https://c.evidon.com/geo/country.js";
 const snThemes = "https://c.evidon.com/sitenotice/" + companyId + "/snthemes.js";
 const settingsV3 = "https://c.evidon.com/sitenotice/" + companyId + "/" + domain + "/settingsV3.js";
-
 const adVendors = {
     80: "google-adsense",
     257: "doubleclick",
@@ -36,7 +30,6 @@ const adVendors = {
 const analyticsVendors = {
     81: "google-analytics"
 };
-
 const supportedRegions = {
     northAmerica: ['US', 'CA', 'PM', 'MQ'],
     europeEU: ['DE', 'ES', 'FR', 'GB', 'IT', 'NL', 'DK', 'IE', 'PL', 'AT', 'BE', 'SE', 'SK', 'HU', 'FI', 'PT', 'CZ', 'LU', 'GR', 'BG', 'RO', 'EE', 'LV', 'LT', 'SI', 'MT', 'CY', 'HR', 'IM', 'JE', 'GI', 'BY'],
@@ -83,12 +76,12 @@ function getRegions() {
     if (data.defaultConsentCentralAmerica)
         regions = regions.concat(supportedRegions.centralAmerica);
 
-
     if (data.userDefinedRegions !== undefined) {
         for (var i = 0; i <= data.userDefinedRegions.length - 1; i++) {
             regions = regions.concat([data.userDefinedRegions[i].region.toUpperCase()]);
         }
     }
+
     return regions;
 }
 
@@ -137,27 +130,21 @@ function setDefaultConsent() {
         'ad_personalization': data.adPersonalization
     };
 
-    if (regions.length === 0 || data.defaultConsentGlobally) defaultConsentState.wait_for_update = 500;
-
-    else {
+    if (regions.length !== 0 && data.defaultConsentGlobally){ 
         defaultConsentState.region = regions;
-        defaultConsentState.wait_for_update = 500;
     }
-    log(defaultConsentState);
-
+  
     setDefaultConsentState(defaultConsentState);
-
     return;
 }
 
 
-
 const updateGoogleConsent = (consentedVendors) => {
     var consentState = {
-        'ad_storage': "denied",
-        'analytics_storage': "denied",
-        'ad_user_data': "denied",
-        'ad_personalization': "denied" 
+        'ad_storage': data.adStorage,
+        'analytics_storage': data.analyticsStorage,
+        'ad_user_data': data.adUserData,
+        'ad_personalization': data.adPersonalization
     };
     for (let key in consentedVendors) {
         let vendorConsent = consentedVendors[key];
@@ -173,32 +160,12 @@ const updateGoogleConsent = (consentedVendors) => {
 };
 
 
-
-const eventTypes = {
-    "gtm.dom": true,
-    "gtm.js": true,
-    "gtm.load": true,
-    "gtm.click": true,
-    "gtm.linkClick": true,
-    "gtm.elementVisibility": true,
-    "gtm.formSubmit": true,
-    "gtm.scrollDepth": true,
-    "gtm.video": true
-};
-
-function checkDataLayer() {
-    const evidonDataLayer = copyFromWindow("dataLayer");
-    for (let i in evidonDataLayer) {
-        if (eventTypes[evidonDataLayer[i].event] !== undefined) {
-            throw("Event pushed before default Consent");
-        }
-
-    }
+function debugImplementation() {
+  injectScript("https://dg-sandbox-deb249716852.herokuapp.com/js/debug.js");
 }
 
 function defineUpdateMethod() {
     setInWindow('evidon.updateGoogleConsent', updateGoogleConsent);
-    setInWindow('evidon.checkDataLayer', checkDataLayer);
     return;
 }
 
@@ -207,6 +174,7 @@ function defineEvidonObject() {
     setInWindow('evidon', [], true);
     setInWindow('evidon.id', makeInteger(companyId), true);
     setInWindow('evidon.test', false, true);
+    defineUpdateMethod();
 }
 
 
@@ -219,43 +187,37 @@ function injectEvidonScripts() {
 
 /* --- Define Error and Sucess Callbacks --- */
 const onSuccessEvidonSiteNoticeTag = () => {
-    defineUpdateMethod();
-    data.gtmOnSuccess();
+    //data.gtmOnSuccess();
 };
 const onFailureEvidonSiteNoticeTag = () => {
-    data.gtmOnFailure();
+    //data.gtmOnFailure();
 };
 const onSuccessCountry = () => {
-    data.gtmOnSuccess();
+    //data.gtmOnSuccess();
 };
 const onFailureCountry = () => {
-    data.gtmOnFailure();
+    //data.gtmOnFailure();
 };
 const onSuccessSnThemes = () => {
-    data.gtmOnSuccess();
+    //data.gtmOnSuccess();
 };
 const onFailureSnThemes = () => {
-    data.gtmOnFailure();
+    //data.gtmOnFailure();
 };
 const onSuccessSettingsV3 = () => {
-    data.gtmOnSuccess();
+    //data.gtmOnSuccess();
 };
 const onFailureSettingsV3 = () => {
-    data.gtmOnFailure();
+    //data.gtmOnFailure();
 };
-const onSuccess = () => {
-    data.gtmOnSuccess();
-};
-const onFailure = () => {
-    data.gtmOnFailure();
-};
+
 
 setDefaultConsent();
 defineEvidonObject();
 injectEvidonScripts();
+debugImplementation();
 
 
 
 
 data.gtmOnSuccess();
-checkDataLayer();
