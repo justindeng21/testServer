@@ -1,7 +1,7 @@
 
 
 const checkConsentTiming = () =>{
-    if(window.google_tag_data.ics.wasSetLate) console.log("Consent was set late");
+    if(window.google_tag_data.ics.wasSetLate) console.log("Consent was set late", "%C00");
 }
 
 
