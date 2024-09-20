@@ -20,13 +20,14 @@ const logConsent = () => {
     i = l(g[a]['default']);
     u = l(g[a]['update']);
     if (i == "" && u == "") continue;
-    t = ("\t" + a + ":" + (i != "" ? "\n\t\tDefault: %c" + i : "%c"));
+    t = ("\t" + a + ":" + (i != "" ? "\n\t\tDefault: %c" + i : "%c") + "%c" + (u != "" ? "\n\t\tUpdate: %c" + u : "%c"));
     console.log(t, i != "" ? c(i) : "", "", u != "" ? c(u) : "", "");
   }
   if (i == "") console.log("No default Consent settings found");
 }
 
-const logUpdateConsent = () => {
+
+const logConsent = () => {
   l = s => s == undefined ? "" : s ? "granted" : "denied";
   c = s => s == "granted" ? "color: #0C0": "color: #C00";
   if (!window["google_tag_data"]) {
@@ -42,7 +43,7 @@ const logUpdateConsent = () => {
     i = l(g[a]['default']);
     u = l(g[a]['update']);
     if (i == "" && u == "") continue;
-    t = ("\t" + a + ":" + (u != "" ? "\n\t\tUpdate: %c" + u : "%c"));
+    t = ("\t" + a + ":" + (i != "" ? "\n\t\tDefault: %c" + i : "%c") + "%c" + (u != "" ? "\n\t\tUpdate: %c" + u : "%c"));
     console.log(t, i != "" ? c(i) : "", "", u != "" ? c(u) : "", "");
   }
   if (i == "") console.log("No default Consent settings found");
