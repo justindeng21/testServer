@@ -1765,12 +1765,6 @@
                     }
                 }
                 if (this.companyId != 1782) {
-                    a1("consent", "update", {
-                        ad_storage: aU,
-                        analytics_storage: aV,
-                        ad_user_data: aW,
-                        ad_personalization: aT
-                    });
                     console.log({
                         ad_storage: aU,
                         analytics_storage: aV,
