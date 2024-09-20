@@ -1,6 +1,7 @@
 window.evidon.checkConsentTiming = () =>{
-    if(window.google_tag_data.ics.wasSetLate) console.log("%c"+"Consent timing:", "font-size: 1rem","%c"+"\tConsent was set late", "color: #C00");
-    else console.log("%c"+"Consent timing:", "font-size: 1rem","%c"+"\tConsent was not set late", "color: #0C0")
+    console.log("%c"+"Consent timing:", "font-size: 1rem");
+    if(window.google_tag_data.ics.wasSetLate) console.log("%c"+"\tConsent was set late", "color: #C00");
+    else console.log("%c"+"\tConsent was not set late", "color: #0C0")
 }
 
 window.evidon.logConsent = () => {
