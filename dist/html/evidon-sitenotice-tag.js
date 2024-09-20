@@ -1765,12 +1765,7 @@
                     }
                 }
                 if (this.companyId != 1782) {
-                    console.log({
-                        ad_storage: aU,
-                        analytics_storage: aV,
-                        ad_user_data: aW,
-                        ad_personalization: aT
-                    })
+                    console.log("Evidon Scripts")
                     window.evidon.updateGoogleConsent({
                         ad_storage: aU,
                         analytics_storage: aV,
