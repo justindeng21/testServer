@@ -9,9 +9,9 @@ window.evidon.logConsent = () => {
     console.log("%c"+"Consent Default:", "font-size: 1rem");
     for(let consentType in consentTypes){
         if(consentTypes[consentType]['default'])
-            console.log('\t'+consentType+ '\n\t\tUpdate: %cgranted', 'color: #0C0')
+            console.log('\t'+consentType+ '\n\t\tDefault: %cgranted', 'color: #0C0')
         else 
-            console.log('\t'+consentType+ '\n\t\tUpdate: %cdenied', 'color: #C00')
+            console.log('\t'+consentType+ '\n\t\tDefault: %cdenied', 'color: #C00')
     }
 }
 
