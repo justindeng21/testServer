@@ -7,7 +7,7 @@ const makeInteger = require('makeInteger');
 const setDefaultConsentState = require('setDefaultConsentState');
 const gtagSet = require('gtagSet');
 const updateConsentState = require('updateConsentState');
-
+const copyFromWindow = require("copyFromWindow");
 const companyId = data.companyId;
 const domain = getRootDomain();
 const evidonSiteNoticeTag = "https://c.evidon.com/sitenotice/evidon-sitenotice-tag.js";
@@ -157,6 +157,7 @@ const updateGoogleConsent = (consentedVendors) => {
     }
     log(consentState);
     updateConsentState(consentState);
+    copyFromWindow("evidon.logConsentUpdate")();
 };
 
 
@@ -211,13 +212,9 @@ const onFailureSettingsV3 = () => {
     //data.gtmOnFailure();
 };
 
-
 setDefaultConsent();
 defineEvidonObject();
 injectEvidonScripts();
 debugImplementation();
-
-
-
 
 data.gtmOnSuccess();
