@@ -43,6 +43,3 @@ window.evidon.logConsentUpdate = () => {
     console.log(t, u != "" ? c(u) : "", "");
   }
 }       
-
-window.evidon.checkConsentTiming();
-window.evidon.logConsent();
