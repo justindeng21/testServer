@@ -25,6 +25,4 @@ window.evidon.logConsentUpdate = () => {
         else 
             console.log('\t'+consentType+ '\n\t\tUpdate: %cdenied', 'color: #C00')
     }
-}       
-
-window.evidon.logConsent();
+}
