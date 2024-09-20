@@ -5,35 +5,26 @@ window.evidon.checkConsentTiming = () =>{
 }
 
 window.evidon.logConsent = () => {
-  l = s => s == undefined ? "" : s ? "granted" : "denied";
-  c = s => s == "granted" ? "color: #0C0": "color: #C00";
-  if (!window["google_tag_data"]) {
-    console.warn("No Consent Mode data found");
-    return;
-  }
-  var g = "ics" in google_tag_data ? google_tag_data.ics.entries : null, 
-      i = "",
-      t = "%c" + "Consent Default:";
-  console.log(t, "font-size: 1rem");
-  for (var a in g) {
-    i = l(g[a]['default']);
-    if (i == "" ) continue;
-    t = ("\t" + a + ":" + (i != "" ? "\n\t\tDefault: %c" + i : "%c"));
-    console.log(t, i != "" ? c(i) : "", "");
-  }
-  if (i == "") console.log("No default Consent settings found");
+    const consentTypes = google_tag_data.ics.entries;
+
+    for(let consentType in consentTypes){
+        if(consentTypes[consentType]['default'])
+            console.log('\t'+consentType+ '\n\t\tUpdate: %cgranted', 'color: #0C0')
+        else 
+            console.log('\t'+consentType+ '\n\t\tUpdate: %cdenied', 'color: #C00')
+    }
 }
 
-
-window.evidon.logConsentUpdateTest = () => {
-    const grantedStatus = "%c" + "granted" + "color: #0C0";
+window.evidon.logConsentUpdate = () => {
 
     const consentTypes = google_tag_data.ics.entries;
 
-    for(let key in consentTypes){
-       console.log('\n\t'+key)
-       if(consentTypes[key]['update']) console.log('\n\t'+grantedStatus)
+    for(let consentType in consentTypes){
+        if(consentTypes[consentType]['update'])
+            console.log('\t'+consentType+ '\n\t\tUpdate: %cgranted', 'color: #0C0')
+        else 
+            console.log('\t'+consentType+ '\n\t\tUpdate: %cdenied', 'color: #C00')
     }
 }       
 
-window.evidon.logConsentUpdateTest();
+window.evidon.logConsentUpdate();
