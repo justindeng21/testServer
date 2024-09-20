@@ -6,7 +6,7 @@ window.evidon.checkConsentTiming = () =>{
 
 window.evidon.logConsent = () => {
     const consentTypes = google_tag_data.ics.entries;
-
+    console.log("%c"+"Consent Default:", "font-size: 1rem");
     for(let consentType in consentTypes){
         if(consentTypes[consentType]['default'])
             console.log('\t'+consentType+ '\n\t\tUpdate: %cgranted', 'color: #0C0')
@@ -18,7 +18,7 @@ window.evidon.logConsent = () => {
 window.evidon.logConsentUpdate = () => {
 
     const consentTypes = google_tag_data.ics.entries;
-
+    console.log("%c"+"Consent Update:", "font-size: 1rem");
     for(let consentType in consentTypes){
         if(consentTypes[consentType]['update'])
             console.log('\t'+consentType+ '\n\t\tUpdate: %cgranted', 'color: #0C0')
