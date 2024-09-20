@@ -1765,17 +1765,7 @@
                     }
                 }
                 if (this.companyId != 1782) {
-                    window.dataLayer = window.dataLayer || [];
-                    function a1() {
-                        dataLayer.push(arguments)
-                    }
-                    // a1("consent", "update", {
-                        // ad_storage: aU,
-                        // analytics_storage: aV,
-                        // ad_user_data: aW,
-                        // ad_personalization: aT
-                    // });
-                    // a1("set", "ads_data_redaction", aU == "granted" ? false : true)
+                  window.evidon.updateGoogleConsent(window.evidon.notice._getConsentedVendors()); 
                 }
             } catch (aS) {}
         }

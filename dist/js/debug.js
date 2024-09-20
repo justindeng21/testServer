@@ -25,6 +25,15 @@ window.evidon.logConsent = () => {
 }
 
 
-window.evidon.logConsentUpdate = () => {
+window.evidon.logConsentUpdateTest = () => {
+    const grantedStatus = "%c" + "granted" + "color: #0C0";
 
+    const consentTypes = google_tag_data.ics.entries;
+
+    for(let key in consentTypes){
+       console.log('\n\t'+key)
+       if(consentTypes[key]['update']) console.log('\n\t'+grantedStatus)
+    }
 }       
+
+window.evidon.logConsentUpdateTest();
