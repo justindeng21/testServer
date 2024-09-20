@@ -1,10 +1,10 @@
-const checkConsentTiming = () =>{
+window.evidon.checkConsentTiming = () =>{
     console.log("%c"+"Consent timing:", "font-size: 1rem");
     if(window.google_tag_data.ics.wasSetLate) console.log("%c"+"\tConsent was set late", "color: #C00");
     else console.log("%c"+"\tConsent was not set late", "color: #0C0")
 }
 
-const logConsent = () => {
+window.evidon.logConsent = () => {
   l = s => s == undefined ? "" : s ? "granted" : "denied";
   c = s => s == "granted" ? "color: #0C0": "color: #C00";
   if (!window["google_tag_data"]) {
@@ -25,7 +25,7 @@ const logConsent = () => {
 }
 
 
-const logConsentUpdate = () => {
+window.evidon.logConsentUpdate = () => {
   l = s => s == undefined ? "" : s ? "granted" : "denied";
   c = s => s == "granted" ? "color: #0C0": "color: #C00";
   if (!window["google_tag_data"]) {
@@ -43,6 +43,6 @@ const logConsentUpdate = () => {
     console.log(t, u != "" ? c(u) : "", "");
   }
 }       
-logConsentUpdate()
-checkConsentTiming();
-logConsent();
+
+window.evidon.checkConsentTiming();
+window.evidon.logConsent();
