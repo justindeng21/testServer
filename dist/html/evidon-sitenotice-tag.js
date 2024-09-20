@@ -1764,7 +1764,7 @@
                         }
                     }
                 }
-                if (this.companyId != 1782 && this.googleTemplateEnabled !== undefined) {
+                if (this.companyId != 1782 && this.googleTemplateEnabled === undefined) {
                     window.dataLayer = window.dataLayer || [];
                     function a1() {
                         dataLayer.push(arguments)
