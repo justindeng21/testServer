@@ -1765,7 +1765,13 @@
                     }
                 }
                 if (this.companyId != 1782) {
-                  window.evidon.updateGoogleConsent(window.evidon.notice._getConsentedVendors()); 
+                    a1("consent", "update", {
+                        ad_storage: aU,
+                        analytics_storage: aV,
+                        ad_user_data: aW,
+                        ad_personalization: aT
+                    });
+                    window.evidon.updateGoogleConsent(aU, aV, aW, aT);
                 }
             } catch (aS) {}
         }
