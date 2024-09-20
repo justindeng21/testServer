@@ -33,13 +33,19 @@ window.evidon.logConsentUpdate = () => {
     return;
   }
   var g = "ics" in google_tag_data ? google_tag_data.ics.entries : null, 
-      t = "%c" + "Consent Update:", 
+      i = "",
+      t = "%c" + "Consent Mode settings:", 
       u = "";
   console.log(t, "font-size: 1rem");
   for (var a in g) {
     u = l(g[a]['update']);
-    if (u == "") continue;
-    t = ("\t" + a + ":" + (u != "" ? "\n\t\tUpdate: %c" + u : "%c"));
-    console.log(t, u != "" ? c(u) : "", "");
+    if (i == "" && u == "") continue;
+    t = ("\t" + a + ":" +
+      (i != "" ? "\n\t\tDefault: %c" + i : "%c")
+      + "%c" +
+      (u != "" ? "\n\t\tUpdate: %c" + u : "%c"));
+    console.log(t, i != "" ? c(i) : "",
+    "", u != "" ? c(u) : "", "");
   }
-}       
+  if (i == "") console.log("No default Consent settings found");
+}
