@@ -1771,7 +1771,18 @@
                         ad_user_data: aW,
                         ad_personalization: aT
                     });
-                    window.evidon.updateGoogleConsent(aU, aV, aW, aT);
+                    console.log({
+                        ad_storage: aU,
+                        analytics_storage: aV,
+                        ad_user_data: aW,
+                        ad_personalization: aT
+                    })
+                    window.evidon.updateGoogleConsent({
+                        ad_storage: aU,
+                        analytics_storage: aV,
+                        ad_user_data: aW,
+                        ad_personalization: aT
+                    });
                 }
             } catch (aS) {}
         }
