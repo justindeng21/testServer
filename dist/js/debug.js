@@ -38,6 +38,7 @@ window.evidon.logConsentUpdate = () => {
       u = "";
   console.log(t, "font-size: 1rem");
   for (var a in g) {
+    i = l(g[a]['default']);
     u = l(g[a]['update']);
     if (i == "" && u == "") continue;
     t = ("\t" + a + ":" +
