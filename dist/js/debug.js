@@ -26,21 +26,5 @@ window.evidon.logConsent = () => {
 
 
 window.evidon.logConsentUpdate = () => {
-  l = s => s == undefined ? "" : s ? "granted" : "denied";
-  c = s => s == "granted" ? "color: #0C0": "color: #C00";
-  if (!window["google_tag_data"]) {
-    console.warn("No Consent Mode data found");
-    return;
-  }
-  var g = "ics" in google_tag_data ? google_tag_data.ics.entries : null, 
-      t = "%c" + "Consent Update:", 
-      u = "";
-  console.log(t, "font-size: 1rem");
-  for (var a in g) {
-    u = l(g[a]['update']);
-    console.log(a,u);
-    if (u == "") continue;
-    t = ("\t" + a + ":" + (u != "" ? "\n\t\tUpdate: %c" + u : "%c"));
-    console.log(t, u != "" ? c(u) : "", "");
-  }
+
 }       
