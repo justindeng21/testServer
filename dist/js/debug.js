@@ -13,7 +13,7 @@ window.evidon.logConsent = () => {
   }
   var g = "ics" in google_tag_data ? google_tag_data.ics.entries : null, 
       i = "",
-      t = "%c" + "Consent Mode settings:";
+      t = "%c" + "Consent Default:";
   console.log(t, "font-size: 1rem");
   for (var a in g) {
     i = l(g[a]['default']);
@@ -33,7 +33,7 @@ window.evidon.logConsentUpdate = () => {
     return;
   }
   var g = "ics" in google_tag_data ? google_tag_data.ics.entries : null, 
-      t = "%c" + "Consent Mode settings:", 
+      t = "%c" + "Consent Update:", 
       u = "";
   console.log(t, "font-size: 1rem");
   for (var a in g) {

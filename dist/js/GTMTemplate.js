@@ -155,7 +155,6 @@ const updateGoogleConsent = (consentedVendors) => {
         }
         else if (analyticsVendors[key] !== undefined && vendorConsent) consentState.analytics_storage = "granted";
     }
-    log(consentState);
     updateConsentState(consentState);
     copyFromWindow("evidon.logConsentUpdate")();
 };
