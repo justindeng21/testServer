@@ -27,4 +27,4 @@ window.evidon.logConsentUpdate = () => {
     }
 }       
 
-window.evidon.logConsentUpdate();
+window.evidon.logConsent();
