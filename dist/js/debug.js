@@ -25,7 +25,7 @@ window.evidon.logConsentUpdate = () => {
             else 
                 console.log('\t'+consentType+ '\n\t\tUpdate: %cdenied', 'color: #C00')
         }
-        console.log("\t%c"+"Consented Vendors:", "font-size: .75rem");
+        console.log("\t%c"+"Consented Vendors:", "font-size: .85rem");
         const evidonConsentState = evidon.notice._getConsentedVendors();
         const vendorName = evidon.notice.vendorList;
         for (vendor in evidon.notice._getConsentedVendors()){
