@@ -25,12 +25,12 @@ window.evidon.logConsentUpdate = () => {
             else 
                 console.log('\t'+consentType+ '\n\t\tUpdate: %cdenied', 'color: #C00')
         }
-        console.log("%c"+"Consented Vendors:", "font-size: .75rem");
+        console.log("\t%c"+"Consented Vendors:", "font-size: .75rem");
         const evidonConsentState = evidon.notice._getConsentedVendors();
         const vendorName = evidon.notice.vendorList;
         for (vendor in evidon.notice._getConsentedVendors()){
-            if(evidonConsentState[vendor]) console.log("\n\t"+vendorName[vendor]+"\n\t\t\t%c"+evidonConsentState[vendor],"color: #0C0");
-            else console.log("\n\t\t"+vendorName[vendor]+"\n\t\t\t%c"+evidonConsentState[vendor],"color: #C00");
+            if(evidonConsentState[vendor]) console.log("\t\t"+vendorName[vendor]+"\n\t\t\t%c"+evidonConsentState[vendor],"color: #0C0");
+            else console.log("\t\t"+vendorName[vendor]+"\n\t\t\t%c"+evidonConsentState[vendor],"color: #C00");
         }
     }, 500)
 }
