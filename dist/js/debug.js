@@ -37,7 +37,7 @@ window.evidon.logConsentUpdate = () => {
 
         for (category in evidonConsentStateCategories){
             if(evidonConsentStateCategories[category]) console.log("\t\t"+category+"\n\t\t\t%c"+evidonConsentStateCategories[category],"color: #0C0");
-            else console.log("\t\t"+evidonConsentStateCategories[category]+"\n\t\t\t%c"+evidonConsentStateCategories[category],"color: #C00");
+            else console.log("\t\t"+category+"\n\t\t\t%c"+evidonConsentStateCategories[category],"color: #C00");
         }
         
     }, 500)
