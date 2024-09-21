@@ -29,8 +29,8 @@ window.evidon.logConsentUpdate = () => {
         const evidonConsentState = evidon.notice._getConsentedVendors();
         const vendorName = evidon.notice.vendorList;
         for (vendor in evidon.notice._getConsentedVendors()){
-            if(evidonConsentState[vendor]) console.log(vendorName[vendor]+"\n\t%c"+evidonConsentState[vendor],"color: #0C0");
-            else console.log("\n\t"+vendorName[vendor]+"\n\t\t%c"+evidonConsentState[vendor],"color: #C00");
+            if(evidonConsentState[vendor]) console.log("\n\t"+vendorName[vendor]+"\n\t\t\t%c"+evidonConsentState[vendor],"color: #0C0");
+            else console.log("\n\t\t"+vendorName[vendor]+"\n\t\t\t%c"+evidonConsentState[vendor],"color: #C00");
         }
     }, 500)
 }
