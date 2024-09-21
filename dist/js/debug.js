@@ -26,11 +26,19 @@ window.evidon.logConsentUpdate = () => {
                 console.log('\t'+consentType+ '\n\t\tUpdate: %cdenied', 'color: #C00')
         }
         console.log("\t%c"+"Consented Vendors:", "font-size: .85rem");
-        const evidonConsentState = evidon.notice._getConsentedVendors();
+        const evidonConsentStateVendors = evidon.notice._getConsentedVendors();
         const vendorName = evidon.notice.vendorList;
         for (vendor in evidon.notice._getConsentedVendors()){
-            if(evidonConsentState[vendor]) console.log("\t\t"+vendorName[vendor]+"\n\t\t\t%c"+evidonConsentState[vendor],"color: #0C0");
-            else console.log("\t\t"+vendorName[vendor]+"\n\t\t\t%c"+evidonConsentState[vendor],"color: #C00");
+            if(evidonConsentStateVendors[vendor]) console.log("\t\t"+vendorName[vendor]+"\n\t\t\t%c"+evidonConsentStateVendors[vendor],"color: #0C0");
+            else console.log("\t\t"+vendorName[vendor]+"\n\t\t\t%c"+evidonConsentStateVendors[vendor],"color: #C00");
         }
+
+        const evidonConsentStateCategories = evidon.notice._getConsentedCetegories();
+
+        for (category in evidonConsentStateCategories){
+            if(evidonConsentState[category]) console.log("\t\t"+category+"\n\t\t\t%c"+evidonConsentStateCategories[category],"color: #0C0");
+            else console.log("\t\t"+evidonConsentStateCategories[category]+"\n\t\t\t%c"+evidonConsentStateCategories[category],"color: #C00");
+        }
+        
     }, 500)
 }
