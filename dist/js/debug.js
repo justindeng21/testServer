@@ -1,6 +1,6 @@
 window.evidon.checkConsentTiming = () =>{
     console.log("%c"+"Consent timing:", "font-size: 1rem");
-    if(window.google_tag_data.ics.wasSetLate) console.log("%c"+"\tConsent was set late", "color: #C00");
+    if(window.google_tag_data.ics.wasSetLate) console.log("%c"+"\tConsent was set late. Please contact support@crownpeak.com.", "color: #C00");
     else console.log("%c"+"\tConsent was not set late", "color: #0C0")
 }
 
@@ -36,7 +36,7 @@ window.evidon.logConsentUpdate = () => {
         console.log("\n\t%c"+"Consented Categories:", "font-size: .85rem");
         const evidonConsentStateCategories = evidon.notice._getConsentedCategories();
         for (category in evidonConsentStateCategories){
-            if(evidonConsentStateCategories[category]) console.log("\t\t"+category+"\n\t\t\tConsent%c"+evidonConsentStateCategories[category],"color: #0C0");
+            if(evidonConsentStateCategories[category]) console.log("\t\t"+category+"\n\t\t\tConsent: %c"+evidonConsentStateCategories[category],"color: #0C0");
             else console.log("\t\t"+category+"\n\t\t\tConsent: %c"+evidonConsentStateCategories[category],"color: #C00");
         }
         
