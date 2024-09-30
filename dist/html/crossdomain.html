@@ -17,6 +17,7 @@
                     s.src = url;
                     s.charset = 'utf-8';
                     f.parentNode.insertBefore(s, f);
+                    return s;
                 }
             
                 function is2parttld(value) {
@@ -50,10 +51,19 @@
 
                 
                 var cdn = '//c.evidon.com/', rootDomain = getRootDomain(), noticecdn = cdn + 'sitenotice/';
+                
                 append('evidon-notice', noticecdn + 'evidon-sitenotice-tag.js', false);
                 append('evidon-location', cdn + 'geo/country.js', true);
                 append('evidon-themes', noticecdn + id + '/snthemes.js', true);
-                if (rootDomain) append('evidon-settings', noticecdn + id + '/' + rootDomain + (window.evidon.test ? '/test' : '') + '/settingsV3.js', true);
+                if (rootDomain) {
+                    var evidonSettingsScript = append('evidon-settings', noticecdn + id + '/' + rootDomain + (window.evidon.test ? '/test' : '') + '/settingsV3.js', true);
+                    evidonSettingsScript.addEventListener("load",()=>{
+                        if (localStorage.getItem("_evidon_visitor_ls_100036") !== null) {
+                            console.log("Hello World")
+                            evidon.notice.consentGiven(true,true,true,true,true);
+                        }
+                    })
+                }
             
                window.evidon.priorConsentCallback = function (categories, vendors, cookies) {
                     // add the tags which need to wait for prior consent
@@ -82,9 +92,7 @@
                     // using the Opt-Out All / Reject button for Opt-Out Regulation only.
                 }
 
-                if (localStorage.getItem("_evidon_visitor_ls_100036") === null) {
-                    evidon.notice.consentGiven(true,true,true,true,true);
-                }
+
 
             })(6914);
         </script>
