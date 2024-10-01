@@ -51,7 +51,7 @@
         var cdn = '//c.evidon.com/', rootDomain = getRootDomain(), noticecdn = cdn + 'sitenotice/';
         var evidonSiteNoticeScript = append('evidon-notice', noticecdn + 'evidon-sitenotice-tag.js', false);
         evidonSiteNoticeScript.addEventListener("load",()=>{
-            window.evidon._getConsentCookieDomain = ()=>{
+            window.evidon.notice._getConsentCookieDomain = ()=>{
                 return ".dg-sandbox-deb249716852.herokuapp.com"
             }
         })
