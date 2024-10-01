@@ -17,7 +17,6 @@
             s.src = url;
             s.charset = 'utf-8';
             f.parentNode.insertBefore(s, f);
-            return s;
         }
 
         function is2parttld(value) {
@@ -49,13 +48,10 @@
         //window.evidon.userid = '';
 
         var cdn = '//c.evidon.com/', rootDomain = getRootDomain(), noticecdn = cdn + 'sitenotice/';
-        var evidonNoticeScript = append('evidon-notice', noticecdn + 'evidon-sitenotice-tag.js', false);
-        evidonNoticeScript.addEventListener("load",()=>{
-            window.evidon.notice.setDomain("login.test.fiserv.com");
-        })
+        append('evidon-notice', noticecdn + 'evidon-sitenotice-tag.js', false);
         append('evidon-location', cdn + 'geo/country.js', true);
         append('evidon-themes', noticecdn + id + '/snthemes.js', true);
-        if (rootDomain) append('evidon-settings', noticecdn + id + '/' + rootDomain + (window.evidon.test ? '/test' : '') + '/settingsV3.js', true);
+        if (rootDomain) append('evidon-settings', noticecdn + id + '/' + fiserv + (window.evidon.test ? '/test' : '') + '/settingsV3.js', true);
 
        window.evidon.priorConsentCallback = function (categories, vendors, cookies) {
             // add the tags which need to wait for prior consent
@@ -83,6 +79,10 @@
             // this is executed if the user explicitly revokes consent by
             // using the Opt-Out All / Reject button for Opt-Out Regulation only.
         }
+
+        setTimeout(()=>{
+
+        },2000)
 
     })(6914);
 </script> 
