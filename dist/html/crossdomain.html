@@ -51,26 +51,9 @@
         var cdn = '//c.evidon.com/', rootDomain = getRootDomain(), noticecdn = cdn + 'sitenotice/';
         var evidonSiteNoticeScript = append('evidon-notice', noticecdn + 'evidon-sitenotice-tag.js', false);
         evidonSiteNoticeScript.addEventListener("load",()=>{
-            window.evidon.notice._writeCookie  = function(aS, aU, aR, aT, aQ) {
-                if (window.evidon.uriEncodeCookie) {
-                    aU = encodeURI(aU)
-                } else {
-                    if (window.evidon.uriEncodeComponentCookie) {
-                        aU = encodeURIComponent(aU)
-                    }
-                }
-                var aP = [aS + "=" + aU];
-                if (typeof aR === "string") {
-                    aP.push("expires=" + aR)
-                }
-                aP.push("path=" + aT);
-                aP.push("SameSite=Lax");
-                    aP.push("domain=" + ".dg-sandbox-deb249716852.herokuapp.com")
-                var aO = aP.join("; ");
-                document.cookie = aO;
-                return (document.cookie.indexOf(aS) > -1)
+            window.evidon._getConsentCookieDomain = ()=>{
+                return ".dg-sandbox-deb249716852.herokuapp.com"
             }
-            ;
         })
         append('evidon-location', cdn + 'geo/country.js', true);
         append('evidon-themes', noticecdn + id + '/snthemes.js', true);
