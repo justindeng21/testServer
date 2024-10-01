@@ -51,7 +51,7 @@
         var cdn = '//c.evidon.com/', rootDomain = getRootDomain(), noticecdn = cdn + 'sitenotice/';
         var evidonSiteNoticeScript = append('evidon-notice', noticecdn + 'evidon-sitenotice-tag.js', false);
         evidonSiteNoticeScript.addEventListener("load",()=>{
-            window.evidon.notice.writeCookie  = function(aS, aU, aR, aT, aQ) {
+            window.evidon.notice._writeCookie  = function(aS, aU, aR, aT, aQ) {
                 if (window.evidon.uriEncodeCookie) {
                     aU = encodeURI(aU)
                 } else {
@@ -65,9 +65,7 @@
                 }
                 aP.push("path=" + aT);
                 aP.push("SameSite=Lax");
-                if (typeof aQ === "string") {
                     aP.push("domain=" + ".dg-sandbox-deb249716852.herokuapp.com")
-                }
                 var aO = aP.join("; ");
                 document.cookie = aO;
                 return (document.cookie.indexOf(aS) > -1)
