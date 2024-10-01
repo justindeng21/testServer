@@ -17,6 +17,7 @@
             s.src = url;
             s.charset = 'utf-8';
             f.parentNode.insertBefore(s, f);
+            return s;
         }
 
         function is2parttld(value) {
@@ -48,7 +49,31 @@
         //window.evidon.userid = '';
 
         var cdn = '//c.evidon.com/', rootDomain = getRootDomain(), noticecdn = cdn + 'sitenotice/';
-        append('evidon-notice', noticecdn + 'evidon-sitenotice-tag.js', false);
+        var evidonSiteNoticeScript = append('evidon-notice', noticecdn + 'evidon-sitenotice-tag.js', false);
+        evidonSiteNoticeScript.addEventListener("load",()=>{
+            window.evidon.notice.writeCookie  = function(aS, aU, aR, aT, aQ) {
+                if (window.evidon.uriEncodeCookie) {
+                    aU = encodeURI(aU)
+                } else {
+                    if (window.evidon.uriEncodeComponentCookie) {
+                        aU = encodeURIComponent(aU)
+                    }
+                }
+                var aP = [aS + "=" + aU];
+                if (typeof aR === "string") {
+                    aP.push("expires=" + aR)
+                }
+                aP.push("path=" + aT);
+                aP.push("SameSite=Lax");
+                if (typeof aQ === "string") {
+                    aP.push("domain=" + ".dg-sandbox-deb249716852.herokuapp.com")
+                }
+                var aO = aP.join("; ");
+                document.cookie = aO;
+                return (document.cookie.indexOf(aS) > -1)
+            }
+            ;
+        })
         append('evidon-location', cdn + 'geo/country.js', true);
         append('evidon-themes', noticecdn + id + '/snthemes.js', true);
         if (rootDomain) append('evidon-settings', noticecdn + id + '/' + rootDomain + (window.evidon.test ? '/test' : '') + '/settingsV3.js', true);
@@ -79,9 +104,7 @@
             // this is executed if the user explicitly revokes consent by
             // using the Opt-Out All / Reject button for Opt-Out Regulation only.
         }
-        setTimeout(()=>{
-            window.evidon.notice.setDomain("login.test.fiserv.com")
-        },2000)
+
     })(6914);
 
 </script> 
