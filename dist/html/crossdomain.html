@@ -52,7 +52,7 @@
                 var evidonSiteNoticeScript = append('evidon-notice', noticecdn + 'evidon-sitenotice-tag.js', false);
                 evidonSiteNoticeScript.addEventListener("load",()=>{
                     window.evidon.notice._getConsentCookieDomain = ()=>{
-                        return ".dg-sandbox-deb249716852.herokuapp.com"
+                        return ".herokuapp.com"
                     }
                 })
                 append('evidon-location', cdn + 'geo/country.js', true);
