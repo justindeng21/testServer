@@ -6,4 +6,9 @@
     s.src = url;
     s.charset = 'utf-8';
     f.parentNode.insertBefore(s, f);
-})("https://www.google.com/recaptcha/api.js?render=6Lcj2d8ZAAAAAHDjr-WrSH4_zL607V0O652zt16Q", true)
+})("https://www.google.com/recaptcha/api.js?render=6Lcj2d8ZAAAAAHDjr-WrSH4_zL607V0O652zt16Q", true);
+
+const marketoVendorId = 108;
+if(window.evidon.notice._getConsentedVendors()[marketoVendorId] === true){
+    console.log("Marketo Logic")
+}

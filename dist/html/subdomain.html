@@ -45,7 +45,7 @@
             
                 window.evidon = {};
                 window.evidon.id = id;
-                window.evidon.test = false;  // set to true for non-production testing.
+                window.evidon.test = true;  // set to true for non-production testing.
                 //window.evidon.userid = '';
             
                 var cdn = '//c.evidon.com/', rootDomain = getRootDomain(), noticecdn = cdn + 'sitenotice/';
@@ -85,8 +85,10 @@
                     // this is executed if the user explicitly revokes consent by
                     // using the Opt-Out All / Reject button for Opt-Out Regulation only.
                 }
-            
-            })(6914);
+                
+
+                setTimeout(()=>{window.evidon.notice.setDomain("stives-com-uat-aemcs.unileversolutions.com/ca/en")},2000)
+            })(2523);
         
         </script> 
 
