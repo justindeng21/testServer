@@ -10,26 +10,15 @@ const updateConsentState = require('updateConsentState');
 const copyFromWindow = require("copyFromWindow");
 const companyId = data.companyId;
 const domain = getRootDomain();
+const callLater = require("callLater");
+
+
 const evidonSiteNoticeTag = "https://c.evidon.com/sitenotice/evidon-sitenotice-tag.js";
 const country = "https://c.evidon.com/geo/country.js";
 const snThemes = "https://c.evidon.com/sitenotice/" + companyId + "/snthemes.js";
 const settingsV3 = "https://c.evidon.com/sitenotice/" + companyId + "/" + domain + "/settingsV3.js";
-const adVendors = {
-    80: "google-adsense",
-    257: "doubleclick",
-    322: "doubleclick-bid-manager-formerly-invite-media",
-    344: "admeld",
-    355: "google-adwords",
-    443: "google-display-network",
-    464: "admob-google",
-    469: "adometry",
-    3857: "google-ad-services",
-    6458: "google-mobile-ads",
-    6608: "googleima"
-};
-const analyticsVendors = {
-    81: "google-analytics"
-};
+const debug = "https://c.evidon.com/gtm/debug.js";
+
 const supportedRegions = {
     northAmerica: ['US', 'CA', 'PM', 'MQ'],
     europeEU: ['DE', 'ES', 'FR', 'GB', 'IT', 'NL', 'DK', 'IE', 'PL', 'AT', 'BE', 'SE', 'SK', 'HU', 'FI', 'PT', 'CZ', 'LU', 'GR', 'BG', 'RO', 'EE', 'LV', 'LT', 'SI', 'MT', 'CY', 'HR', 'IM', 'JE', 'GI', 'BY'],
@@ -116,52 +105,53 @@ function setDefaultConsent() {
     const regions = getRegions();
     gtagSet({ 'ads_data_redaction': true, 'developer_id': 'dOGRkZj' });
 
-    if (data.enableAdvancedMode) {
+    if (data.enableUrlPassthrough) {
         gtagSet({ 'url_passthrough': true });
     }
     else {
         gtagSet({ 'url_passthrough': false });
     }
 
-    var defaultConsentState = {
-        'ad_storage': data.adStorage,
-        'analytics_storage': data.analyticsStorage,
-        'ad_user_data': data.adUserData,
-        'ad_personalization': data.adPersonalization
-    };
+  
+    if(!data.disableAdvancedMode){
+        var defaultConsentState = {
+            'ad_storage': data.adStorage,
+            'analytics_storage': data.analyticsStorage,
+            'ad_user_data': data.adUserData,
+            'ad_personalization': data.adPersonalization
+        };
 
-    if (regions.length !== 0 && data.defaultConsentGlobally){ 
-        defaultConsentState.region = regions;
+        if(regions.length !== 0 && data.defaultConsentGlobally){ 
+            defaultConsentState.region = regions;
+        }
+  
+        setDefaultConsentState(defaultConsentState);
     }
   
-    setDefaultConsentState(defaultConsentState);
+    else{
+      log("Advanced Mode Disabled");
+    }
+
     return;
 }
 
 
-const updateGoogleConsent = (consentedVendors) => {
-    var consentState = {
-        'ad_storage': data.adStorage,
-        'analytics_storage': data.analyticsStorage,
-        'ad_user_data': data.adUserData,
-        'ad_personalization': data.adPersonalization
-    };
-    for (let key in consentedVendors) {
-        let vendorConsent = consentedVendors[key];
-        if (adVendors[key] !== undefined && vendorConsent) {
-            consentState.ad_storage = "granted";
-            consentState.ad_user_data = "granted";
-            consentState.ad_personalization = "granted";
-        }
-        else if (analyticsVendors[key] !== undefined && vendorConsent) consentState.analytics_storage = "granted";
+const updateGoogleConsent = (evidonConsentState) => {
+  
+    
+    if(!data.disableAdvancedMode){
+        if(data.adStorage == "granted") evidonConsentState.ad_storage = "granted";
+        if(data.analyticsStorage == "granted") evidonConsentState.analytics_storage = "granted";
+        if(data.adUserData == "granted") evidonConsentState.ad_user_data = "granted";
+        if(data.adPersonalization == "granted") evidonConsentState.ad_personalization = "granted";
+        updateConsentState(evidonConsentState);
     }
-    updateConsentState(consentState);
-    copyFromWindow("evidon.logConsentUpdate")();
+    if(data.enableDebugMode) copyFromWindow("evidon.logConsentUpdate")();
 };
 
 
-function debugImplementation() {
-  injectScript("https://dg-sandbox-deb249716852.herokuapp.com/js/debug.js");
+function injectDebugScript() {
+  injectScript(debug, onSucessDebug, onFailureDebug, "Debug Mode");
 }
 
 function defineUpdateMethod() {
@@ -174,6 +164,7 @@ function defineEvidonObject() {
     setInWindow('evidon', [], true);
     setInWindow('evidon.id', makeInteger(companyId), true);
     setInWindow('evidon.test', false, true);
+    setInWindow('evidon.googleTemplateEnabled', true, true);
     defineUpdateMethod();
 }
 
@@ -183,37 +174,45 @@ function injectEvidonScripts() {
     injectScript(country, onSuccessCountry, onFailureCountry, "Evidon country");
     injectScript(snThemes, onSuccessSnThemes, onFailureSnThemes, "Evidon snThemes");
     injectScript(settingsV3, onSuccessSettingsV3, onFailureSettingsV3, "Evidon settingsV3");
+    if(data.enableDebugMode) injectDebugScript();
 }
 
 /* --- Define Error and Sucess Callbacks --- */
 const onSuccessEvidonSiteNoticeTag = () => {
-    //data.gtmOnSuccess();
+  //if(data.enableDebugMode) log("%c"+"\n\tevidon-sitenotice-tag.js loading sucessful","color: #0C0");
 };
 const onFailureEvidonSiteNoticeTag = () => {
-    //data.gtmOnFailure();
+   //if(data.enableDebugMode) log("%c"+"\n\tevidon-sitenotice-tag.js loading failed","color: #C00");
 };
 const onSuccessCountry = () => {
-    //data.gtmOnSuccess();
+    //if(data.enableDebugMode) log("%c"+"\n\tcountry.js loading sucessful","color: #0C0");
 };
 const onFailureCountry = () => {
-    //data.gtmOnFailure();
+    //if(data.enableDebugMode) log("%c"+"\n\tcountry.js loading failed","color: #C00");
 };
 const onSuccessSnThemes = () => {
-    //data.gtmOnSuccess();
+    //if(data.enableDebugMode) log("%c"+"\n\tsnthemes.js loading sucessful","color: #0C0");
 };
 const onFailureSnThemes = () => {
-    //data.gtmOnFailure();
+    //if(data.enableDebugMode) log("%c"+"\n\tsnthemes.js loading failed","color: #C00");
 };
 const onSuccessSettingsV3 = () => {
-    //data.gtmOnSuccess();
+    //if(data.enableDebugMode) log("%c"+"\n\tsettingsV3.js loading sucessful","color: #0C0");
 };
 const onFailureSettingsV3 = () => {
-    //data.gtmOnFailure();
+    //if(data.enableDebugMode) log("%c"+"\n\tsettingsV3.js loading failed","color: #C00");
 };
+const onSucessDebug = () => {
+    copyFromWindow("evidon.checkConsentTiming")();
+    copyFromWindow("evidon.logConsent")();
+};
+
+const onFailureDebug = () =>{};
+
 
 setDefaultConsent();
 defineEvidonObject();
 injectEvidonScripts();
-debugImplementation();
+
 
 data.gtmOnSuccess();
