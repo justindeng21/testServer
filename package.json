@@ -6,7 +6,7 @@
     "scripts": {
         "devServer": "nodemon dev/cms.ts --ignore *.json",
         "startServer": "node dist/cms.js",
-        "deploy": "tsc && git add . && git commit -m \"auto-deploy\" && git push origin main"
+        "deploy": "tsc && git add . && git commit -m \"auto-deploy\" && git push origin main --force"
     },
     "author": "Justin Deng",
     "license": "ISC",
