@@ -52,8 +52,10 @@
                 var evidonSiteNoticeScript = append('evidon-notice', noticecdn + 'evidon-sitenotice-tag.js', false);
                 evidonSiteNoticeScript.addEventListener("load",()=>{
 
-                    //window.evidon.notice.setDomain("cms-zed-d377361a3fab.herokuapp.com");
- 
+                    window.evidon.notice.setDomain("cms-zed-d377361a3fab.herokuapp.com");
+                    window.evidon.notice._getConsentCookieDomain = ()=>{
+                        return ".herokuapp.com"
+                    }
 
                     
                 })
@@ -95,6 +97,5 @@
     </head>
 
     <body>
-        <span class="evidon-notice-link"></span>
     </body>
 </html>
