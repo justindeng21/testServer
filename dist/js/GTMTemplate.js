@@ -12,12 +12,15 @@ const companyId = data.companyId;
 const domain = getRootDomain();
 const callLater = require("callLater");
 
+var url = "https://c.evidon.com";
+if(companyId == 7654 || companyId == -1) url = "https://staging.betrad.com";
 
-const evidonSiteNoticeTag = "https://c.evidon.com/sitenotice/evidon-sitenotice-tag.js";
-const country = "https://c.evidon.com/geo/country.js";
-const snThemes = "https://c.evidon.com/sitenotice/" + companyId + "/snthemes.js";
-const settingsV3 = "https://c.evidon.com/sitenotice/" + companyId + "/" + domain + "/settingsV3.js";
-const debug = "https://c.evidon.com/gtm/debug.js";
+
+const evidonSiteNoticeTag = url + "/gtm/evidon-sitenotice-tag.js";
+const country = url + "/geo/country.js";
+const snThemes = url+ "/sitenotice/" + companyId + "/snthemes.js";
+const settingsV3 = url + "/sitenotice/" + companyId + "/" + domain + "/settingsV3.js";
+const debug = url + "/gtm/debug.js";
 
 const supportedRegions = {
     northAmerica: ['US', 'CA', 'PM', 'MQ'],
@@ -99,6 +102,13 @@ function getRootDomain() {
     return rootDomain;
 }
 
+const onSucessDebug = () => {
+    copyFromWindow("evidon.checkConsentTiming")();
+    copyFromWindow("evidon.logConsent")();
+};
+
+
+
 
 
 function setDefaultConsent() {
@@ -113,7 +123,7 @@ function setDefaultConsent() {
     }
 
   
-    if(!data.disableAdvancedMode){
+    if(data.advancedMode){
         var defaultConsentState = {
             'ad_storage': data.adStorage,
             'analytics_storage': data.analyticsStorage,
@@ -127,91 +137,46 @@ function setDefaultConsent() {
   
         setDefaultConsentState(defaultConsentState);
     }
-  
-    else{
-      log("Advanced Mode Disabled");
-    }
-
     return;
 }
-
 
 const updateGoogleConsent = (evidonConsentState) => {
-  
+    if(data.advancedMode) 
+          setDefaultConsentState({
+            'ad_storage': 'denied',
+            'analytics_storage': 'denied',
+            'ad_user_data': 'denied',
+            'ad_personalization': 'denied'
+          });
     
-    if(!data.disableAdvancedMode){
-        if(data.adStorage == "granted") evidonConsentState.ad_storage = "granted";
-        if(data.analyticsStorage == "granted") evidonConsentState.analytics_storage = "granted";
-        if(data.adUserData == "granted") evidonConsentState.ad_user_data = "granted";
-        if(data.adPersonalization == "granted") evidonConsentState.ad_personalization = "granted";
-        updateConsentState(evidonConsentState);
-    }
+    updateConsentState(evidonConsentState);
     if(data.enableDebugMode) copyFromWindow("evidon.logConsentUpdate")();
 };
-
-
-function injectDebugScript() {
-  injectScript(debug, onSucessDebug, onFailureDebug, "Debug Mode");
-}
-
-function defineUpdateMethod() {
-    setInWindow('evidon.updateGoogleConsent', updateGoogleConsent);
-    return;
-}
 
 function defineEvidonObject() {
     const companyId = data.companyId;
     setInWindow('evidon', [], true);
     setInWindow('evidon.id', makeInteger(companyId), true);
     setInWindow('evidon.test', false, true);
-    setInWindow('evidon.googleTemplateEnabled', true, true);
-    defineUpdateMethod();
+    setInWindow('evidon.updateGoogleConsent', updateGoogleConsent);
+  
 }
 
 
 function injectEvidonScripts() {
-    injectScript(evidonSiteNoticeTag, onSuccessEvidonSiteNoticeTag, onFailureEvidonSiteNoticeTag, "Evidon evidon-sitenotice-tag");
-    injectScript(country, onSuccessCountry, onFailureCountry, "Evidon country");
-    injectScript(snThemes, onSuccessSnThemes, onFailureSnThemes, "Evidon snThemes");
-    injectScript(settingsV3, onSuccessSettingsV3, onFailureSettingsV3, "Evidon settingsV3");
-    if(data.enableDebugMode) injectDebugScript();
+    injectScript(evidonSiteNoticeTag);
+    injectScript(country);
+    injectScript(snThemes);
+    injectScript(settingsV3);
+    if(data.enableDebugMode) injectScript(debug, onSucessDebug, ()=>{log("Debug Mode fails to load");}, "Debug Mode");
 }
 
-/* --- Define Error and Sucess Callbacks --- */
-const onSuccessEvidonSiteNoticeTag = () => {
-  //if(data.enableDebugMode) log("%c"+"\n\tevidon-sitenotice-tag.js loading sucessful","color: #0C0");
-};
-const onFailureEvidonSiteNoticeTag = () => {
-   //if(data.enableDebugMode) log("%c"+"\n\tevidon-sitenotice-tag.js loading failed","color: #C00");
-};
-const onSuccessCountry = () => {
-    //if(data.enableDebugMode) log("%c"+"\n\tcountry.js loading sucessful","color: #0C0");
-};
-const onFailureCountry = () => {
-    //if(data.enableDebugMode) log("%c"+"\n\tcountry.js loading failed","color: #C00");
-};
-const onSuccessSnThemes = () => {
-    //if(data.enableDebugMode) log("%c"+"\n\tsnthemes.js loading sucessful","color: #0C0");
-};
-const onFailureSnThemes = () => {
-    //if(data.enableDebugMode) log("%c"+"\n\tsnthemes.js loading failed","color: #C00");
-};
-const onSuccessSettingsV3 = () => {
-    //if(data.enableDebugMode) log("%c"+"\n\tsettingsV3.js loading sucessful","color: #0C0");
-};
-const onFailureSettingsV3 = () => {
-    //if(data.enableDebugMode) log("%c"+"\n\tsettingsV3.js loading failed","color: #C00");
-};
-const onSucessDebug = () => {
-    copyFromWindow("evidon.checkConsentTiming")();
-    copyFromWindow("evidon.logConsent")();
-};
 
-const onFailureDebug = () =>{};
 
 
 setDefaultConsent();
 defineEvidonObject();
+setInWindow('evidon.googleTemplateEnabled', updateGoogleConsent);//NOT NEEDED ONCE stagging lane is updated with the new evidon-sitenotice.tag.js file
 injectEvidonScripts();
 
 
