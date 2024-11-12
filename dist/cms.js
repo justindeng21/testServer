@@ -32,7 +32,7 @@ class CMSAPI extends server_1.Server {
                     return fs_1.default.statSync(filePath).isFile();
                 });
                 fileNames.forEach(fileName => {
-                    links = links + `<a class="link" href="https://dg-sandbox-deb249716852.herokuapp.com/${fileName}">${fileName}</a>\n`;
+                    links = links + `<a class="link" href="https://dg-sandbox-deb249716852.herokuapp.com/${fileName.split(".")[1]}">${fileName}</a>\n`;
                 });
                 res.send(`<html>
                     <head>
@@ -57,7 +57,7 @@ class CMSAPI extends server_1.Server {
             });
         });
         this.httpListener.get('/:filename', (req, res) => {
-            res.sendFile(`/html/${req.params.filename}`, { root: __dirname });
+            res.sendFile(`/html/${req.params.filename}.html`, { root: __dirname });
         });
         this.httpListener.get('/js/:filename', (req, res) => {
             res.sendFile(`/html/${req.params.filename}`, { root: __dirname });
