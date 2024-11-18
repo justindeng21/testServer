@@ -3,7 +3,7 @@
         if (0 < window.navigator.userAgent.indexOf("MSIE ") || navigator.userAgent.match(/Trident.*rv\:11\./))
             return 1
     }()) {
-        var o = document.currentScript.getAttribute("src")
+        var o = "https://c.evidon.com/dg/dg.js"
           , o = o.substr(0, o.lastIndexOf("/") + 1)
           , n = o.substr(0, o.lastIndexOf("/", o.lastIndexOf("/") - 1) + 1)
           , e = !1
@@ -13,12 +13,13 @@
         window.evidon_dg.envStr = "prod" == window.evidon_dg.env ? "" : window.evidon_dg.env,
         window.evidon_dg.loggingEnabled = "dev" == window.evidon_dg.envStr,
         window.evidon_dg.srcRoot = o,
-        window.evidon_dg.domainRoot = "evidon",
+        window.evidon_dg.domainRoot = n,
         window.evidon_dg.collector = "https://dgcollector.evidon" + window.evidon_dg.envStr + ".com/api/v2/csp",
         window.evidon_dg.vendorHostApi = "https://dgvendorhostapi.evidon" + window.evidon_dg.envStr + ".com/api/",
         window.evidon_dg.noticeDomain = "https://c.evidon.com/sitenotice",
         window.evidon_dg.cspLoadedById = null,
         window.evidon_dg.getConfigValue = _,
+        window.evidon_dg.nonce = document.currentScript.nonce,
         window.evidon_dg.getConsentTypeName = function(o) {
             switch (o) {
             case null:
@@ -314,7 +315,6 @@
                             c && c();
                         else {
                             u.async = !0,
-                            u.nonce = document.currentScript.getAttribute("nonce"),
                             u.src = a,
                             u.charset = "utf-8",
                             c && (u.onreadystatechange = function() {
@@ -376,6 +376,7 @@
             n ? JSON.parse(i) : ((d = document.createElement("script")).type = "text/javascript",
             d.text = i,
             d.setAttribute("companyId", window.evidon_dg.companyId),
+            d.nonce = window.evidon_dg.nonce,
             e.parentElement.insertBefore(d, e),
             t.push(o),
             !0))
