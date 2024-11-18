@@ -86,9 +86,6 @@ class CMSAPI extends Server{
                             // this is executed if the user explicitly revokes consent by
                             // using the Opt-Out All / Reject button for Opt-Out Regulation only.
                         }
-                        setTimeout(()=>{
-                            window.evidon.notice.setDomain("dg-sandbox-deb249716852.herokuapp.com")
-                        },2000)
                     })(6914);
                 </script>`
     }
