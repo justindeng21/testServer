@@ -19,7 +19,12 @@
         window.evidon_dg.noticeDomain = "https://c.evidon.com/sitenotice",
         window.evidon_dg.cspLoadedById = null,
         window.evidon_dg.getConfigValue = _,
+        
+/*Change ===================================================== */
+
         window.evidon_dg.nonce = document.currentScript.nonce,
+
+/*Change ===================================================== */
         window.evidon_dg.getConsentTypeName = function(o) {
             switch (o) {
             case null:
@@ -376,7 +381,9 @@
             n ? JSON.parse(i) : ((d = document.createElement("script")).type = "text/javascript",
             d.text = i,
             d.setAttribute("companyId", window.evidon_dg.companyId),
+/*Change ===================================================== */
             d.nonce = window.evidon_dg.nonce,
+/*Change ===================================================== */
             e.parentElement.insertBefore(d, e),
             t.push(o),
             !0))
