@@ -12,7 +12,7 @@ class CMSAPI extends Server{
 
     getSiteNoticeTag(nonce: string){
         return `
-                <script type="text/javascript" nonce="${nonce}">
+                <script type="text/javascript" nonce="${nonce}" id = "evidonUCPStub">
                     (function (id) {
                         function append(scriptid, url, async) {
                             var d = document, sn = 'script', f = d.getElementsByTagName(sn)[0];
@@ -21,7 +21,7 @@ class CMSAPI extends Server{
                             s.async = async;
                             s.id = scriptid;
                             s.src = url;
-                            s.nonce = '${nonce}';
+                            s.nonce = document.getElementById("evidonUCPStub");
                             s.charset = 'utf-8';
                             f.parentNode.insertBefore(s, f);
                         }
