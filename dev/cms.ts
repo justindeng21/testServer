@@ -167,7 +167,7 @@ class CMSAPI extends Server{
                 `<!DOCTYPE html>
                 <html>
                     <head>
-                        ${this.getSiteNoticeTag("")}
+                        ${this.getSiteNoticeTag(nonce)}
                     </head>
                 </html>`
             )

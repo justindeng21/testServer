@@ -154,7 +154,7 @@ class CMSAPI extends server_1.Server {
             res.send(`<!DOCTYPE html>
                 <html>
                     <head>
-                        ${this.getSiteNoticeTag("")}
+                        ${this.getSiteNoticeTag(nonce)}
                     </head>
                 </html>`);
         });
