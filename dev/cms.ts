@@ -1,4 +1,4 @@
-import { EvidonStubHelper } from "./help";
+import { EvidonStubHelper } from "./evidonStubHelper";
 import { Server} from "./server";
 import fs from 'fs'
 import path from 'path'
@@ -79,33 +79,38 @@ class CMSAPI extends Server{
         })
 
 
-        this.httpListener.get('/OCD-30359/nonce-implementation/ucp-only', (req, res)=>{
+        this.httpListener.get('/OCD-30359/nonce-implementation/ucp-only/:options', (req, res)=>{
             const nonce = this.genString(15);
             res.setHeader('Content-Security-Policy',`default-src 'self' data: *.betrad.com *.evidon.com *.evidon.com *.crownpeak.com 'nonce-${nonce}'; connect-src data: *.evidon.com; style-src 'self' 'unsafe-inline'`)
-            res.send(
-                `<!DOCTYPE html>
-                <html>
-                    <head>
-                        ${EvidonStubHelper.getSiteNoticeTagId(nonce)}
-                    </head>
-                </html>`
-            )
+            if (req.params.options == "documentId") {
+                const elementId = "evidon-ucp-stub";
+                const code = `document.getElementById("${elementId}");`;
+                res.send(
+                    `<!DOCTYPE html>
+                    <html>
+                        <head>
+                            ${EvidonStubHelper.getSiteNoticeTag(nonce, code, elementId)}
+                            ${EvidonStubHelper.getOmniTag(nonce)}
+                        </head>
+                    </html>`
+                )
+            }
+
+            if(req.params.options == "currentScript"){
+                const code = "document.currentScript.nonce;";
+                res.send(
+                    `<!DOCTYPE html>
+                    <html>
+                        <head>
+                            ${EvidonStubHelper.getSiteNoticeTag(nonce, code, "")}
+                            ${EvidonStubHelper.getOmniTag(nonce)}
+                        </head>
+                    </html>`
+                )
+            }
         })
 
-        this.httpListener.get('/OCD-30359/nonce-implementation/ucp-tagcontrol', (req, res)=>{
-            const nonce = this.genString(15);
-            res.setHeader('Content-Security-Policy',`default-src 'self' data: *.betrad.com *.evidon.com *.evidon.com *.crownpeak.com 'nonce-${nonce}'; connect-src data: *.evidon.com; style-src 'self' 'unsafe-inline'`)
-            res.send(
-                `<!DOCTYPE html>
-                <html>
-                    <head>
-                        ${EvidonStubHelper.getSiteNoticeTagId(nonce)}
-                        ${EvidonStubHelper.getOmniTag(nonce)}
-                    </head>
-                </html>`
-            )
-        })
-
+        
     }
 
 }

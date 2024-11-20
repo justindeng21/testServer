@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const help_1 = require("./help");
+const evidonStubHelper_1 = require("./evidonStubHelper");
 const server_1 = require("./server");
 const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
@@ -66,26 +66,30 @@ class CMSAPI extends server_1.Server {
         this.httpListener.get('/js/:filename', (req, res) => {
             res.sendFile(`/html/${req.params.filename}`, { root: __dirname });
         });
-        this.httpListener.get('/OCD-30359/nonce-implementation/ucp-only', (req, res) => {
+        this.httpListener.get('/OCD-30359/nonce-implementation/ucp-only/:options', (req, res) => {
             const nonce = this.genString(15);
             res.setHeader('Content-Security-Policy', `default-src 'self' data: *.betrad.com *.evidon.com *.evidon.com *.crownpeak.com 'nonce-${nonce}'; connect-src data: *.evidon.com; style-src 'self' 'unsafe-inline'`);
-            res.send(`<!DOCTYPE html>
-                <html>
-                    <head>
-                        ${help_1.EvidonStubHelper.getSiteNoticeTagId(nonce)}
-                    </head>
-                </html>`);
-        });
-        this.httpListener.get('/OCD-30359/nonce-implementation/ucp-tagcontrol', (req, res) => {
-            const nonce = this.genString(15);
-            res.setHeader('Content-Security-Policy', `default-src 'self' data: *.betrad.com *.evidon.com *.evidon.com *.crownpeak.com 'nonce-${nonce}'; connect-src data: *.evidon.com; style-src 'self' 'unsafe-inline'`);
-            res.send(`<!DOCTYPE html>
-                <html>
-                    <head>
-                        ${help_1.EvidonStubHelper.getSiteNoticeTagId(nonce)}
-                        ${help_1.EvidonStubHelper.getOmniTag(nonce)}
-                    </head>
-                </html>`);
+            if (req.params.options == "documentId") {
+                const elementId = "evidon-ucp-stub";
+                const code = `document.getElementById("${elementId}");`;
+                res.send(`<!DOCTYPE html>
+                    <html>
+                        <head>
+                            ${evidonStubHelper_1.EvidonStubHelper.getSiteNoticeTag(nonce, code, elementId)}
+                            ${evidonStubHelper_1.EvidonStubHelper.getOmniTag(nonce)}
+                        </head>
+                    </html>`);
+            }
+            if (req.params.options == "currentScript") {
+                const code = "document.currentScript.nonce;";
+                res.send(`<!DOCTYPE html>
+                    <html>
+                        <head>
+                            ${evidonStubHelper_1.EvidonStubHelper.getSiteNoticeTag(nonce, code, "")}
+                            ${evidonStubHelper_1.EvidonStubHelper.getOmniTag(nonce)}
+                        </head>
+                    </html>`);
+            }
         });
     }
 }
