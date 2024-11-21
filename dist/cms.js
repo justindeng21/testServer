@@ -72,7 +72,7 @@ class CMSAPI extends server_1.Server {
             res.setHeader('Content-Security-Policy', `default-src 'self' data: *.betrad.com *.evidon.com *.evidon.com *.crownpeak.com 'nonce-${nonce}'; connect-src data: *.evidon.com; style-src 'self'`);
             if (req.params.options == "documentId") {
                 const elementId = "evidon-ucp-stub";
-                const code = `document.getElementById("${elementId}");`;
+                const code = `document.getElementById("${elementId}")`;
                 html = `<!DOCTYPE html>
                     <html>
                         <head>
