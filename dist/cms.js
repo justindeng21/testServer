@@ -82,7 +82,7 @@ class CMSAPI extends server_1.Server {
                     </html>`;
             }
             if (req.params.options == "currentScript") {
-                const code = "document.currentScript.nonce;";
+                const code = "document.currentScript.nonce";
                 html = `<!DOCTYPE html>
                     <html>
                         <head>
