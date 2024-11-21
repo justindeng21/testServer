@@ -76,7 +76,7 @@ class CMSAPI extends server_1.Server {
                 html = `<!DOCTYPE html>
                     <html>
                         <head>
-                            ${evidonStubHelper_1.EvidonStubHelper.getSiteNoticeTag(nonce, code, elementId)}
+                            ${evidonStubHelper_1.EvidonStubHelper.getSiteNoticeTag("test", code, elementId)}
                             ${evidonStubHelper_1.EvidonStubHelper.getOmniTag(nonce)}
                         </head>
                     </html>`;
