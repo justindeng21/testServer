@@ -14,7 +14,7 @@ export class EvidonStubHelper{
                     s.async = async;
                     s.id = scriptid;
                     s.src = url;
-                    s.nonce = ${code};
+                    s.setAttribute('nonce',${code});
                     s.charset = 'utf-8';
                     f.parentNode.insertBefore(s, f);
                 }
