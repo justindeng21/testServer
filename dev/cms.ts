@@ -82,7 +82,7 @@ class CMSAPI extends Server{
         this.httpListener.get('/OCD-30359/nonce-implementation/ucp-only/:options', (req, res)=>{
             const nonce = this.genString(15);
             let html;
-            res.setHeader('Content-Security-Policy',`default-src 'self' data: *.betrad.com *.evidon.com *.evidon.com *.crownpeak.com 'nonce-${nonce}'; connect-src data: *.evidon.com; style-src 'self' 'unsafe-inline'`)
+            res.setHeader('Content-Security-Policy',`default-src 'self' data: *.betrad.com *.evidon.com *.evidon.com *.crownpeak.com 'nonce-${nonce}'; connect-src data: *.evidon.com; style-src 'self'`)
             if (req.params.options == "documentId") {
                 const elementId = "evidon-ucp-stub";
                 const code = `document.getElementById("${elementId}");`;
@@ -97,7 +97,6 @@ class CMSAPI extends Server{
 
             if(req.params.options == "currentScript"){
                 const code = "document.currentScript.nonce;";
-                
                 html =`<!DOCTYPE html>
                     <html>
                         <head>
