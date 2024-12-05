@@ -79,6 +79,30 @@ class CMSAPI extends server_1.Server {
                 </html>`;
             res.send(html);
         });
+        this.httpListener.get('/nonce/test/2', (req, res) => {
+            const nonce = this.genString(15);
+            let html;
+            res.setHeader('Content-Security-Policy', `script-src 'self' data: *.betrad.com *.evidon.com *.evidon.com *.crownpeak.com 'nonce-${nonce}'; connect-src data: *.evidon.com *.betrad.com optoutapi.evidonstage.com privacycollector.evidonqa.com; style-src 'self' *.evidon.com *.betrad.com;`);
+            const elementId = "evidon-ucp-stub";
+            html = `<!DOCTYPE html>
+                <html>
+                    <head>
+                        ${evidonStubHelper_1.EvidonStubHelper.getSiteNoticeTag(nonce)}
+                        <style id="toggle-style" nonce="${nonce}">
+                            .evidon-switch {position: relative;display: inline-block;width: 40px;height: 23px; margin:2px;}
+                            .evidon-switch input {display: none;}
+                            .evidon-switch-slider {position: absolute;cursor: pointer;top: 0;left: 0;right: 0;bottom: 0;border-radius: 12px;background-color: #ccc;-webkit-transition: .4s;transition: .4s;}
+                            .evidon-switch-slider:before {position: absolute;content: "";height: 15px;width: 15px;left: 4px;bottom: 4px;border-radius: 9px;background-color: white;-webkit-transition: .4s;transition: .4s;}
+                            .slideron {background-color: #2196F3;}
+                            .slideron:before {-webkit-transform: translateX(17px);-ms-transform: translateX(17px);transform: translateX(17px);}
+                            .disabled { background-color: #ccc; }
+                            .disabled:before { background-color: #e4e4e4; }
+                            input:focus + .evidon-switch-slider {box-shadow: 0 0 1px #ccc;}
+                        </style>
+                    </head>
+                </html>`;
+            res.send(html);
+        });
     }
 }
 const cms = new CMSAPI();
