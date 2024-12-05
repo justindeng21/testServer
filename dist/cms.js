@@ -66,31 +66,18 @@ class CMSAPI extends server_1.Server {
         this.httpListener.get('/js/:filename', (req, res) => {
             res.sendFile(`/html/${req.params.filename}`, { root: __dirname });
         });
-        this.httpListener.get('/OCD-30359/nonce-implementation/ucp-only/:options', (req, res) => {
+        this.httpListener.get('/nonce/test', (req, res) => {
             const nonce = this.genString(15);
             let html;
             res.setHeader('Content-Security-Policy', `script-src 'self' data: *.betrad.com *.evidon.com *.evidon.com *.crownpeak.com 'nonce-${nonce}'; connect-src data: *.evidon.com; style-src 'self'`);
-            if (req.params.options == "documentId") {
-                const elementId = "evidon-ucp-stub";
-                const code = `document.getElementById("${elementId}")`;
-                html = `<!DOCTYPE html>
-                    <html>
-                        <head>
-                            ${evidonStubHelper_1.EvidonStubHelper.getSiteNoticeTag("test", code, elementId)}
-                            ${evidonStubHelper_1.EvidonStubHelper.getOmniTag(nonce)}
-                        </head>
-                    </html>`;
-            }
-            if (req.params.options == "currentScript") {
-                const code = "document.currentScript.nonce";
-                html = `<!DOCTYPE html>
-                    <html>
-                        <head>
-                            ${evidonStubHelper_1.EvidonStubHelper.getSiteNoticeTag(nonce, code, "")}
-                            ${evidonStubHelper_1.EvidonStubHelper.getOmniTag(nonce)}
-                        </head>
-                    </html>`;
-            }
+            const elementId = "evidon-ucp-stub";
+            html = `<!DOCTYPE html>
+                <html>
+                    <head>
+                        ${evidonStubHelper_1.EvidonStubHelper.getSiteNoticeTag(nonce)}
+                        ${evidonStubHelper_1.EvidonStubHelper.getOmniTag(nonce)}
+                    </head>
+                </html>`;
             res.send(html);
         });
     }
