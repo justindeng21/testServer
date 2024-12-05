@@ -85,7 +85,7 @@ class EvidonStubHelper {
         `;
     }
     static getOmniTag(nonce) {
-        return `<scripcompanyid="6914" nonce="${nonce}" src="/js/dg.js"></script>`;
+        return `<script companyid="6914" nonce="${nonce}" src="/js/dg.js"></script>`;
     }
 }
 exports.EvidonStubHelper = EvidonStubHelper;
