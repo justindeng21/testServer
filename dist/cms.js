@@ -157,7 +157,7 @@ class CMSAPI extends server_1.Server {
         this.httpListener.get('/nonce/test2', (req, res) => {
             const nonce = this.genString(15);
             let html;
-            res.setHeader('Content-Security-Policy', `script-src 'self' data: *.betrad.com *.evidon.com *.evidon.com *.crownpeak.com 'nonce-${nonce}'; connect-src data: *.evidon.com *.betrad.com optoutapi.evidonstage.com privacycollector.evidonqa.com; style-src 'self' *.evidon.com *.betrad.com;`);
+            res.setHeader('Content-Security-Policy', `script-src 'self' data: *.betrad.com *.evidon.com *.evidon.com *.crownpeak.com 'nonce-${nonce}'; connect-src data: *.evidon.com *.betrad.com optoutapi.evidonstage.com privacycollector.evidonqa.com; style-src 'self' *.evidon.com *.betrad.com 'strict-dynamic';`);
             const elementId = "evidon-ucp-stub";
             html = `<!DOCTYPE html>
                 <html>
