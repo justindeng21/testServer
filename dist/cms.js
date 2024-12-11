@@ -63,7 +63,7 @@ class CMSAPI extends server_1.Server {
         this.httpListener.get('/:filename', (req, res) => {
             res.sendFile(`/html/${req.params.filename}.html`, { root: __dirname });
         });
-        this.httpListener.get('svg', (req, res) => {
+        this.httpListener.get('/assets/svg', (req, res) => {
             res.sendFile(`/assets/cookie.svg`, { root: __dirname });
         });
         this.httpListener.get('/nonce/test', (req, res) => {
