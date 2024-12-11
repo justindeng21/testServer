@@ -74,8 +74,8 @@ class CMSAPI extends Server{
             res.sendFile(`/html/${req.params.filename}.html`,{root: __dirname })
         })
 
-        this.httpListener.get('/js/:filename',(req,res)=>{
-            res.sendFile(`/html/${req.params.filename}`,{root: __dirname })
+        this.httpListener.get('svg',(req,res)=>{
+            res.sendFile(`/assets/cookie.svg`,{root: __dirname })
         })
 
 
