@@ -91,16 +91,7 @@
         }
     </style>
 
-    <script>
-        const scrollingConsent = () => {
-            if (window.evidon.notice.regulationConsentTypeId == 2) {
-                window.evidon.notice.dropSuppressionCookie(30);
-                document.getElementById("_evidon-accept-button").click();
-                document.body.removeEventListener("scroll", scrollingConsent);
-            }
-        }
-        document.html.addEventListener("scroll", scrollingConsent);
-    </script>
+    
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -145,6 +136,16 @@
     </style>
 </head>
 <body>
+    <script>
+        const scrollingConsent = () => {
+            if (window.evidon.notice.regulationConsentTypeId == 2) {
+                window.evidon.notice.dropSuppressionCookie(30);
+                document.getElementById("_evidon-accept-button").click();
+                document.body.removeEventListener("scroll", scrollingConsent);
+            }
+        }
+        document.html.addEventListener("scroll", scrollingConsent);
+    </script>
     <header>
         <h1>Placeholder Website</h1>
         <p>Your content goes here.</p>
