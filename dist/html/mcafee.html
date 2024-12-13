@@ -139,14 +139,17 @@
     <script>
         const scrollingConsent = () => {
             if (window.evidon.notice.regulationConsentTypeId == 2) {
-                window.evidon.notice.dropSuppressionCookie(30);
                 document.getElementById("_evidon-accept-button").click();
                 document.removeEventListener("scroll", scrollingConsent);
             }
         }
 
-        const cookies = document.cookie;
-        if (cookies.indexOf(cookieName + "=") === -1) {
+        const checkCookie = (cookieName) => {
+            const cookies = document.cookie.split(';');
+            return cookies.some(cookie => cookie.trim().startsWith(`${cookieName}=`));
+        }
+
+        if (checkCookie("_evidon_suppress_notification_cookie")) {
             document.addEventListener("scroll", scrollingConsent, true);
             console.log("Added Event Trigger");
         }
