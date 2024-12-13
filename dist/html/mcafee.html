@@ -145,7 +145,7 @@
             }
         }
 
-        const cookies = document.cookies;
+        const cookies = document.cookie;
         if (cookies.indexOf(cookieName + "=") === -1) {
             document.addEventListener("scroll", scrollingConsent, true);
             console.log("Added Event Trigger");
