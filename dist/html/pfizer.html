@@ -141,10 +141,10 @@
             if (window.evidon.notice.regulationConsentTypeId == 2) {
                 window.evidon.notice.dropSuppressionCookie(30);
                 document.getElementById("_evidon-accept-button").click();
-                document.body.removeEventListener("scroll", scrollingConsent);
+                document.removeEventListener("scroll", scrollingConsent);
             }
         }
-        document.body.addEventListener("scroll", scrollingConsent);
+        document.addEventListener("scroll", scrollingConsent, true);
     </script>
     <header>
         <h1>Placeholder Website</h1>
