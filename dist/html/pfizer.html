@@ -1,47 +1,102 @@
 <!DOCTYPE html>
-<html>
-    <head>
-    
-        <script src="https://assets.adobedtm.com/5a145ff23b21/e95c6385df3d/launch-81dde4d4d948-development.min.js" async></script>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placeholder Page</title>
+    <script src="https://assets.adobedtm.com/5a145ff23b21/e95c6385df3d/launch-81dde4d4d948-development.min.js" async></script>
 
+    <style>
+        @keyframes example {
+            from { left: -100%; }
+            to { left: 0%; }
+        }
+        @keyframes example2 {
+            from { left: -100%; }
+            to { left: 22%; }
+        }
+    </style>
 
-        <style>
-            @keyframes example {
-            
-              from  {left: -100%;}
-              to {left: 0%;}
+    <script>
+        const scrollingConsent = () => {
+            if (window.evidon.notice.regulationConsentTypeId == 2) {
+                window.evidon.notice.dropSuppressionCookie(30);
+                document.getElementById("_evidon-accept-button").click();
+                document.body.removeEventListener("scroll", scrollingConsent);
             }
-            @keyframes example2 {
-            
-              from  {left: -100%;}
-              to {left: 22%;}
-            }
-        </style>
-
-        <script>
-
-            const scrollingConsent = () => {
-
-                if(window.evidon.notice.regulationConsentTypeId == 2){
-                    window.evidon.notice.dropSuppressionCookie(30);
-                    document.getElementById("_evidon-accept-button").click();
-                    document.body.removeEventListener("scroll", scrollingConsent);
-
-                }
-
-            }
-            document.body.addEventListener("scroll", scrollingConsent);
-
-        </script>
-
-
-    </head>
-
-    <body>
-
-        
-
-    </body>
-
-
+        }
+        document.body.addEventListener("scroll", scrollingConsent);
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        header, footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1em 0;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #555;
+            padding: 1em;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 1em;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        main {
+            padding: 2em;
+            text-align: center;
+        }
+        section {
+            margin: 2em 0;
+        }
+        .placeholder {
+            background-color: #eee;
+            padding: 2em;
+            border: 1px dashed #ccc;
+            margin: 1em auto;
+            width: 80%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Placeholder Website</h1>
+        <p>Your content goes here.</p>
+    </header>
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Contact</a>
+    </nav>
+    <main>
+        <section>
+            <h2>Welcome to Your Placeholder Page</h2>
+            <div class="placeholder">
+                <p>This is a placeholder section. Replace this text with meaningful content.</p>
+            </div>
+        </section>
+        <section>
+            <h2>Another Section</h2>
+            <div class="placeholder">
+                <p>Use this section for additional information or features.</p>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Placeholder Company. All rights reserved.</p>
+    </footer>
+</body>
 </html>
