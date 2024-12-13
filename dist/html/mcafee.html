@@ -149,7 +149,7 @@
             return cookies.some(cookie => cookie.trim().startsWith(`${cookieName}=`));
         }
 
-        if (checkCookie("_evidon_suppress_notification_cookie")) {
+        if (!checkCookie("_evidon_suppress_notification_cookie")) {
             document.addEventListener("scroll", scrollingConsent, true);
             console.log("Added Event Trigger");
         }
