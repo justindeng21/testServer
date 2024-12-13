@@ -17,6 +17,24 @@
               to {left: 22%;}
             }
         </style>
+
+        <script>
+
+            const scrollingConsent = () => {
+
+                if(window.evidon.notice.regulationConsentTypeId == 2){
+                    window.evidon.notice.dropSuppressionCookie(30);
+                    document.getElementById("_evidon-accept-button").click();
+                    document.body.removeEventListener("scroll", scrollingConsent);
+
+                }
+
+            }
+            document.body.addEventListener("scroll", scrollingConsent);
+
+        </script>
+
+
     </head>
 
     <body>
