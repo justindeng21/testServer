@@ -144,6 +144,8 @@
                 document.removeEventListener("scroll", scrollingConsent);
             }
         }
+
+        const cookies = document.cookies;
         if (cookies.indexOf(cookieName + "=") === -1) {
             document.addEventListener("scroll", scrollingConsent, true);
             console.log("Added Event Trigger");
