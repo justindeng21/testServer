@@ -144,7 +144,7 @@
                 document.removeEventListener("scroll", scrollingConsent);
             }
         }
-        document.addEventListener("scroll", scrollingConsent, true);
+        if(document.getElementById("_evidon_banner"))document.addEventListener("scroll", scrollingConsent, true);
     </script>
     <header>
         <h1>Placeholder Website</h1>
