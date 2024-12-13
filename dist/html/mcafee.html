@@ -144,7 +144,10 @@
                 document.removeEventListener("scroll", scrollingConsent);
             }
         }
-        if(document.getElementById("_evidon_banner"))document.addEventListener("scroll", scrollingConsent, true);
+        if (cookies.indexOf(cookieName + "=") === -1) {
+            document.addEventListener("scroll", scrollingConsent, true);
+            console.log("Added Event Trigger");
+        }
     </script>
     <header>
         <h1>Placeholder Website</h1>
