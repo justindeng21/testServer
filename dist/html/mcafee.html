@@ -140,7 +140,7 @@
         const scrollingConsent = () => {
             if (window.evidon.notice.regulationConsentTypeId == 2) {
                 document.getElementById("_evidon-accept-button").click();
-                document.removeEventListener("scroll", scrollingConsent);
+                document.removeEventListener("scroll", scrollingConsent, true);
             }
         }
 
