@@ -74,6 +74,7 @@
             window.evidon.consentDeclinedCallback = function () {
                 // this is executed if the user explicitly declines giving consent by
                 // using a Decline button
+                console.log("consent declined callback");
                 if(window.evidon.notice.regulationConsentTypeId != 2) console.log("Dynatrace Optout");
             }
 
