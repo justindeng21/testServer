@@ -76,10 +76,10 @@
                 // using a Decline button
                 if(window.evidon.notice.regulationConsentTypeId != 2) console.log("Dynatrace Optout");
             }
+
         
             window.evidon.consentRejectCallback = function () {
-                // this is executed if the user explicitly revokes consent by
-                // using the Opt-Out All / Reject button for Opt-Out Regulation only.
+                if(window.evidon.notice.regulationConsentTypeId == 2) console.log("Dynatrace Optout consentRejectCallback");
             }
             
         })(6914);
