@@ -55,7 +55,9 @@
                 // add the tags which need to wait for prior consent
                 // here.  This should be all your advertising tags and
                 // probably most of your social and tracking tags.
-                console.log("Prior Consent Callback");
+                for(let i in categories){
+                    console.log(i);
+                }
             }
         
             window.evidon.closeCallback = function () {
@@ -71,7 +73,7 @@
             window.evidon.consentDeclinedCallback = function () {
                 // this is executed if the user explicitly declines giving consent by
                 // using a Decline button
-                if(window.evidon.notice.regulationConsentTypeId != 2) console.log("Hello World");
+                if(window.evidon.notice.regulationConsentTypeId != 2) console.log("Dynatrace Optout");
             }
         
             window.evidon.consentRejectCallback = function () {
