@@ -79,7 +79,7 @@
 
         
             window.evidon.consentRejectCallback = function () {
-                if(window.evidon.notice.regulationConsentTypeId == 2) console.log("Dynatrace Optout consentRejectCallback");
+                if(window.evidon.notice.regulataionConsentTypeId == 2) console.log("Dynatrace Optout consentRejectCallbck");
             }
             
         })(6914);
@@ -141,24 +141,6 @@
     </style>
 </head>
 <body>
-    <script>
-        const scrollingConsent = () => {
-            if (window.evidon.notice.regulationConsentTypeId == 2) {
-                document.getElementById("_evidon-accept-button").click();
-                document.removeEventListener("scroll", scrollingConsent, true);
-            }
-        }
-
-        const checkCookie = (cookieName) => {
-            const cookies = document.cookie.split(';');
-            return cookies.some(cookie => cookie.trim().startsWith(`${cookieName}=`));
-        }
-
-        if (!checkCookie("_evidon_suppress_notification_cookie")) {
-            document.addEventListener("scroll", scrollingConsent, true);
-            console.log("Added Event Trigger");
-        }
-    </script>
     
     <header>
         <h1>Placeholder Website</h1>
