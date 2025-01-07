@@ -185,19 +185,8 @@ class CMSAPI extends Server{
             res.send(html);
         })
 
-        this.httpListener.get('/nonce/test3', (req, res)=>{
-            const nonce = this.genString(15);
-            let html;
-            const elementId = "evidon-ucp-stub";
-            html = `<!DOCTYPE html>
-                <html>
-                    <head>
-                        ${EvidonStubHelper.getSiteNoticeTag(nonce)}
-                        ${EvidonStubHelper.getOmniTag(nonce)}
-                    </head>
-                </html>`;
-
-            res.send(html);
+        this.httpListener.get('/:folder/testing/:filename', (req, res)=>{
+            res.sendFile(`/${req.params.folder}/${req.params.filename}.html`,{root: __dirname })
         })
         
     }

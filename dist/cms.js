@@ -168,18 +168,8 @@ class CMSAPI extends server_1.Server {
                 </html>`;
             res.send(html);
         });
-        this.httpListener.get('/nonce/test3', (req, res) => {
-            const nonce = this.genString(15);
-            let html;
-            const elementId = "evidon-ucp-stub";
-            html = `<!DOCTYPE html>
-                <html>
-                    <head>
-                        ${evidonStubHelper_1.EvidonStubHelper.getSiteNoticeTag(nonce)}
-                        ${evidonStubHelper_1.EvidonStubHelper.getOmniTag(nonce)}
-                    </head>
-                </html>`;
-            res.send(html);
+        this.httpListener.get('/:folder/testing/:filename', (req, res) => {
+            res.sendFile(`/${req.params.folder}/${req.params.filename}.html`, { root: __dirname });
         });
     }
 }
