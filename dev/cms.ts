@@ -79,11 +79,9 @@ class CMSAPI extends Server{
         })
 
 
-        this.httpListener.get('/nonce/test', (req, res)=>{
+        this.httpListener.get('/test/:companyId', (req, res)=>{
             const nonce = this.genString(15);
             let html;
-            res.setHeader('Content-Security-Policy',`script-src 'self' data: *.betrad.com *.evidon.com *.evidon.com *.crownpeak.com 'nonce-${nonce}'; connect-src data: *.evidon.com *.betrad.com optoutapi.evidonstage.com privacycollector.evidonqa.com; style-src 'self' *.evidon.com *.betrad.com;`)
-            const elementId = "evidon-ucp-stub";
             html = `<!DOCTYPE html>
                 <html>
                     <head>
@@ -160,9 +158,8 @@ class CMSAPI extends Server{
                                     // this is executed if the user explicitly revokes consent by
                                     // using the Opt-Out All / Reject button for Opt-Out Regulation only.
                                 }
-                            })(6914);
+                            })(${req.params.companyId});
                         </script>
-                        ${EvidonStubHelper.getOmniTag(nonce)}
                     </head>
                 </html>`;
 
