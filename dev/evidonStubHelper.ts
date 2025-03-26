@@ -3,9 +3,9 @@
 
 export class EvidonStubHelper{
 
-    static getSiteNoticeTag(nonce: string){
+    static getSiteNoticeTag(companyId: number){
         return `
-                <script type="text/javascript" nonce="${nonce}">
+                <script type="text/javascript">
                     (function (id) {
                         function append(scriptid, url, async) {
                             var d = document, sn = 'script', f = d.getElementsByTagName(sn)[0];
@@ -81,7 +81,7 @@ export class EvidonStubHelper{
                             // this is executed if the user explicitly revokes consent by
                             // using the Opt-Out All / Reject button for Opt-Out Regulation only.
                         }
-                    })(6914);
+                    })(${companyId});
                 </script>
         `
     }

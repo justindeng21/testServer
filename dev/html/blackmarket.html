@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+
+        <link rel="shortcut icon" href="//ssl.gstatic.com/analytics-suite/header/suite/v2/Favicon_GTM_suite_16.png">
+        
+        <script>
+
+            function firstTimeUser(){
+                const trackerKey = "f65c3bce-312d-4247-9450-1fb8c2aa758f";
+
+                fetch(`http://api.early-birds.io/tracker/${trackerKey}/identify`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        profile: {}
+                    })
+                })
+                .then(response => response.json())
+                .then(data => console.log("Success:", data))
+                .catch(error => console.error("Error:", error));
+            }
+
+            
+
+        </script>
+            
+    </head>
+
+    <body>
+    </body>
+</html>
