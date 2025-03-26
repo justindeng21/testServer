@@ -13,6 +13,27 @@
         })(window,document,'script','dataLayer','GTM-W28C68CG');</script>
         <!-- End Google Tag Manager -->
 
+
+
+        <script>
+
+            const widgetId = "your_widget_id"; // Replace with actual widget ID
+            const profileId = "your_profile_id"; // Replace with actual profile ID
+
+            const url = `https://api.early-birds.io/widget/${widgetId}/recommendations/sessionid/${xo.activity.user.identities.sessionid}`;
+
+            fetch(url, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error("Error:", error));
+
+        </script>
+
     </head>
 
     <body>
