@@ -19,10 +19,9 @@
 
             const sendActivity = (event)=>{
                 event.preventDefault()
-                console.log(event.target.value)
                 dataLayer.push({
-                  'last_bought_product_id': productId,
-                  'last_bought_product_list': [productId],
+                  'last_bought_product_id': event.target.elements.prodId.value,
+                  'last_bought_product_list': [event.target.elements.prodId.value],
                   'event': 'buyEvent'
                 })
             }
