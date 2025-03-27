@@ -28,15 +28,12 @@
 
             const createNewItemListing = (title, releaseDate, photoResourceUrl)=>{
                 const recomendedItem = document.createElement('div');
-
-                recomendedItem.innerHTML = `<div><h1>${title}</h1><h2>year_date_release: ${releaseDate}</h2><img width="250" height="250" src="${photoResourceUrl}"></div>`;
-
+                recomendedItem.innerHTML = `<div><h2>${title}</h2><h3>year_date_release: ${releaseDate}</h3><img width="250" height="250" src="${photoResourceUrl}"></div>`;
                 recomendedItem.classList.add('recommended-items');
-
-                recomendedItem.style.backgroundColor = 'lightblue';
+                recomendedItem.style.borderTop = '2px solid black'
                 recomendedItem.style.padding = '10px';
-
-                document.body.appendChild(recomendedItem);
+                let recommendations = document.getElementById("recommendations")
+                recommendations.appendChild(recomendedItem);
             }
 
             const loadWidget = ()=>{
@@ -65,9 +62,14 @@
     <body>
 
         <form onsubmit="sendActivity(event,this.value)">
-          <label for="Product Id"></label><br>
+          <label for="Product Id">Set last bought item</label><br>
           <input type="text" id="productId" name="prodId"><br>
         </form>
+
+
+        <div id="recommendations">
+            <h1>Recommendations</h1>
+        </div>
 
     </body>
 </html>
