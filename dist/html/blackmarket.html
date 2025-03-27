@@ -18,7 +18,10 @@
         <script>
 
             const sendActivity = (event)=>{
-                event.preventDefault()
+
+                event.preventDefault();
+                let recommendations = document.getElementById("recommendations")
+                recommendations.innerHTML = "<h1>Recommendations</h1>";
                 dataLayer.push({
                   'last_bought_product_id': event.target.elements.prodId.value,
                   'last_bought_product_list': [event.target.elements.prodId.value],
