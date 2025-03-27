@@ -17,6 +17,14 @@
 
         <script>
 
+            const sendActivity = (productId)=>{
+                dataLayer.push({
+                  'last_bought_product_id': productId,
+                  'last_bought_product_list': [productId],
+                  'event': 'buyEvent'
+                })
+            }
+
             const createNewItemListing = (title, releaseDate, photoResourceUrl)=>{
                 const recomendedItem = document.createElement('div');
 
@@ -54,5 +62,11 @@
     </head>
 
     <body>
+
+        <form onsubmit="sendActivity(document.getElementById('productId').value)">
+          <label for="Product Id"></label><br>
+          <input type="text" id="productId" name="prodId"><br>
+        </form>
+
     </body>
 </html>
