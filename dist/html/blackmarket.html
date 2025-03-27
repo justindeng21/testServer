@@ -20,7 +20,7 @@
             const createNewItemListing = (title, releaseDate, photoResourceUrl)=>{
                 const recomendedItem = document.createElement('div');
 
-                recomendedItem.innerHTML = `<div><h1>${title}</h1><h2>${releaseDate}</h2><img src="${photoResourceUrl}"></div>`;
+                recomendedItem.innerHTML = `<div><h1>${title}</h1><h2>year_date_release: ${releaseDate}</h2><img width="250" height="250" src="${photoResourceUrl}"></div>`;
 
                 recomendedItem.classList.add('recommended-items');
 
@@ -43,7 +43,7 @@
                 .then(response => response.json())
                 .then((data) => {
                     for(item in data.recommendations){
-                        createNewItemListing(data.recommendations[item].product.title,data.recommendations[item].product.product.product_fields.year_date_release,data.recommendations[item].product.photo)
+                        createNewItemListing(data.recommendations[item].product.title, data.recommendations[item].product.product.product_fields.year_date_release, data.recommendations[item].product.photo)
                     }
                 })
                 .catch(error => console.error("Error:", error));
