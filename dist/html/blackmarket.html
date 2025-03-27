@@ -16,22 +16,29 @@
 
 
         <script>
+            function populateWidget(data){
+                for(item in data.recomendations){
+                    console.log(item.release_year_date)
+                }
+            }
+
             function loadWidget(){
-            setTimeout(()=>{
-                const widgetId = "61c1f2bd8799d68e9e3fec18"; // Replace with actual widget ID
-                const sessionId = xo.activity.user.identities.sessionid;
-                
-                const url = `https://api.early-birds.io/widget/${widgetId}/recommendations/sessionid/${sessionId}?&metadata=all`;
-                fetch(url, {
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json"
-                    }
-                })
-                .then(response => response.json())
-                .then(data => console.log(data))
-                .catch(error => console.error("Error:", error));
-            },2000)}
+                setTimeout(()=>{
+                    const widgetId = "61c1f2bd8799d68e9e3fec18"; // Replace with actual widget ID
+                    const sessionId = xo.activity.user.identities.sessionid;
+
+                    const url = `https://api.early-birds.io/widget/${widgetId}/recommendations/sessionid/${sessionId}?&metadata=all`;
+                    fetch(url, {
+                        method: "GET",
+                        headers: {
+                            "Content-Type": "application/json"
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => populateWidget(data))
+                    .catch(error => console.error("Error:", error));
+                },2000)
+            }
         </script>
 
     </head>
