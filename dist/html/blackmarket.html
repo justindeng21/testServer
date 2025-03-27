@@ -43,7 +43,7 @@
                 .then(response => response.json())
                 .then((data) => {
                     for(item in data.recommendations){
-                        createNewItemListing(data.recommendations[item].product.title,data.recommendations[item].product.photo,data.recommendations[item].product.product.product_fields.year_date_release)
+                        createNewItemListing(data.recommendations[item].product.title,data.recommendations[item].product.product.product_fields.year_date_release,data.recommendations[item].product.photo)
                     }
                 })
                 .catch(error => console.error("Error:", error));
