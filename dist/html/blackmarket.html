@@ -28,9 +28,7 @@
                 })
                 .then(response => response.json())
                 .then((data) => {
-                    for(item in data.recomendations){
-                        console.log(item.release_year_date)
-                    }
+                    onsole.log(data)
                 })
                 .catch(error => console.error("Error:", error));
             }
