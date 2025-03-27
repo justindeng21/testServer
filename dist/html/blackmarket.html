@@ -17,7 +17,8 @@
 
         <script>
 
-            const sendActivity = (productId)=>{
+            const sendActivity = (event, productId)=>{
+                event.preventDefault()
                 dataLayer.push({
                   'last_bought_product_id': productId,
                   'last_bought_product_list': [productId],
@@ -63,7 +64,7 @@
 
     <body>
 
-        <form onsubmit="sendActivity(document.getElementById('productId').value)">
+        <form onsubmit="sendActivity(event,this.value)">
           <label for="Product Id"></label><br>
           <input type="text" id="productId" name="prodId"><br>
         </form>
