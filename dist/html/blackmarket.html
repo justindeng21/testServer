@@ -17,10 +17,10 @@
 
         <script>
 
-            const createNewItemListing = (title)=>{
+            const createNewItemListing = (title,photoResourceUrl)=>{
                 const recomendedItem = document.createElement('div');
 
-                recomendedItem.innerHTML = `<div><h1>${title}</h1><img src="${}"></div>`;
+                recomendedItem.innerHTML = `<div><h1>${title}</h1><img src="${photoResourceUrl}"></div>`;
 
                 recomendedItem.classList.add('recommended-items');
 
