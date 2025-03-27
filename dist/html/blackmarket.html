@@ -16,11 +16,11 @@
 
 
         <script>
-            (function loadWidget(){
+            setTimeout(function loadWidget(){
                 const widgetId = "61c1f2bd8799d68e9e3fec18"; // Replace with actual widget ID
                 const sessionId = xo.activity.user.identities.sessionid;
                 
-                const url = `https://api.early-birds.io/widget/${widgetId}/recommendations/${sessionId}/?variables={"$user_last_1_buy":"553305"}`;
+                const url = `https://api.early-birds.io/widget/${widgetId}/recommendations/sessionid/${sessionId}/?variables={\"$user_last_1_buy\":\"553305\"}`;
                 fetch(url, {
                     method: "GET",
                     headers: {
@@ -30,7 +30,7 @@
                 .then(response => response.json())
                 .then(data => console.log(data))
                 .catch(error => console.error("Error:", error));
-            })()
+            },2000)
         </script>
 
     </head>
