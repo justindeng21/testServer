@@ -16,7 +16,8 @@
 
 
         <script>
-            function loadWidget(){
+
+            const loadWidget = () => {
                 const widgetId = "61c1f2bd8799d68e9e3fec18"; // Replace with actual widget ID
                 const sessionId = xo.activity.user.identities.sessionid;   
                 const url = `https://api.early-birds.io/widget/${widgetId}/recommendations/sessionid/${sessionId}?&metadata=all`;
@@ -29,11 +30,12 @@
                 .then(response => response.json())
                 .then((data) => {
                     for(item in data.recommendations){
-                        console.log(item.id, item.product)
+                        console.log(item)
                     }
                 })
                 .catch(error => console.error("Error:", error));
             }
+            
         </script>
 
     </head>
