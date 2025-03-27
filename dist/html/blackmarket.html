@@ -20,7 +20,7 @@
             const createNewItemListing = (title)=>{
                 const recomendedItem = document.createElement('div');
 
-                recomendedItem.text = `<h1>${title}</h1>`;
+                recomendedItem.innerHTML = `<h1>${title}</h1>`;
 
                 recomendedItem.classList.add('recommended-items');
 
