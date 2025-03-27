@@ -28,7 +28,9 @@
                 })
                 .then(response => response.json())
                 .then((data) => {
-                    console.log(data)
+                    for(item in data.recommendations){
+                        console.log(item.id, item.product.title, item.product.product_fields.year_date_release)
+                    }
                 })
                 .catch(error => console.error("Error:", error));
             }
