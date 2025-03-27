@@ -16,7 +16,7 @@
 
 
         <script>
-            function loadWidget(){
+            setTimeout(function loadWidget(){
                 const widgetId = "61c1f2bd8799d68e9e3fec18"; // Replace with actual widget ID
                 const sessionId = xo.activity.user.identities.sessionid;
                 
@@ -30,7 +30,7 @@
                 .then(response => response.json())
                 .then(data => console.log(data))
                 .catch(error => console.error("Error:", error));
-            }
+            },2000)
         </script>
 
     </head>
