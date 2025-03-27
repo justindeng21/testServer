@@ -17,6 +17,19 @@
 
         <script>
 
+            function createNewItemListing(title){
+                const recomendedItem = document.createElement('div');
+
+                recomendedItem.textContent = `<h1>${title}</h1>`;
+
+                recomendedItem.classList.add('recommended-items');
+
+                recomendedItem.style.backgroundColor = 'lightblue';
+                recomendedItem.style.padding = '10px';
+
+                document.body.appendChild(recomendedItem);
+            }
+
             const loadWidget = () => {
                 const widgetId = "61c1f2bd8799d68e9e3fec18"; // Replace with actual widget ID
                 const sessionId = xo.activity.user.identities.sessionid;   
@@ -30,7 +43,7 @@
                 .then(response => response.json())
                 .then((data) => {
                     for(item in data.recommendations){
-                        console.log(item)
+                        console.log(data.recommendations[item].product.title)
                     }
                 })
                 .catch(error => console.error("Error:", error));
