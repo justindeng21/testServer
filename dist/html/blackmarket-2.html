@@ -50,7 +50,7 @@
 
             const loadWidget = ()=>{
                 const widgetId = "5e0dada152af28ece1793595"; // Replace with actual widget ID
-                const sessionId = xo.activity.user.identities.sessionid//"9032f70a-1319-43b8-8743-660283873184" 
+                const sessionId = xo.activity.user.identities.sessionid
                 const url = `https://api.early-birds.io/widget/${widgetId}/recommendations/sessionid/${sessionId}?&metadata=all`;
                 fetch(url, {
                     method: "GET",
@@ -61,7 +61,7 @@
                 .then(response => response.json())
                 .then((data) => {
                     for(item in data.recommendations){
-                        createNewItemListing(data.recommendations[item].product.title, data.recommendations[item].product.product.product_fields.year_date_release, data.recommendations[item].product.photo, data.recommendations[item].product._id)
+                        createNewItemListing(data.recommendations[item].product.title, data.recommendations[item].product.product.product_fields.year_date_release, data.recommendations[item].product.photo, data.recommendations[item].product._id.original_id)
                     }
                 })
                 .catch(error => console.error("Error:", error));
