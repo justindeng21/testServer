@@ -17,16 +17,26 @@
 
         <script>
 
-            const sendActivity = (event)=>{
-
+            const sendBuyActivity = (event)=>{
                 event.preventDefault();
                 let recommendations = document.getElementById("recommendations")
                 recommendations.innerHTML = "<h1>Recommendations</h1>";
                 dataLayer.push({
                   'last_bought_product_id': event.target.elements.prodId.value,
-                  'last_bought_product_list': [event.target.elements.prodId.value],
+                  'last_bought_product_list': [event.target.elements.productIdBuy.value],
                   'event': 'buyEvent'
                 })
+            }
+
+            const sendViewActivity = (event)=>{
+                event.preventDefault();
+                let recommendations = document.getElementById("recommendations")
+                recommendations.innerHTML = "<h1>Recommendations</h1>";
+                dataLayer.push({
+                  'last_view_product_list': [event.target.elements.productIdView.value],
+                  'event': 'viewEvent'
+                })
+
             }
 
             const createNewItemListing = (title, releaseDate, photoResourceUrl)=>{
@@ -40,7 +50,7 @@
             }
 
             const loadWidget = ()=>{
-                const widgetId = "61c1f2bd8799d68e9e3fec18"; // Replace with actual widget ID
+                const widgetId = "5e0dada152af28ece1793595"; // Replace with actual widget ID
                 const sessionId = "9032f70a-1319-43b8-8743-660283873184" 
                 const url = `https://api.early-birds.io/widget/${widgetId}/recommendations/sessionid/${sessionId}?&metadata=all`;
                 fetch(url, {
@@ -64,9 +74,14 @@
 
     <body>
 
-        <form onsubmit="sendActivity(event)">
+        <form onsubmit="sendBuyActivity(event)">
           <label for="Product Id">Set last bought item</label><br>
-          <input type="text" id="productId" name="prodId"><br>
+          <input type="text" id="productId" name="productIdBuy"><br>
+        </form>
+
+        <form onsubmit="sendViewActivity(event)">
+          <label for="Product Id">Set last viewed item</label><br>
+          <input type="text" id="productId" name="productIdView"><br>
         </form>
 
 
