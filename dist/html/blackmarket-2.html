@@ -50,7 +50,7 @@
 
             const loadWidget = ()=>{
                 const widgetId = "5e0dada152af28ece1793595"; // Replace with actual widget ID
-                const sessionId = "9032f70a-1319-43b8-8743-660283873184" 
+                const sessionId = xo.activity.user.identities.sessionid//"9032f70a-1319-43b8-8743-660283873184" 
                 const url = `https://api.early-birds.io/widget/${widgetId}/recommendations/sessionid/${sessionId}?&metadata=all`;
                 fetch(url, {
                     method: "GET",
