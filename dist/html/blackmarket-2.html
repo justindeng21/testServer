@@ -14,14 +14,15 @@
         <!-- End Google Tag Manager -->
 
         <script>
-
+            var cart = []
             const sendAddToCartActivity = (event)=>{
                 event.preventDefault();
                 let recommendations = document.getElementById("recommendations")
                 recommendations.innerHTML = "<h1>Recommendations</h1>";
+                cart.push(event.target.elements.productIdAddToCart.value);
                 dataLayer.push({
                   'add_product_id': event.target.elements.productIdAddToCart.value,
-                  'add_product_list': [event.target.elements.productIdAddToCart.value],
+                  'add_product_list': cart,
                   'event': 'addToCartEvent'
                 })
             }
