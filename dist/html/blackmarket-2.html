@@ -20,8 +20,8 @@
                 let recommendations = document.getElementById("recommendations")
                 recommendations.innerHTML = "<h1>Recommendations</h1>";
                 dataLayer.push({
-                  'add_product_id': event.target.elements.prodId.value,
-                  'add_product_list': [event.target.elements.productIdBuy.value],
+                  'add_product_id': event.target.elements.productIdAddToCart.value,
+                  'add_product_list': [event.target.elements.productIdAddtoCart.value],
                   'event': 'addToCartEvent'
                 })
             }
