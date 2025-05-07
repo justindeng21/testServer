@@ -5,33 +5,40 @@
 
         <link rel="shortcut icon" href="//ssl.gstatic.com/analytics-suite/header/suite/v2/Favicon_GTM_suite_16.png">
         
-            <!-- Google Tag Manager -->
-            <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','GTM-W28C68CG');</script>
-            <!-- End Google Tag Manager -->
-
-
+        <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-W28C68CG');</script>
+        <!-- End Google Tag Manager -->
 
         <script>
-
-            const sendActivity = (event)=>{
-
+            const sendAddToCartActivity = (event)=>{
                 event.preventDefault();
                 let recommendations = document.getElementById("recommendations")
                 recommendations.innerHTML = "<h1>Recommendations</h1>";
                 dataLayer.push({
-                  'last_bought_product_id': event.target.elements.prodId.value,
-                  'last_bought_product_list': [event.target.elements.prodId.value],
-                  'event': 'buyEvent'
+                  'add_product_id': event.target.elements.productIdAddToCart.value,
+                  'add_product_list': [event.target.elements.productIdAddToCart.value],
+                  'event': 'addToCartEvent'
                 })
             }
 
-            const createNewItemListing = (title, releaseDate, photoResourceUrl)=>{
+            const sendViewActivity = (event)=>{
+                event.preventDefault();
+                let recommendations = document.getElementById("recommendations")
+                recommendations.innerHTML = "<h1>Recommendations</h1>";
+                dataLayer.push({
+                    'last_view_product_id': event.target.elements.productIdView.value,
+                    'last_view_product_list': [event.target.elements.productIdView.value],
+                    'event': 'viewEvent'
+                })
+            }
+
+            const createNewItemListing = (title, releaseDate, photoResourceUrl, productId)=>{
                 const recomendedItem = document.createElement('div');
-                recomendedItem.innerHTML = `<div><h2>${title}</h2><h3>year_date_release: ${releaseDate}</h3><img width="250" height="250" src="${photoResourceUrl}"></div>`;
+                recomendedItem.innerHTML = `<div><h2>${title}</h2><h3>year_date_release: ${releaseDate}</h3><h3>productId: ${productId}</h3><img width="250" height="250" src="${photoResourceUrl}"></div>`;
                 recomendedItem.classList.add('recommended-items');
                 recomendedItem.style.borderTop = '5px solid black'
                 recomendedItem.style.padding = '10px';
@@ -40,8 +47,8 @@
             }
 
             const loadWidget = ()=>{
-                const widgetId = "61c1f2bd8799d68e9e3fec18"; // Replace with actual widget ID
-                const sessionId = "9032f70a-1319-43b8-8743-660283873184" 
+                const widgetId = "67ef9e4ac22ee0a0c374ed6f"; // Replace with actual widget ID
+                const sessionId = xo.activity.user.identities.sessionid
                 const url = `https://api.early-birds.io/widget/${widgetId}/recommendations/sessionid/${sessionId}?&metadata=all`;
                 fetch(url, {
                     method: "GET",
@@ -52,7 +59,7 @@
                 .then(response => response.json())
                 .then((data) => {
                     for(item in data.recommendations){
-                        createNewItemListing(data.recommendations[item].product.title, data.recommendations[item].product.product.product_fields.year_date_release, data.recommendations[item].product.photo)
+                        createNewItemListing(data.recommendations[item].product.title, data.recommendations[item].product.product.product_fields.year_date_release, data.recommendations[item].product.photo, data.recommendations[item].product._id.original_id)
                     }
                 })
                 .catch(error => console.error("Error:", error));
@@ -64,9 +71,16 @@
 
     <body>
 
-        <form onsubmit="sendActivity(event)">
-          <label for="Product Id">Set last bought item</label><br>
-          <input type="text" id="productId" name="prodId"><br>
+        <form onsubmit="sendAddToCartActivity(event)">
+          <label for="Product Id Add to Cart">Add Item to cart</label><br>
+          <input type="text" id="productIdAddToCart" name="productIdAddToCart"><br>
+        </form>
+
+        <form onsubmit="sendViewActivity(event)">
+          <label for="Product Id View">Set last viewed item</label><br>
+          <input type="text" id="productIdView" name="productIdView"><br>
+          
+          <input type="submit">
         </form>
 
 
