@@ -2,15 +2,9 @@
 
 <html>
     <head>
-
         <link rel="shortcut icon" href="//ssl.gstatic.com/analytics-suite/header/suite/v2/Favicon_GTM_suite_16.png">
-        
-
     </head>
-
     <body>
-        
-
         <script type="text/javascript" >
             (function (id) {
                 function append(scriptid, url, async) {
@@ -22,7 +16,6 @@
                     s.src = url;
                     s.charset = 'utf-8';
                     f.parentNode.insertBefore(s, f);
-                    return s;
                 }
             
                 function is2parttld(value) {
@@ -54,12 +47,7 @@
                 //window.evidon.userid = '';
             
                 var cdn = '//c.evidon.com/', rootDomain = getRootDomain(), noticecdn = cdn + 'sitenotice/';
-                let evidonSiteNoticeScript = append('evidon-notice', noticecdn + 'evidon-sitenotice-tag.js', false);
-
-                evidonSiteNoticeScript.addEventListener("load", function (e) {
-                    window.evidon.notice.tagManagerEventFired = true;
-                });
-
+                append('evidon-notice', noticecdn + 'evidon-sitenotice-tag.js', false);
                 append('evidon-location', cdn + 'geo/country.js', true);
                 append('evidon-themes', noticecdn + id + '/snthemes.js', true);
                 if (rootDomain) append('evidon-settings', noticecdn + id + '/' + rootDomain + (window.evidon.test ? '/test' : '') + '/settingsV3.js', true);
@@ -68,46 +56,7 @@
                     // add the tags which need to wait for prior consent
                     // here.  This should be all your advertising tags and
                     // probably most of your social and tracking tags.
-                   var handlers = {
-                        categories: {
-                            'advertiser': 'handleAdvertiser',
-                            'ad server': 'handleAdServer',
-                            'ad verification': 'handleAdVerification',
-                            'agency': 'handleAgency',
-                            'analytics provider': 'handleAnalyticsProvider',
-                            'business intelligence': 'handleBusinessIntelligence',
-                            'content management/saas': 'handleContentManagementSaaS',
-                            'creative/ad format technology': 'handleCreativeAdFormatTechnology',
-                            'data aggregator/supplier': 'handleDataAggregatorSupplier',
-                            'data management platform': 'handleDataManagementPlatform',
-                            'demand side platform': 'handleDemandSidePlatform',
-                            'marketing solutions': 'handleMarketingSolutions',
-                            'mobile': 'handleMobile',
-                            'online privacy platform': 'handleOnlinePrivacyPlatform',
-                            'optimizer': 'handleOptimizer',
-                            'other': 'handleOther',
-                            'publisher': 'handlePublisher',
-                            'research provider': 'handleResearchProvider',
-                            'social media': 'handleSocialMedia',
-                            'supply side platform': 'handleSupplySidePlatform',
-                            'tag manager': 'handleTagManager',
-                            'video': 'handleVideo',
-                            'website optimization': 'handleWebsiteOptimization',
-                            'retargeter': 'handleRetargeter',
-                        },
-                        vendors: {}
-                    };
-                
-                    for (var category in categories) {
-                        if (!categories[category]) continue;
-                        var handler = window.evidon[handlers.categories[category]];
-                        if (typeof handler === 'function') handler();
-                    }
-                    for (var vendor in vendors) {
-                        if (!vendors[vendor]) continue;
-                        var handler = window.evidon[handlers.vendors[vendor]];
-                        if (typeof handler === 'function') handler();
-                    }
+
                 }
             
                 window.evidon.closeCallback = function () {
@@ -129,8 +78,7 @@
                     // this is executed if the user explicitly revokes consent by
                     // using the Opt-Out All / Reject button for Opt-Out Regulation only.
                 }
-            })(6914);
+            })(8523);
         </script>
-
     </body>
 </html>
