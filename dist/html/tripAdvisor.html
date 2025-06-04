@@ -70,15 +70,14 @@
                 }
             
                 window.evidon.consentDeclinedCallback = function () {
-                    // this is executed if the user explicitly declines giving consent by
-                    // using a Decline button
+                    window.evidon.notice.dropSuppressionCookie(0);
                 }
             
                 window.evidon.consentRejectCallback = function () {
                     // this is executed if the user explicitly revokes consent by
                     // using the Opt-Out All / Reject button for Opt-Out Regulation only.
                 }
-            })(8523);
+            })(6914);
         </script>
     </body>
 </html>
