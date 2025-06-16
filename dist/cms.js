@@ -3,6 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const evidonStubHelper_1 = require("./evidonStubHelper");
 const server_1 = require("./server");
 const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
@@ -68,19 +69,31 @@ class CMSAPI extends server_1.Server {
         this.httpListener.get('/:folder/testing/:filename', (req, res) => {
             res.sendFile(`/${req.params.folder}/${req.params.filename}.html`, { root: __dirname });
         });
-        this.httpListener.get('/geo', (req, res) => {
-            res.send(`
-                
-                (function(){
-                /*US-CO USA COLORADO*/
-                var country={
-                    'code':'us',
-                    'id':1,
-                    'defaultLanguage':'en-us',
-                    'stateId':3,'stateCode':'co'
-                };
-                
-                if(!window.evidon)window.evidon={};if(window.evidon.notice){window.evidon.notice.setLocation(country);}window.evidon.location=country;})();`);
+        this.httpListener.get('/cache-busting', (req, res) => {
+            fs_1.default.readdir(__dirname + '/html', (err, files) => {
+                let links = '';
+                if (err) {
+                    console.error('Error reading directory:', err);
+                    return;
+                }
+                const fileNames = files.filter(file => {
+                    const filePath = path_1.default.join(__dirname + '/html', file);
+                    return fs_1.default.statSync(filePath).isFile();
+                });
+                fileNames.forEach(fileName => {
+                    links = links + `<a class="link" href="https://dg-sandbox-deb249716852.herokuapp.com/${fileName.split(".")[0]}">${fileName}</a>\n`;
+                });
+                res.send(`<html>
+                    <head>
+
+                        ${evidonStubHelper_1.EvidonStubHelper.getSiteNoticeTag(6914, this.genString(20))}
+
+                    </head>
+                    <body>
+                        <h1>Test Cache busting</h1>
+                    </body>
+                </html>`);
+            });
         });
     }
 }
