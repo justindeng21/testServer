@@ -48,9 +48,13 @@ export class EvidonStubHelper{
                 
                     var cdn = '//c.evidon.com/', rootDomain = getRootDomain(), noticecdn = cdn + 'sitenotice/';
                     append('evidon-notice', noticecdn + 'evidon-sitenotice-tag.js?v=${token}', false);
+
                     append('evidon-location', cdn + 'geo/country.js?v=${token}', true);
+
                     append('evidon-themes', noticecdn + id + '/snthemes.js?v=${token}', true);
+
                     if (rootDomain) append('evidon-settings', noticecdn + id + '/' + rootDomain + (window.evidon.test ? '/test' : '') + '/settingsV3.js?v=${token}', true);
+                    
                 
                    window.evidon.priorConsentCallback = function (categories, vendors, cookies) {
                         // add the tags which need to wait for prior consent
