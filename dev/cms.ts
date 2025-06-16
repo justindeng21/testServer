@@ -82,7 +82,7 @@ class CMSAPI extends Server{
             res.sendFile(`/${req.params.folder}/${req.params.filename}.html`,{root: __dirname })
         })
 
-        this.httpListener.get('/cache-busting',(req,res)=>{
+        this.httpListener.get('/lenovo/cache-busting',(req,res)=>{
             res.send(
             `<html>
                 <head>
