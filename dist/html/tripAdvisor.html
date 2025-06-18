@@ -32,6 +32,8 @@
                     for(var index in recommendations){
                         createNewItemListing(recommendations[index].product.title,recommendations[index].product.photo,recommendations[index].id)
                     }
+
+                    console.log(data);
                 })
                 .catch(error => {
                     console.error('Error fetching recommendations:', error);
