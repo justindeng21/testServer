@@ -29,8 +29,8 @@
                 .then(response => response.json())
                 .then(data => {
                     var recommendations = data.recommendations;
-                    for(var recomendedItem in recommendations){
-                        //createNewItemListing(recomendedItem.product.title,recomendedItem.product.photo,recomendedItem.id)
+                    for(var index in recommendations){
+                        createNewItemListing(recommendations[index].product.title,recommendations[index].product.photo,recommendations[index].id)
                     }
                 })
                 .catch(error => {
