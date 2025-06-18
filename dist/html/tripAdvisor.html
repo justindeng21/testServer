@@ -3,13 +3,7 @@
 <html>
     <head>
         <link rel="shortcut icon" href="//ssl.gstatic.com/analytics-suite/header/suite/v2/Favicon_GTM_suite_16.png">
-    </head>
-    <body>
-
-
         <script>
-
-
             const createNewItemListing = (title, photoResourceUrl, productId)=>{
                 const recomendedItem = document.createElement('div');
                 recomendedItem.innerHTML = `<div>
@@ -23,12 +17,9 @@
                 recommendations.appendChild(recomendedItem);
             }
 
-
             const loadWidget = () => {
                 const widgetId = '655b8a7f76d7c6d7cbcf52ed';
-        
                 const url = `https://api.early-birds.io/widget/${widgetId}/recommendations`;
-                
                 fetch(url, {
                     method: 'GET',
                     headers: {
@@ -37,18 +28,26 @@
                 })
                 .then(response => response.json())
                 .then(data => {
-                    console.log('Recommendations:', data);
+                    var recommendations = data.recommendations;
+                    for(var recomendedItem in recommendations){
+                        createNewItemListing(recomendedItem.product.title,recomendedItem.product.photo,recomendedItem.id)
+                    }
                 })
                 .catch(error => {
                     console.error('Error fetching recommendations:', error);
                 });
             }
-
             loadWidget()
-
         </script>
 
 
+
+    </head>
+    <body>
+
+
+
+        <div id="recommendations"></div>
 
     </body>
 </html>
