@@ -30,7 +30,7 @@
                 .then(data => {
                     var recommendations = data.recommendations;
                     for(var recomendedItem in recommendations){
-                        createNewItemListing(recomendedItem.product.title,recomendedItem.product.photo,recomendedItem.id)
+                        //createNewItemListing(recomendedItem.product.title,recomendedItem.product.photo,recomendedItem.id)
                     }
                 })
                 .catch(error => {
