@@ -27,7 +27,7 @@
             const loadWidget = () => {
                 const widgetId = '655b8a7f76d7c6d7cbcf52ed';
         
-                const url = `http://api.early-birds.io/widget/${widgetId}/recommendations`;
+                const url = `https://api.early-birds.io/widget/${widgetId}/recommendations`;
                 
                 fetch(url, {
                     method: 'GET',
@@ -43,6 +43,8 @@
                     console.error('Error fetching recommendations:', error);
                 });
             }
+
+            loadWidget()
 
         </script>
 
