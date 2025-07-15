@@ -51,7 +51,7 @@
                 var mainScript = append('evidon-notice', noticecdn + 'evidon-sitenotice-tag.js', false);
             
                 mainScript.addEventListener("load", ()=>{
-                    if (window.evidon.notice.getButtonStyle() && window.evidon.button) {
+                    if (true) {
                         window.evidon.button.createButton(window.evidon.notice.getButtonStyle());
                         if (evidon.notice.activeTranslations) {
                             window.evidon.button.setButtonText(evidon.notice.activeTranslations)
@@ -69,7 +69,7 @@
                     // add the tags which need to wait for prior consent
                     // here.  This should be all your advertising tags and
                     // probably most of your social and tracking tags.
-                   
+
                 }
             
                 window.evidon.closeCallback = function () {
