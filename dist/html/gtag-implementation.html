@@ -48,7 +48,7 @@
                 //window.evidon.userid = '';
             
                 var cdn = '//c.evidon.com/', rootDomain = getRootDomain(), noticecdn = cdn + 'sitenotice/';
-                append('evidon-notice', noticecdn + 'evidon-sitenotice-tag.js', false);
+                var mainScript = append('evidon-notice', noticecdn + 'evidon-sitenotice-tag.js', false);
             
                 mainScript.addEventListener("load", setTimeout(()=>{
                         window.evidon.button.createButton(window.evidon.notice.getButtonStyle());
