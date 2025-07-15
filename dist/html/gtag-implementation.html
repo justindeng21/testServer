@@ -20,7 +20,7 @@
         <!-- End Google Tag Manager -->
         
         <script>
-            const loadButton = () => {
+            document.addEventListener('DOMContentLoaded', function() {
                 if (window.evidon.notice.getButtonStyle() && window.evidon.button) {
                     window.evidon.button.createButton(window.evidon.notice.getButtonStyle());
                     if (evidon.notice.activeTranslations) {
@@ -28,15 +28,8 @@
                     }
                     evidon.notice.checkConsentedVendors();
                     window.evidon.button.show()
-                }
-
-            }
-
-            document.addEventListener('DOMContentLoaded', function() {
-  // Your JavaScript code that interacts with the DOM goes here
-  console.log('DOM is ready!');
-  // Example: document.getElementById('myElement').textContent = 'Hello!';
-});
+                } 
+            });
         </script>
 
     </head>
