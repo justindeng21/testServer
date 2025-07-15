@@ -7,7 +7,7 @@
 
 
         <script>
-            const search = async (event)=>{
+            const searchQuery = async (event)=>{
                 event.preventDefault();
                
                 var query = event.target.elements.productIdAddToCart.value;
@@ -34,7 +34,7 @@
 
     <body>
 
-        <form onsubmit="seach(event)">
+        <form onsubmit="seachQuery(event)">
           <label for="Search">Search</label><br>
           <input type="text" id="query" name="query"><br>
         </form>
