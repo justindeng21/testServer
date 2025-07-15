@@ -50,14 +50,15 @@
                 var cdn = '//c.evidon.com/', rootDomain = getRootDomain(), noticecdn = cdn + 'sitenotice/';
                 var mainScript = append('evidon-notice', noticecdn + 'evidon-sitenotice-tag.js', false);
             
-                window.onload = ()=>{
+                window.onload = setTimeout(()=>{
                     window.evidon.button.createButton(window.evidon.notice.getButtonStyle());
                     if (evidon.notice.activeTranslations) {
                         window.evidon.button.setButtonText(evidon.notice.activeTranslations)
                     }
                     evidon.notice.checkConsentedVendors();
                     window.evidon.button.show()
-                }
+                    
+                },500)
             
                 append('evidon-location', cdn + 'geo/country.js', true);
                 append('evidon-themes', noticecdn + id + '/snthemes.js', true);
