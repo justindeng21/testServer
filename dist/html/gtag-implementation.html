@@ -51,14 +51,12 @@
                 var mainScript = append('evidon-notice', noticecdn + 'evidon-sitenotice-tag.js', false);
             
                 mainScript.addEventListener("load", ()=>{
-                    if (true) {
                         window.evidon.button.createButton(window.evidon.notice.getButtonStyle());
                         if (evidon.notice.activeTranslations) {
                             window.evidon.button.setButtonText(evidon.notice.activeTranslations)
                         }
                         evidon.notice.checkConsentedVendors();
                         window.evidon.button.show()
-                    } 
                 })
             
                 append('evidon-location', cdn + 'geo/country.js', true);
