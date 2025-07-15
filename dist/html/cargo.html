@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+
+        <link rel="shortcut icon" href="//ssl.gstatic.com/analytics-suite/header/suite/v2/Favicon_GTM_suite_16.png">
+
+
+        <script>
+            const search = async (event)=>{
+                event.preventDefault();
+               
+                var query = event.target.elements.productIdAddToCart.value;
+
+                var response = await fetch("https://api-eu.attraqt.io/search/autocomplete",{
+                    method:"POST",
+                    headers:{"Content-type":"application/json"},
+                    body:JSON.stringify({
+                        token:"62b2d50cdbd7912417c32e16",
+                        query: query,
+                        options:{
+                            numberOfSuggestions:9,
+                            context: null
+                        }
+                    })
+                });
+
+                const data = await response.json();
+                console.log(data);
+            }
+        </script>
+
+    </head>
+
+    <body>
+
+        <form onsubmit="seach(event)">
+          <label for="Search">Search</label><br>
+          <input type="text" id="query" name="query"><br>
+        </form>
+
+    </body>
+</html>
