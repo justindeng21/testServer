@@ -34,8 +34,17 @@
         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
         })(window,document,'script','dataLayer','GTM-N37D378H');</script>
         <!-- End Google Tag Manager -->
-
-        <a onclick="test()">Privacy Policy</a> 
+        
+        <script>
+            if (window.evidon.notice.getButtonStyle() && window.evidon.button) {
+                window.evidon.button.createButton(window.evidon.notice.getButtonStyle());
+                if (evidon.notice.activeTranslations) {
+                    window.evidon.button.setButtonText(evidon.notice.activeTranslations)
+                }
+                evidon.notice.checkConsentedVendors();
+                window.evidon.button.show()
+            }
+        </script>
 
     </head>
 
