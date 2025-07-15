@@ -75,8 +75,7 @@
                 window.evidon.priorConsentCallback = function (categories, vendors, cookies) {}
             
                 window.evidon.closeCallback = function () {
-                    console.log("Hello World");
-
+                    window.evidon.notice.dropSuppressionCookie(30);
                 }
             
                 window.evidon.consentWithdrawnCallback = function () {}
