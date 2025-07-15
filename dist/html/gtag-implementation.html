@@ -48,21 +48,24 @@
                 //window.evidon.userid = '';
             
                 var cdn = '//c.evidon.com/', rootDomain = getRootDomain(), noticecdn = cdn + 'sitenotice/';
-                var mainScript = append('evidon-notice', noticecdn + 'evidon-sitenotice-tag.js', false);
+                append('evidon-notice', noticecdn + 'evidon-sitenotice-tag.js', false);
             
-                mainScript.addEventListener("load", ()=>{
-                        window.evidon.button.createButton(window.evidon.notice.getButtonStyle());
-                        if (evidon.notice.activeTranslations) {
-                            window.evidon.button.setButtonText(evidon.notice.activeTranslations)
-                        }
-                        evidon.notice.checkConsentedVendors();
-                        window.evidon.button.show()
-                })
+
             
                 append('evidon-location', cdn + 'geo/country.js', true);
                 append('evidon-themes', noticecdn + id + '/snthemes.js', true);
-                if (rootDomain) append('evidon-settings', noticecdn + id + '/' + rootDomain + (window.evidon.test ? '/test' : '') + '/settingsV3.js', true);
+                if (rootDomain) var settings = append('evidon-settings', noticecdn + id + '/' + rootDomain + (window.evidon.test ? '/test' : '') + '/settingsV3.js', true);
             
+
+                settings.addEventListener("load", ()=>{
+                    window.evidon.button.createButton(window.evidon.notice.getButtonStyle());
+                    if (evidon.notice.activeTranslations) {
+                        window.evidon.button.setButtonText(evidon.notice.activeTranslations)
+                    }
+                    evidon.notice.checkConsentedVendors();
+                    window.evidon.button.show()
+                })
+
                window.evidon.priorConsentCallback = function (categories, vendors, cookies) {
                     // add the tags which need to wait for prior consent
                     // here.  This should be all your advertising tags and
