@@ -57,6 +57,14 @@
                     }
                     evidon.notice.checkConsentedVendors();
                     window.evidon.button.show()
+
+                    document.addEventListener("click", function (e) { 
+                    const closeDialog = e.target.closest("#evidon-prefdiag-closeicon") 
+
+                    if (closeDialog) { 
+                        window.evidon.button.show(); 
+                    } 
+                })
                     
                 },750)
             
