@@ -22,7 +22,10 @@
                     s.src = url;
                     s.charset = 'utf-8';
                     f.parentNode.insertBefore(s, f);
+                    /*Modification*/
+                    ////////////////////////////////////////////////////   
                     return s;
+                    ////////////////////////////////////////////////////
                 }
             
                 function is2parttld(value) {
@@ -35,10 +38,9 @@
                     var parts = window.location.hostname.split('.');
                     if (parts.length === 2) rootDomain = parts[0];
                     else if (parts.length > 2) {
-                        // see if the next to last value is a common tld
                         var part = parts[parts.length - 2];
                         if (is2parttld(part)) {
-                            rootDomain = parts[parts.length - 3]; // go back one more
+                            rootDomain = parts[parts.length - 3];
                         }
                         else {
                             rootDomain = part;
@@ -50,10 +52,10 @@
             
                 window.evidon = {};
                 window.evidon.id = id;
-                window.evidon.test = false;  // set to true for non-production testing.
-                //window.evidon.userid = '';
-            
+                window.evidon.test = false; 
                 var cdn = '//c.evidon.com/', rootDomain = getRootDomain(), noticecdn = cdn + 'sitenotice/';
+                /*Modifications*/
+                ////////////////////////////////////////////////////   
                 var mainScript = append('evidon-notice', noticecdn + 'evidon-sitenotice-tag.js', false);
             
                 window.onload = ()=>{
@@ -63,40 +65,22 @@
                     }
                     evidon.notice.checkConsentedVendors();
                     window.evidon.button.show();
-
                 }
-                    
+                ////////////////////////////////////////////////////   
             
                 append('evidon-location', cdn + 'geo/country.js', true);
                 append('evidon-themes', noticecdn + id + '/snthemes.js', true);
                 if (rootDomain) append('evidon-settings', noticecdn + id + '/' + rootDomain + (window.evidon.test ? '/test' : '') + '/settingsV3.js', true);
             
-                window.evidon.priorConsentCallback = function (categories, vendors, cookies) {
-                    // add the tags which need to wait for prior consent
-                    // here.  This should be all your advertising tags and
-                    // probably most of your social and tracking tags.
-
-                }
+                window.evidon.priorConsentCallback = function (categories, vendors, cookies) {}
             
-                window.evidon.closeCallback = function () {
-                    // this is executed if the user closed a UI element without either Accepting (providing consent)
-                    // or Declining (declining to provide consent).
-                }
+                window.evidon.closeCallback = function () {}
             
-                window.evidon.consentWithdrawnCallback = function () {
-                    // this is exeucted if the user withdraws consent and elects to
-                    // no longer allow technologies to run on the site.
-                }
+                window.evidon.consentWithdrawnCallback = function () {}
             
-                window.evidon.consentDeclinedCallback = function () {
-                    // this is executed if the user explicitly declines giving consent by
-                    // using a Decline button
-                }
+                window.evidon.consentDeclinedCallback = function () {}
             
-                window.evidon.consentRejectCallback = function () {
-                    // this is executed if the user explicitly revokes consent by
-                    // using the Opt-Out All / Reject button for Opt-Out Regulation only.
-                }
+                window.evidon.consentRejectCallback = function () {}
             })(6914);
         </script>
         
