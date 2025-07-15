@@ -5,22 +5,6 @@
         <link rel="shortcut icon" href="https://dqm.crownpeak.com/assets/favicon.png">
 
         <script>
-
-            const test = () => {
-                switch (window.evidon.notice.country.stateCode){
-
-                    case "co":
-                        window.location.replace("https://stackoverflow.com");
-                        break;
-                    default:
-                        window.evidon.notice.showOptions();
-                        break;
-                }
-            }
-
-        </script>
-
-        <script>
             window.dataLayer = window.dataLayer || [];
             if (typeof gtag !== 'function') function gtag(){dataLayer.push(arguments);}
             gtag('set', 'developer_id.dOGRkZj', true);
@@ -36,14 +20,23 @@
         <!-- End Google Tag Manager -->
         
         <script>
-            if (window.evidon.notice.getButtonStyle() && window.evidon.button) {
-                window.evidon.button.createButton(window.evidon.notice.getButtonStyle());
-                if (evidon.notice.activeTranslations) {
-                    window.evidon.button.setButtonText(evidon.notice.activeTranslations)
+            const loadButton = () => {
+                if (window.evidon.notice.getButtonStyle() && window.evidon.button) {
+                    window.evidon.button.createButton(window.evidon.notice.getButtonStyle());
+                    if (evidon.notice.activeTranslations) {
+                        window.evidon.button.setButtonText(evidon.notice.activeTranslations)
+                    }
+                    evidon.notice.checkConsentedVendors();
+                    window.evidon.button.show()
                 }
-                evidon.notice.checkConsentedVendors();
-                window.evidon.button.show()
+
             }
+
+            document.addEventListener('DOMContentLoaded', function() {
+  // Your JavaScript code that interacts with the DOM goes here
+  console.log('DOM is ready!');
+  // Example: document.getElementById('myElement').textContent = 'Hello!';
+});
         </script>
 
     </head>
