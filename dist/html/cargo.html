@@ -10,7 +10,7 @@
             const searchQuery = async (event)=>{
                 event.preventDefault();
                
-                var query = event.target.elements.productIdAddToCart.value;
+                var query = event.target.elements.query.value;
 
                 var response = await fetch("https://api-eu.attraqt.io/search/autocomplete",{
                     method:"POST",
