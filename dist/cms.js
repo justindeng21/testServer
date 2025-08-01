@@ -69,7 +69,7 @@ class CMSAPI extends server_1.Server {
         this.httpListener.get('/:folder/testing/:filename', (req, res) => {
             res.sendFile(`/${req.params.folder}/${req.params.filename}.html`, { root: __dirname });
         });
-        this.httpListener.get('/lenovo/cache-busting', (req, res) => {
+        this.httpListener.get('/test/cache-busting', (req, res) => {
             res.send(`<html>
                 <head>
                     ${evidonStubHelper_1.EvidonStubHelper.getSiteNoticeTag(6914, this.genString(20))}
