@@ -12,16 +12,12 @@
                
                 var query = event.target.elements.query.value;
 
-                var response = await fetch("https://api-eu.attraqt.io/search/autocomplete",{
+                var response = await fetch("https://api-eu.attraqt.io/search",{
                     method:"POST",
                     headers:{"Content-type":"application/json"},
                     body:JSON.stringify({
                         token:"630615bd04cf3662b769be76",
-                        query: query,
-                        options:{
-                            numberOfSuggestions:9,
-                            context: null
-                        }
+                        query: query
                     })
                 });
 
