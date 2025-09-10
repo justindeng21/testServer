@@ -8,11 +8,32 @@
 
         <script>
 
-            var response = await fetch("https://api.early-birds.fr/widget/6051dbc1cdf2f91094b2f2fc/recommendations/sessionid/85736898-ec6d-4070-ada2-0e07e62208fd?variables={%22$productId%22:%2280060926%22}&metadata=all",{
+            var response = fetch("https://api.early-birds.fr/widget/6051dbc1cdf2f91094b2f2fc/recommendations/sessionid/85736898-ec6d-4070-ada2-0e07e62208fd?variables={%22$productId%22:%2280060926%22}&metadata=all",{
                 method:"GET",
                 headers:{"Content-type":"application/json"},
+            }).then((response) =>{
+                if(!response.ok){
+                    throw new Error(`Reponse failed. Error code: ${response.status}`)
+                }
+                return response.json()
             }).then((data) =>{
-                console.log(data);
+                for(var i = 0; i <= data.recommendations.length-1; i++){
+                    console.log(data.recommendations[i])
+
+                    var title = document.createElement("h1")
+                    title.innerText = data.recommendations[i].product.title;
+                    var image = document.createElement("img") 
+                    image.src = data.recommendations[i].product.photo
+                    var description = document.createElement("p") 
+                    description.innerHTML = data.recommendations[i].product.description
+
+                    var product = document.createElement("div");
+                    product.style = "border: 1px solid black"
+                    product.appendChild(title);
+                    product.appendChild(image);
+                    product.appendChild(description);
+                    document.body.appendChild(product);
+                }
             });
 
         </script>
