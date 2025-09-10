@@ -24,6 +24,8 @@
                     title.innerText = data.recommendations[i].product.title;
                     var image = document.createElement("img") 
                     image.src = data.recommendations[i].product.photo
+                    image.width = 400
+                    image.height = 400
                     var description = document.createElement("p") 
                     description.innerHTML = data.recommendations[i].product.description
 
