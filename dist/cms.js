@@ -36,7 +36,7 @@ class CMSAPI extends server_1.Server {
                     return fs_1.default.statSync(filePath).isFile();
                 });
                 fileNames.forEach(fileName => {
-                    links = links + `<a class="link" href="https://dg-sandbox-deb249716852.herokuapp.com/${fileName.split(".")[0]}">${fileName}</a>\n`;
+                    links = links + `<a class="link" href="/${fileName.split(".")[0]}">${fileName}</a>\n`;
                 });
                 res.send(`<html>
                     <head>
