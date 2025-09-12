@@ -23,7 +23,7 @@ class Server {
             limit: '35mb',
             parameterLimit: 50000,
         }));
-        this.server = this.httpListener.listen(process.env.PORT || 3400, () => console.log("server running"));
+        this.server = this.httpListener.listen(process.env.PORT || 3400 || "0.0.0.0", () => console.log("server running"));
     }
     _closeServer() {
         this.server.close();
