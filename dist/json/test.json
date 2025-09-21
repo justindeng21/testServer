@@ -3,7 +3,14 @@
         {
             "BaseUrl": "https://c.evidon.com/sitenotice/6914/herokuapp/settingsV3.js",
             "RedirectUrl": "https://dg-sandbox-deb249716852.herokuapp.com/js/noticeOperations.js",
-            "isEnabled": true
+            "isEnabled": true,
+            "id": 1
+        },
+        {
+            "BaseUrl": "https://dg-sandbox-deb249716852.herokuapp.com/js/noticeOperations.js",
+            "RedirectUrl": "https://c.evidon.com/sitenotice/6914/herokuapp/settingsV3.js",
+            "isEnabled": true,
+            "id": 2
         }
     ],
     "BlockList":[]
