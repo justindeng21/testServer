@@ -1,0 +1,7 @@
+{
+    "Redirects":[
+        {"BaseUrl": "https://c.evidon.com/sitenotice/6914/herokuapp/settingsV3.js"},
+        {"RedirectUrl": "https://dg-sandbox-deb249716852.herokuapp.com/js/noticeOperations.js"}
+    ],
+    "BlockList":[]
+}
