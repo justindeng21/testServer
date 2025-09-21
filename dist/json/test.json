@@ -9,7 +9,7 @@
         {
             "BaseUrl": "https://dg-sandbox-deb249716852.herokuapp.com/js/noticeOperations.js",
             "RedirectUrl": "https://c.evidon.com/sitenotice/6914/herokuapp/settingsV4.js",
-            "isEnabled": true,
+            "isEnabled": false,
             "id": 2
         }
     ],
