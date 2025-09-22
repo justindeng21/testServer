@@ -13,5 +13,16 @@
             "id": 2
         }
     ],
-    "BlockList":[]
+    "BlackList":[
+        {
+            "blacklistUrl":"https://c.evidon.com/*",
+            "isEnabled":false,
+            "id":3
+        },
+        {
+            "blacklistUrl":"https://dqm.crownpeak.com/assets/favicon.png",
+            "isEnabled":true,
+            "id":4
+        }
+    ]
 }
