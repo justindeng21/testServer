@@ -3,26 +3,26 @@
         {
             "BaseUrl": "https://c.evidon.com/sitenotice/6914/herokuapp/settingsV3.js",
             "RedirectUrl": "https://dg-sandbox-deb249716852.herokuapp.com/js/noticeOperations.js",
-            "isEnabled": true,
-            "id": 1
+            "IsEnabled": true,
+            "Id": 1
         },
         {
             "BaseUrl": "https://dg-sandbox-deb249716852.herokuapp.com/js/noticeOperations.js",
             "RedirectUrl": "https://c.evidon.com/sitenotice/6914/herokuapp/settingsV4.js",
             "isEnabled": false,
-            "id": 2
+            "Id": 2
         }
     ],
     "BlackList":[
         {
             "blacklistUrl":"https://c.evidon.com/*",
-            "isEnabled":false,
-            "id":3
+            "IsEnabled":false,
+            "Id":3
         },
         {
             "blacklistUrl":"https://dqm.crownpeak.com/assets/favicon.png",
-            "isEnabled":true,
-            "id":4
+            "IsEnabled":true,
+            "Id":4
         }
     ]
 }
