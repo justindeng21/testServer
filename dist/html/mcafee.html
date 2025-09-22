@@ -7,6 +7,7 @@
 
         
 
+
 <script type="text/javascript" >
     (function (id) {
         function append(scriptid, url, async) {
@@ -58,46 +59,7 @@
             // add the tags which need to wait for prior consent
             // here.  This should be all your advertising tags and
             // probably most of your social and tracking tags.
-           var handlers = {
-                categories: {
-                    'advertiser': 'handleAdvertiser',
-                    'ad server': 'handleAdServer',
-                    'ad verification': 'handleAdVerification',
-                    'agency': 'handleAgency',
-                    'analytics provider': 'handleAnalyticsProvider',
-                    'business intelligence': 'handleBusinessIntelligence',
-                    'content management/saas': 'handleContentManagementSaaS',
-                    'creative/ad format technology': 'handleCreativeAdFormatTechnology',
-                    'data aggregator/supplier': 'handleDataAggregatorSupplier',
-                    'data management platform': 'handleDataManagementPlatform',
-                    'demand side platform': 'handleDemandSidePlatform',
-                    'marketing solutions': 'handleMarketingSolutions',
-                    'mobile': 'handleMobile',
-                    'online privacy platform': 'handleOnlinePrivacyPlatform',
-                    'optimizer': 'handleOptimizer',
-                    'other': 'handleOther',
-                    'publisher': 'handlePublisher',
-                    'research provider': 'handleResearchProvider',
-                    'social media': 'handleSocialMedia',
-                    'supply side platform': 'handleSupplySidePlatform',
-                    'tag manager': 'handleTagManager',
-                    'video': 'handleVideo',
-                    'website optimization': 'handleWebsiteOptimization',
-                    'retargeter': 'handleRetargeter',
-                },
-                vendors: {}
-            };
-
-            for (var category in categories) {
-                if (!categories[category]) continue;
-                var handler = window.evidon[handlers.categories[category]];
-                if (typeof handler === 'function') handler();
-            }
-            for (var vendor in vendors) {
-                if (!vendors[vendor]) continue;
-                var handler = window.evidon[handlers.vendors[vendor]];
-                if (typeof handler === 'function') handler();
-            }
+           
         }
 
         window.evidon.closeCallback = function () {
@@ -119,7 +81,7 @@
             // this is executed if the user explicitly revokes consent by
             // using the Opt-Out All / Reject button for Opt-Out Regulation only.
         }
-    })(1141);
+    })(6074);
 </script>
 
     </head>
