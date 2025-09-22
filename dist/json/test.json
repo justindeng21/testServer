@@ -15,12 +15,12 @@
     ],
     "BlackList":[
         {
-            "blacklistUrl":"https://c.evidon.com/*",
+            "BlacklistUrl":"https://c.evidon.com/*",
             "IsEnabled":false,
             "Id":3
         },
         {
-            "blacklistUrl":"https://dqm.crownpeak.com/assets/favicon.png",
+            "BlacklistUrl":"https://dqm.crownpeak.com/assets/favicon.png",
             "IsEnabled":true,
             "Id":4
         }
