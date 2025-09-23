@@ -1,9 +1,9 @@
 {
     "Redirects":[
         {
-            "BaseUrl": "https://c.evidon.com/sitenotice/6914/herokuapp/settingsV3.js",
-            "RedirectUrl": "https://dg-sandbox-deb249716852.herokuapp.com/js/noticeOperations.js",
-            "IsEnabled": false,
+            "BaseUrl": "https://c.evidon.com/geo/country.js",
+            "RedirectUrl": "https://c.evidon.com/tag-gb/country.js",
+            "IsEnabled": true,
             "Id": 1
         },
         {
@@ -15,7 +15,7 @@
     ],
     "BlackList":[
         {
-            "BlackListUrl":"https://c.evidon.com/*",
+            "BlackListUrl":"https://l.evidon.com/*",
             "IsEnabled":true,
             "Id":3
         },
