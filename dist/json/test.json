@@ -3,7 +3,7 @@
         {
             "BaseUrl": "https://c.evidon.com/sitenotice/6914/herokuapp/settingsV3.js",
             "RedirectUrl": "https://dg-sandbox-deb249716852.herokuapp.com/js/noticeOperations.js",
-            "IsEnabled": true,
+            "IsEnabled": false,
             "Id": 1
         },
         {
@@ -16,12 +16,12 @@
     "BlackList":[
         {
             "BlackListUrl":"https://c.evidon.com/*",
-            "IsEnabled":false,
+            "IsEnabled":true,
             "Id":3
         },
         {
             "BlackListUrl":"https://dqm.crownpeak.com/assets/favicon.png",
-            "IsEnabled":true,
+            "IsEnabled":false,
             "Id":4
         }
     ]
