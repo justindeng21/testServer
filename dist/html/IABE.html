@@ -1,0 +1,180 @@
+
+
+<html>
+
+<script type="text/javascript">
+(function () {
+    var gdprAppliesGlobally = false;
+
+    function addFrame() {
+        if (!window.frames['__tcfapiLocator']) {
+            if (document.body) {
+                var body = document.body,
+                    iframe = document.createElement('iframe');
+                iframe.style.cssText = 'display:none';
+                iframe.name = '__tcfapiLocator';
+                body.appendChild(iframe);
+            } else {
+                // In the case where this stub is located in the head,
+                // this allows us to inject the iframe more quickly than
+                // relying on DOMContentLoaded or other events.
+                setTimeout(addFrame, 5);
+            }
+        }
+    }
+
+    addFrame();
+
+    function stubTCFAPI() {
+        var args = arguments;
+        // console.log('stubTCFAPI', args);
+        __tcfapi.a = __tcfapi.a || [];
+
+        if (!args.length) return __tcfapi.a;
+        else if (args[0] === 'ping') {
+            args[2]({
+                gdprApplies: gdprAppliesGlobally,
+                cmpLoaded: false,
+                cmpStatus: 'stub',
+                displayStatus: 'hidden',
+                apiVersion: "2.0"
+            }, args[1] !== 1);
+        }
+        else {
+            __tcfapi.a.push([].slice.apply(args));
+        }
+    }
+
+    function cmpMsgHandler(event) {
+        var msgIsString = typeof event.data === 'string';
+        var json = event.data;
+        if (typeof json !== 'object') {
+            try { json = JSON.parse(json); }
+            catch (err) { return; }
+        }
+        if (!json.__tcfapiCall) return;
+
+        var call = json.__tcfapiCall;
+        window.__tcfapi(call.command, call.version, function (retValue, success) {
+            var returnMsg = {
+                __tcfapiReturn: {
+                    returnValue: retValue,
+                    success: success,
+                    callId: call.callId
+                }
+            };
+
+            if (event.source && typeof event.source.postMessage === 'function')
+                event.source.postMessage(msgIsString ? JSON.stringify(returnMsg) : returnMsg, '*');
+
+        }, call.parameter);
+    }
+
+    if (typeof (__tcfapi) !== 'function') {
+        window.__tcfapi = stubTCFAPI;
+        __tcfapi.msgHandler = cmpMsgHandler;
+
+        if (window.addEventListener)
+            window.addEventListener('message', cmpMsgHandler, false);
+        else
+            window.attachEvent('onmessage', cmpMsgHandler);
+    }
+})();
+</script>
+
+
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NGFTB2QW');</script>
+<!-- End Google Tag Manager -->
+
+<script type="text/javascript">
+    (function (id) {
+        function append(scriptid, url, async) {
+            var d = document, sn = 'script', f = d.getElementsByTagName(sn)[0];
+            if (!f) f = d.head;
+            var s = d.createElement(sn);
+            s.async = async;
+            s.id = scriptid;
+            s.src = url;
+            s.charset = 'utf-8';
+            f.parentNode.insertBefore(s, f);
+        }
+
+        function is2parttld(value) {
+            var tldindicators = ['co', 'com', 'info', 'web', 'info', 'gov', 'edu', 'biz', 'net', 'org'];
+            var countryindicators = ['uk', 'us', 'fr', 'es', 'de', 'at', 'au', 'ae', 'be', 'br', 'ca', 'ch', 'cn', 'co', 'cz', 'dk', 'eg', 'eu', 'fi', 'gb', 'gr', 'hk', 'hr', 'hu', 'ie', 'in', 'jp', 'mx', 'nl', 'no', 'nz', 'pl', 'ro', 'ru', 'se'];
+            return (tldindicators.indexOf(value) !== -1 || countryindicators.indexOf(value) !== -1);
+        }
+
+        function getRootDomain() {
+            var parts = window.location.hostname.split('.');
+            if (parts.length === 2) rootDomain = parts[0];
+            else if (parts.length > 2) {
+                // see if the next to last value is a common tld
+                var part = parts[parts.length - 2];
+                if (is2parttld(part)) {
+                    rootDomain = parts[parts.length - 3]; // go back one more
+                }
+                else {
+                    rootDomain = part;
+                }
+            }
+
+            return rootDomain;
+        }
+
+        window.evidon = {};
+        window.evidon.id = id;
+        window.evidon.test = false;  // set to true for non-production testing.
+        //window.evidon.userid = '';
+
+        var cdn = '//staging.betrad.com/', rootDomain = getRootDomain(), noticecdn = cdn + 'sitenotice/';
+        append('evidon-notice', noticecdn + 'evidon-sitenotice-tag.js', false);
+        append('evidon-location', cdn + 'geo/country.js', true);
+        append('evidon-themes', noticecdn + id + '/snthemes.js', true);
+        if (rootDomain) append('evidon-settings', noticecdn + id + '/' + rootDomain + (window.evidon.test ? '/test' : '') + '/settingsV2.js', true);
+
+        window.evidon.priorConsentCallback = function (categories, vendors, cookies) {
+            // add the tags which need to wait for prior consent
+            // here.  This should be all your advertising tags and
+            // probably most of your social and tracking tags.
+            
+        }
+
+        window.evidon.closeCallback = function () {
+            // this is executed if the user closed a UI element without either Accepting (providing consent)
+            // or Declining (declining to provide consent).
+        }
+
+        window.evidon.consentWithdrawnCallback = function () {
+            // this is exeucted if the user withdraws consent and elects to
+            // no longer allow technologies to run on the site.
+        }
+
+        window.evidon.consentDeclinedCallback = function () {
+            // this is executed if the user explicitly declines giving consent by
+            // using a Decline button
+        }
+    })(7654);
+</script>
+  <script>
+    setTimeout(function() {
+      window.evidon.notice.setDomain('TestIab.com');
+    }, 2000);
+  </script>
+
+</head>
+
+<body>  
+ <ins class='dcmads' style='display:inline-block;width:728px;height:90px' data-dcm-placement='N6438.4787337JUSTINSDEBUGSITE/B30227872.371767756' data-dcm-rendering-mode='iframe' data-dcm-https-only data-dcm-api-frameworks='[APIFRAMEWORKS]' data-dcm-omid-partner='[OMIDPARTNER]' data-dcm-gdpr-applies='gdpr=${GDPR}' data-dcm-gdpr-consent='gdpr_consent=${GDPR_CONSENT_755}' data-dcm-addtl-consent='addtl_consent=${ADDTL_CONSENT}' data-dcm-ltd='false' data-dcm-resettable-device-id='' data-dcm-app-id=''> <script src='https://www.googletagservices.com/dcm/dcmads.js'></script> </ins>
+
+
+ </body>
+
+
+</html>
