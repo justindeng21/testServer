@@ -27,25 +27,23 @@
         }
     });
 
-    setTimeout(()=>{
-    const myActivity = {
-        "action": "purchase",
-        "target": {
-            "product": "94"
-        },
-        "user": {
-            "identities": {
-                "sessionId": xo.activity.user.identities.sessionid
+    setTimeout(() => {
+        const myActivity = {
+            "action": "purchase",
+            "target": {
+                "product": "94"
+            },
+            "user": {
+                "identities": {
+                    "sessionId": xo.activity.user.identities.sessionid
+                }
             }
+        };
+        for (var i = 0; i < 100; i++) {
+            xo.activity.send(myActivity);
         }
-    };
-    },2000)
+    }, 2000)
 
-
-
-    //for(var i = 0; i < 100; i++){
-        //xo.activity.send(myActivity);
-    //}
 </script>
 
 </body>
