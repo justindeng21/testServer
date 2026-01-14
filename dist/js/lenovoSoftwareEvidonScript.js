@@ -45,9 +45,7 @@
     if (rootDomain) append('evidon-settings', noticecdn + id + '/' + rootDomain + (window.evidon.test ? '/test' : '') + '/settingsV3.js', true);
 
     window.evidon.priorConsentCallback = function (categories, vendors, cookies) {
-        // add the tags which need to wait for prior consent
-        // here.  This should be all your advertising tags and
-        // probably most of your social and tracking tags.
+        window.evidon.notice._updateConsentedCategories(window.evidon.notice._getConsentedCategories);
 
     }
 
