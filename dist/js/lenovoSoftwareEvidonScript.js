@@ -35,7 +35,7 @@
 
     window.evidon = {};
     window.evidon.id = id;
-    window.evidon.test = false;  // set to true for non-production testing.
+    window.evidon.test = true;  // set to true for non-production testing.
     //window.evidon.userid = '';
 
     var cdn = '//c.evidon.com/', rootDomain = getRootDomain(), noticecdn = cdn + 'sitenotice/';
