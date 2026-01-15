@@ -46,11 +46,10 @@
     if (rootDomain) append('evidon-settings', noticecdn + id + '/' + rootDomain + (window.evidon.test ? '/test' : '') + '/settingsV3.js', true);
 
     window.evidon.priorConsentCallback = function (categories, vendors, cookies) {
-        
+        window.evidon.notice._updateConsentedCategories(window.evidon.notice._getConsentedCategories());
     }
 
     window.evidon.closeCallback = function () {
-        window.evidon.notice.updateConsentedCategories(window.evidon.notice._getConsentedCategories());
         window.evidon.notice.dropSuppressionCookie(30);
 
     }
