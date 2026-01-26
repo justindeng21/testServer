@@ -5,6 +5,23 @@
 <head>
 
     <script>
+        function loadScript(src) {
+            return new Promise(function (resolve, reject) {
+                var s = document.createElement('script'); // create a new <script>
+                s.src = src;                             // set its URL
+                s.async = true;                          // optional: load asynchronously
+                
+                s.onload = function () {                 // fires when script has loaded AND executed
+                    resolve();                           // resolve the Promise
+                };
+            
+                s.onerror = function () {                // fires if loading fails
+                    reject(new Error('Failed to load ' + src));
+                };
+            
+                document.head.appendChild(s);            // inject script into the page
+            });
+        }
         loadScript('https://c.evidon.com/geo/country.js')
             .then(() => {
                 function waitForEvidon(timeout = 3000) {
