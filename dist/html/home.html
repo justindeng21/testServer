@@ -2,16 +2,40 @@
 
 <html>
     <head>
+
+        <script>
+  function loadScript(src) {
+    return new Promise(function (resolve, reject) {
+      var s = document.createElement('script');
+      s.src = src;
+      s.async = true;
+
+      s.onload = function () {
+        resolve();
+      };
+
+      s.onerror = function () {
+        reject(new Error('Failed to load ' + src));
+      };
+
+      document.head.appendChild(s);
+    });
+  }
+
+  loadScript('https://c.evidon.com/geo/country.js')
+    .then(function () {
+      // Script is downloaded AND executed
+      // Globals are available here
+      console.log('ready');
+    });
+</script>
  
         <script type="text/javascript">
 (function () {
 
-    document.write('<script src="https://c.evidon.com/geo/country.js"><\/script>');
+    console.log(window.evidon.location)
 
-
-        console.log(window.evidon.location);
-    
-    var gdprAppliesGlobally = false;
+   var gdprAppliesGlobally = false;
 
     function addFrame() {
         if (!window.frames['__tcfapiLocator']) {
@@ -135,7 +159,7 @@
             
                 var cdn = '//c.evidon.com/', rootDomain = getRootDomain(), noticecdn = cdn + 'sitenotice/';
                 append('evidon-notice', noticecdn + 'evidon-sitenotice-tag.js', false);
-                append('evidon-location', cdn + 'geo/country.js', true);
+                //append('evidon-location', cdn + 'geo/country.js', true);
                 append('evidon-themes', noticecdn + id + '/snthemes.js', true);
                 if (rootDomain) append('evidon-settings', noticecdn + id + '/' + rootDomain + (window.evidon.test ? '/test' : '') + '/settingsV3.js', true);
             
