@@ -44,6 +44,15 @@
             .then((evidon) => {
                 console.log('Evidon ready:', evidon.location);
 
+                if(evidon.location.id === 1){
+                    console.log(
+                      '%cNotice:%c User detected from US IP. Returning early from TCF script.',
+                      'font-weight: bold; color: green;',
+                      'font-weight: normal; color: inherit;'
+                    );
+
+                }
+
                 var gdprAppliesGlobally = false;
 
                 function addFrame() {
@@ -150,7 +159,6 @@
 
             var cdn = '//c.evidon.com/', rootDomain = getRootDomain(), noticecdn = cdn + 'sitenotice/';
             append('evidon-notice', noticecdn + 'evidon-sitenotice-tag.js', false);
-            //append('evidon-location', cdn + 'geo/country.js', true);
             append('evidon-themes', noticecdn + id + '/snthemes.js', true);
             if (rootDomain) append('evidon-settings', noticecdn + id + '/' + rootDomain + (window.evidon.test ? '/test' : '') + '/settingsV3.js', true);
 
