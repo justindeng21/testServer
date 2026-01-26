@@ -5,27 +5,27 @@
 <head>
 
     <script>
-        function loadScript(src) {
-            return new Promise(function (resolve, reject) {
-                var s = document.createElement('script');
-                s.src = src;
-                s.async = true;
-
-                s.onload = function () {
-                    resolve();
-                };
-
-                s.onerror = function () {
-                    reject(new Error('Failed to load ' + src));
-                };
-
-                document.head.appendChild(s);
-            });
-        }
-
         loadScript('https://c.evidon.com/geo/country.js')
-            .then(function () {
-                console.log(window.evidon.location)
+            .then(() => {
+                function waitForEvidon(timeout = 3000) {
+                    return new Promise((resolve, reject) => {
+                        const start = Date.now();
+                        (function poll() {
+                            if (window.evidon && window.evidon.location) {
+                                resolve(window.evidon);
+                            } else if (Date.now() - start > timeout) {
+                                reject(new Error('window.evidon.location not ready'));
+                            } else {
+                                setTimeout(poll, 20);
+                            }
+                        })();
+                    });
+                }
+
+                return waitForEvidon();
+            })
+            .then((evidon) => {
+                console.log('Evidon ready:', evidon.location);
 
                 var gdprAppliesGlobally = false;
 
@@ -38,9 +38,6 @@
                             iframe.name = '__tcfapiLocator';
                             body.appendChild(iframe);
                         } else {
-                            // In the case where this stub is located in the head,
-                            // this allows us to inject the iframe more quickly than
-                            // relying on DOMContentLoaded or other events.
                             setTimeout(addFrame, 5);
                         }
                     }
@@ -50,9 +47,7 @@
 
                 function stubTCFAPI() {
                     var args = arguments;
-                    // console.log('stubTCFAPI', args);
                     __tcfapi.a = __tcfapi.a || [];
-
                     if (!args.length) return __tcfapi.a;
                     else if (args[0] === 'ping') {
                         args[2]({
@@ -62,8 +57,7 @@
                             displayStatus: 'hidden',
                             apiVersion: "2.0"
                         }, args[1] !== 1);
-                    }
-                    else {
+                    } else {
                         __tcfapi.a.push([].slice.apply(args));
                     }
                 }
@@ -72,37 +66,31 @@
                     var msgIsString = typeof event.data === 'string';
                     var json = event.data;
                     if (typeof json !== 'object') {
-                        try { json = JSON.parse(json); }
-                        catch (err) { return; }
+                        try { json = JSON.parse(json); } catch { return; }
                     }
                     if (!json.__tcfapiCall) return;
 
                     var call = json.__tcfapiCall;
                     window.__tcfapi(call.command, call.version, function (retValue, success) {
                         var returnMsg = {
-                            __tcfapiReturn: {
-                                returnValue: retValue,
-                                success: success,
-                                callId: call.callId
-                            }
+                            __tcfapiReturn: { returnValue: retValue, success, callId: call.callId }
                         };
-
-                        if (event.source && typeof event.source.postMessage === 'function')
+                        if (event.source && typeof event.source.postMessage === 'function') {
                             event.source.postMessage(msgIsString ? JSON.stringify(returnMsg) : returnMsg, '*');
-
+                        }
                     }, call.parameter);
                 }
 
                 if (typeof (__tcfapi) !== 'function') {
                     window.__tcfapi = stubTCFAPI;
                     __tcfapi.msgHandler = cmpMsgHandler;
-
                     if (window.addEventListener)
                         window.addEventListener('message', cmpMsgHandler, false);
                     else
                         window.attachEvent('onmessage', cmpMsgHandler);
                 }
-            });
+            })
+            .catch(err => console.error(err));
     </script>
 
 
@@ -145,7 +133,7 @@
                 return rootDomain;
             }
 
-            window.evidon = {};
+            //window.evidon = {};
             window.evidon.id = id;
             window.evidon.test = false;  // set to true for non-production testing.
             //window.evidon.userid = '';
