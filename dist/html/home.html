@@ -67,8 +67,12 @@
             }
         
             window.evidon.consentDeclinedCallback = function () {
-                // this is executed if the user explicitly declines giving consent by
-                // using a Decline button
+                const siteDomain = '.' + window.location?.hostname?.split('.')?.slice(-2)?.join('.')
+           document.body.dispatchEvent(new CustomEvent("evidonConsentDeclined")),
+           document.cookie =
+             `_evidon_suppress_notification_cookie=${encodeURIComponent(
+               JSON.stringify({ date: new Date().toISOString() })
+             )}; path=/; domain=${siteDomain}; SameSite=Lax; Secure`;
             }
         
             window.evidon.consentRejectCallback = function () {
