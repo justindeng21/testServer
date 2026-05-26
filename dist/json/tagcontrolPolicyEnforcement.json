@@ -1,0 +1,18 @@
+{
+    "cc": {
+        "enforce": false
+    },
+    "gcc": {
+        "enforce": false
+    },
+    "tcv2": {
+        "enforce": true
+    },
+    "observe": {
+        "percent": 1,
+        "pageScans": 3,
+        "initialDelay": 3,
+        "scanInterval": 5
+    },
+    "loggingEnabled": false
+}
