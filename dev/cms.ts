@@ -74,7 +74,7 @@ class CMSAPI extends Server{
             res.sendFile(`/${req.params.folder}/${req.params.filename}.html`,{root: __dirname })
         })
 
-        this.httpListener.get
+        
         
     }
 
