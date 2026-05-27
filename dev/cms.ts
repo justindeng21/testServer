@@ -93,8 +93,9 @@ class CMSAPI extends Server{
                 </body>
             </html>`)
     
-        }) 
+        })
 
+        this.httpListener.get
         
     }
 

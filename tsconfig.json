@@ -4,6 +4,7 @@
       "target": "es2017",
       "module": "commonjs",
       "outDir": "dist",
+      "rootDir": "dev",
       "strict": true,
       "sourceMap": false,
       "declaration": false,

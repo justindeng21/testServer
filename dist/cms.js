@@ -79,6 +79,7 @@ class CMSAPI extends server_1.Server {
                 </body>
             </html>`);
         });
+        this.httpListener.get;
     }
 }
 const cms = new CMSAPI();
