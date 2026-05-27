@@ -12,11 +12,13 @@ class Server {
         this.httpListener = (0, express_1.default)();
         this.httpListener.use(express_1.default.static(__dirname));
         this.httpListener.use(body_parser_1.default.json({ limit: '35mb' }));
-        this.httpListener.use(function (req, res, next) {
-            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        this.httpListener.use((req, res, next) => {
+            res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, Accept");
             res.header('Access-Control-Allow-Credentials', 'true');
-            res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-            res.header("Access-Control-Allow-Origin", "https://www.capitalgroup.com");
+            res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+            res.header("Access-Control-Allow-Origin", "*");
+            if (req.method === "OPTIONS")
+                return res.sendStatus(200);
             next();
         }, body_parser_1.default.urlencoded({
             extended: true,
