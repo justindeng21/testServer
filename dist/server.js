@@ -10,21 +10,27 @@ class Server {
     constructor() {
         console.log('Working Directory:', __dirname);
         this.httpListener = (0, express_1.default)();
-        this.httpListener.use(express_1.default.static(__dirname));
-        this.httpListener.use(body_parser_1.default.json({ limit: '35mb' }));
+        // CORS
         this.httpListener.use((req, res, next) => {
-            res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type, Accept");
-            res.header('Access-Control-Allow-Credentials', 'true');
-            res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+            res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
             res.header("Access-Control-Allow-Origin", "*");
-            if (req.method === "OPTIONS")
+            if (req.method === "OPTIONS") {
                 return res.sendStatus(200);
+            }
             next();
-        }, body_parser_1.default.urlencoded({
+        });
+        // Parsers
+        this.httpListener.use(body_parser_1.default.json({
+            limit: '35mb'
+        }));
+        this.httpListener.use(body_parser_1.default.urlencoded({
             extended: true,
             limit: '35mb',
             parameterLimit: 50000,
         }));
+        // Static files
+        this.httpListener.use(express_1.default.static(__dirname));
         this.server = this.httpListener.listen(process.env.PORT || 80 || "0.0.0.0", () => console.log("server running"));
     }
     _closeServer() {
@@ -33,4 +39,6 @@ class Server {
 }
 exports.Server = Server;
 exports.jsonParser = body_parser_1.default.json();
-exports.urlencodedParser = body_parser_1.default.urlencoded({ extended: false });
+exports.urlencodedParser = body_parser_1.default.urlencoded({
+    extended: false
+});
