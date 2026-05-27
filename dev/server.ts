@@ -21,7 +21,7 @@ export class Server{
                 res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
                 res.header('Access-Control-Allow-Credentials', 'true');
                 res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-                res.header("Access-Control-Allow-Origin", "*");
+                res.header("Access-Control-Allow-Origin", "https://www.capitalgroup.com");
                 next();
             },
             bodyParser.urlencoded({
