@@ -71,7 +71,11 @@ class CMSAPI extends Server{
         }) 
 
         this.httpListener.get('/:folder/:filename', (req, res)=>{
-            res.sendFile(`/${req.params.folder}/${req.params.filename}.html`,{root: __dirname })
+            res.sendFile(`/${req.params.folder}/${req.params.filename}`,{root: __dirname })
+        })
+
+        this.httpListener.get('/js/capitalGroup-ucp.js.lc-eaf1ce5f951ae7229cb81937bfb0b365-lc.min.js', (req, res)=>{
+            res.sendFile(`/js/capitalGroup-ucp.js`,{root: __dirname })
         })
 
         
