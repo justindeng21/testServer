@@ -3,7 +3,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const evidonStubHelper_1 = require("./evidonStubHelper");
 const server_1 = require("./server");
 const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
@@ -36,7 +35,7 @@ class CMSAPI extends server_1.Server {
                     return fs_1.default.statSync(filePath).isFile();
                 });
                 fileNames.forEach(fileName => {
-                    links = links + `<a class="link" href="/${fileName.split(".")[0]}">${fileName}</a>\n`;
+                    links = links + `<a class="link" href="/html/${fileName}">${fileName}</a>\n`;
                 });
                 res.send(`<html>
                     <head>
@@ -60,24 +59,8 @@ class CMSAPI extends server_1.Server {
                 </html>`);
             });
         });
-        this.httpListener.get('/:filename', (req, res) => {
-            res.sendFile(`/html/${req.params.filename}.html`, { root: __dirname });
-        });
-        this.httpListener.get('/assets/svg', (req, res) => {
-            res.sendFile(`/assets/cookie.svg`, { root: __dirname });
-        });
-        this.httpListener.get('/:folder/testing/:filename', (req, res) => {
+        this.httpListener.get('/:folder/:filename', (req, res) => {
             res.sendFile(`/${req.params.folder}/${req.params.filename}.html`, { root: __dirname });
-        });
-        this.httpListener.get('/test/cache-busting/:id', (req, res) => {
-            res.send(`<html>
-                <head>
-                    ${evidonStubHelper_1.EvidonStubHelper.getSiteNoticeTag(Number(req.params.id), this.genString(20))}
-                </head>
-                <body>
-                    <h1>Test Cache busting</h1>
-                </body>
-            </html>`);
         });
         this.httpListener.get;
     }

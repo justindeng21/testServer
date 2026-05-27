@@ -42,7 +42,7 @@ class CMSAPI extends Server{
                   return fs.statSync(filePath).isFile();
                 });
                 fileNames.forEach(fileName => {
-                  links = links + `<a class="link" href="/${fileName.split(".")[0]}">${fileName}</a>\n`;
+                  links = links + `<a class="link" href="/html/${fileName}">${fileName}</a>\n`;
                 });
     
                 res.send(
@@ -70,29 +70,8 @@ class CMSAPI extends Server{
             });
         }) 
 
-        this.httpListener.get('/:filename',(req,res)=>{
-            res.sendFile(`/html/${req.params.filename}.html`,{root: __dirname })
-        })
-
-        this.httpListener.get('/assets/svg',(req,res)=>{
-            res.sendFile(`/assets/cookie.svg`,{root: __dirname })
-        })
-
-        this.httpListener.get('/:folder/testing/:filename', (req, res)=>{
+        this.httpListener.get('/:folder/:filename', (req, res)=>{
             res.sendFile(`/${req.params.folder}/${req.params.filename}.html`,{root: __dirname })
-        })
-
-        this.httpListener.get('/test/cache-busting/:id',(req,res)=>{
-            res.send(
-            `<html>
-                <head>
-                    ${EvidonStubHelper.getSiteNoticeTag(Number(req.params.id),this.genString(20))}
-                </head>
-                <body>
-                    <h1>Test Cache busting</h1>
-                </body>
-            </html>`)
-    
         })
 
         this.httpListener.get
