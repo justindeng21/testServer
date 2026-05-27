@@ -36,7 +36,7 @@
         }
 
         var tagControlScript = document.createElement('script');
-        tagControlScript.setAttribute('companyid', '6650');
+        tagControlScript.setAttribute('companyid', '4122');
         tagControlScript.src = 'https://c.evidon.com/dg/dg.js';
         document.head.appendChild(tagControlScript);
 
