@@ -1,0 +1,739 @@
+{
+    "countries": {
+        "1": {
+            "code": "us",
+            "states": {
+                "1": {
+                    "code": "CA",
+                    "consentType": 1
+                },
+                "2": {
+                    "code": "NV",
+                    "consentType": 1
+                },
+                "3": {
+                    "code": "CO",
+                    "consentType": 1
+                },
+                "4": {
+                    "code": "UT",
+                    "consentType": 1
+                },
+                "5": {
+                    "code": "CT",
+                    "consentType": 1
+                },
+                "6": {
+                    "code": "VA",
+                    "consentType": 1
+                },
+                "7": {
+                    "code": "OR",
+                    "consentType": 2
+                },
+                "8": {
+                    "code": "TX",
+                    "consentType": 1
+                },
+                "9": {
+                    "code": "MT",
+                    "consentType": 1
+                },
+                "10": {
+                    "code": "DE",
+                    "consentType": 1
+                },
+                "11": {
+                    "code": "IA",
+                    "consentType": 1
+                },
+                "12": {
+                    "code": "NE",
+                    "consentType": 1
+                },
+                "13": {
+                    "code": "NH",
+                    "consentType": 1
+                },
+                "14": {
+                    "code": "MD",
+                    "consentType": 1
+                },
+                "15": {
+                    "code": "NJ",
+                    "consentType": 1
+                },
+                "16": {
+                    "code": "TN",
+                    "consentType": 1
+                },
+                "17": {
+                    "code": "MN",
+                    "consentType": 1
+                },
+                "18": {
+                    "code": "FL",
+                    "consentType": 1
+                },
+                "19": {
+                    "code": "AL",
+                    "consentType": 1
+                },
+                "20": {
+                    "code": "AK",
+                    "consentType": 1
+                },
+                "21": {
+                    "code": "AZ",
+                    "consentType": 1
+                },
+                "22": {
+                    "code": "AR",
+                    "consentType": 1
+                },
+                "23": {
+                    "code": "GA",
+                    "consentType": 1
+                },
+                "24": {
+                    "code": "HI",
+                    "consentType": 1
+                },
+                "25": {
+                    "code": "ID",
+                    "consentType": 1
+                },
+                "26": {
+                    "code": "IL",
+                    "consentType": 1
+                },
+                "27": {
+                    "code": "IN",
+                    "consentType": 1
+                },
+                "28": {
+                    "code": "KS",
+                    "consentType": 1
+                },
+                "29": {
+                    "code": "KY",
+                    "consentType": 1
+                },
+                "30": {
+                    "code": "LA",
+                    "consentType": 1
+                },
+                "31": {
+                    "code": "ME",
+                    "consentType": 1
+                },
+                "32": {
+                    "code": "MA",
+                    "consentType": 1
+                },
+                "33": {
+                    "code": "MI",
+                    "consentType": 1
+                },
+                "34": {
+                    "code": "MS",
+                    "consentType": 1
+                },
+                "35": {
+                    "code": "MO",
+                    "consentType": 1
+                },
+                "36": {
+                    "code": "NM",
+                    "consentType": 1
+                },
+                "37": {
+                    "code": "NY",
+                    "consentType": 1
+                },
+                "38": {
+                    "code": "NC",
+                    "consentType": 1
+                },
+                "39": {
+                    "code": "ND",
+                    "consentType": 1
+                },
+                "40": {
+                    "code": "OH",
+                    "consentType": 1
+                },
+                "41": {
+                    "code": "OK",
+                    "consentType": 1
+                },
+                "42": {
+                    "code": "PA",
+                    "consentType": 1
+                },
+                "43": {
+                    "code": "RI",
+                    "consentType": 1
+                },
+                "44": {
+                    "code": "SC",
+                    "consentType": 1
+                },
+                "45": {
+                    "code": "SD",
+                    "consentType": 1
+                },
+                "46": {
+                    "code": "VT",
+                    "consentType": 1
+                },
+                "47": {
+                    "code": "WA",
+                    "consentType": 1
+                },
+                "48": {
+                    "code": "WV",
+                    "consentType": 1
+                },
+                "49": {
+                    "code": "WI",
+                    "consentType": 1
+                },
+                "50": {
+                    "code": "WY",
+                    "consentType": 1
+                }
+            },
+            "consentType": 1
+        },
+        "3": {
+            "code": "de",
+            "consentType": 1
+        },
+        "4": {
+            "code": "es",
+            "consentType": 1
+        },
+        "5": {
+            "code": "fr",
+            "consentType": 1
+        },
+        "6": {
+            "code": "gb",
+            "consentType": 1
+        },
+        "7": {
+            "code": "it",
+            "consentType": 1
+        },
+        "8": {
+            "code": "nl",
+            "consentType": 1
+        },
+        "9": {
+            "code": "ca",
+            "consentType": 1
+        },
+        "10": {
+            "code": "cn",
+            "consentType": 0
+        },
+        "11": {
+            "code": "il",
+            "consentType": 0
+        },
+        "12": {
+            "code": "mx",
+            "consentType": 0
+        },
+        "13": {
+            "code": "ru",
+            "consentType": 0
+        },
+        "15": {
+            "code": "dk",
+            "consentType": 1
+        },
+        "16": {
+            "code": "ie",
+            "consentType": 1
+        },
+        "17": {
+            "code": "no",
+            "consentType": 0
+        },
+        "18": {
+            "code": "pl",
+            "consentType": 1
+        },
+        "19": {
+            "code": "at",
+            "consentType": 1
+        },
+        "20": {
+            "code": "be",
+            "consentType": 1
+        },
+        "21": {
+            "code": "ch",
+            "consentType": 0
+        },
+        "22": {
+            "code": "se",
+            "consentType": 1
+        },
+        "23": {
+            "code": "sk",
+            "consentType": 1
+        },
+        "24": {
+            "code": "hu",
+            "consentType": 1
+        },
+        "25": {
+            "code": "fi",
+            "consentType": 1
+        },
+        "26": {
+            "code": "pt",
+            "consentType": 1
+        },
+        "27": {
+            "code": "cz",
+            "consentType": 1
+        },
+        "28": {
+            "code": "lu",
+            "consentType": 1
+        },
+        "29": {
+            "code": "gr",
+            "consentType": 1
+        },
+        "30": {
+            "code": "bg",
+            "consentType": 1
+        },
+        "31": {
+            "code": "ro",
+            "consentType": 1
+        },
+        "32": {
+            "code": "ee",
+            "consentType": 1
+        },
+        "33": {
+            "code": "lv",
+            "consentType": 1
+        },
+        "34": {
+            "code": "lt",
+            "consentType": 1
+        },
+        "35": {
+            "code": "si",
+            "consentType": 1
+        },
+        "36": {
+            "code": "mt",
+            "consentType": 1
+        },
+        "37": {
+            "code": "cy",
+            "consentType": 1
+        },
+        "38": {
+            "code": "is",
+            "consentType": 0
+        },
+        "39": {
+            "code": "tr",
+            "consentType": 0
+        },
+        "40": {
+            "code": "eg",
+            "consentType": 0
+        },
+        "41": {
+            "code": "sa",
+            "consentType": 0
+        },
+        "42": {
+            "code": "br",
+            "consentType": 0
+        },
+        "43": {
+            "code": "ar",
+            "consentType": 0
+        },
+        "44": {
+            "code": "tw",
+            "consentType": 0
+        },
+        "45": {
+            "code": "kr",
+            "consentType": 0
+        },
+        "46": {
+            "code": "jp",
+            "consentType": 0
+        },
+        "47": {
+            "code": "au",
+            "consentType": 0
+        },
+        "48": {
+            "code": "nz",
+            "consentType": 0
+        },
+        "49": {
+            "code": "za",
+            "consentType": 0
+        },
+        "50": {
+            "code": "dz",
+            "consentType": 0
+        },
+        "51": {
+            "code": "ly",
+            "consentType": 0
+        },
+        "53": {
+            "code": "ng",
+            "consentType": 0
+        },
+        "54": {
+            "code": "ae",
+            "consentType": 0
+        },
+        "55": {
+            "code": "id",
+            "consentType": 0
+        },
+        "56": {
+            "code": "my",
+            "consentType": 0
+        },
+        "57": {
+            "code": "th",
+            "consentType": 0
+        },
+        "59": {
+            "code": "in",
+            "consentType": 0
+        },
+        "60": {
+            "code": "sg",
+            "consentType": 0
+        },
+        "61": {
+            "code": "hr",
+            "consentType": 1
+        },
+        "62": {
+            "code": "mk",
+            "consentType": 0
+        },
+        "63": {
+            "code": "rs",
+            "consentType": 0
+        },
+        "64": {
+            "code": "hk",
+            "consentType": 0
+        },
+        "67": {
+            "code": "ua",
+            "consentType": 0
+        },
+        "68": {
+            "code": "vn",
+            "consentType": 0
+        },
+        "70": {
+            "code": "am",
+            "consentType": 0
+        },
+        "71": {
+            "code": "ph",
+            "consentType": 0
+        },
+        "72": {
+            "code": "al",
+            "consentType": 0
+        },
+        "73": {
+            "code": "ai",
+            "consentType": 0
+        },
+        "74": {
+            "code": "ag",
+            "consentType": 0
+        },
+        "75": {
+            "code": "aw",
+            "consentType": 0
+        },
+        "76": {
+            "code": "bs",
+            "consentType": 0
+        },
+        "77": {
+            "code": "bb",
+            "consentType": 0
+        },
+        "78": {
+            "code": "bz",
+            "consentType": 0
+        },
+        "79": {
+            "code": "bm",
+            "consentType": 0
+        },
+        "80": {
+            "code": "bo",
+            "consentType": 0
+        },
+        "81": {
+            "code": "ba",
+            "consentType": 0
+        },
+        "82": {
+            "code": "vg",
+            "consentType": 0
+        },
+        "83": {
+            "code": "ky",
+            "consentType": 0
+        },
+        "84": {
+            "code": "cl",
+            "consentType": 0
+        },
+        "85": {
+            "code": "co",
+            "consentType": 0
+        },
+        "86": {
+            "code": "cg",
+            "consentType": 0
+        },
+        "87": {
+            "code": "cr",
+            "consentType": 0
+        },
+        "88": {
+            "code": "cd",
+            "consentType": 0
+        },
+        "89": {
+            "code": "dm",
+            "consentType": 0
+        },
+        "90": {
+            "code": "do",
+            "consentType": 0
+        },
+        "91": {
+            "code": "ec",
+            "consentType": 0
+        },
+        "92": {
+            "code": "sv",
+            "consentType": 0
+        },
+        "93": {
+            "code": "ga",
+            "consentType": 0
+        },
+        "95": {
+            "code": "gd",
+            "consentType": 0
+        },
+        "96": {
+            "code": "gt",
+            "consentType": 0
+        },
+        "97": {
+            "code": "gy",
+            "consentType": 0
+        },
+        "98": {
+            "code": "ht",
+            "consentType": 0
+        },
+        "99": {
+            "code": "hn",
+            "consentType": 0
+        },
+        "100": {
+            "code": "jm",
+            "consentType": 0
+        },
+        "101": {
+            "code": "md",
+            "consentType": 0
+        },
+        "102": {
+            "code": "ma",
+            "consentType": 0
+        },
+        "103": {
+            "code": "an",
+            "consentType": 0
+        },
+        "104": {
+            "code": "ni",
+            "consentType": 0
+        },
+        "105": {
+            "code": "pa",
+            "consentType": 0
+        },
+        "106": {
+            "code": "py",
+            "consentType": 0
+        },
+        "107": {
+            "code": "pe",
+            "consentType": 0
+        },
+        "108": {
+            "code": "pr",
+            "consentType": 0
+        },
+        "109": {
+            "code": "kn",
+            "consentType": 0
+        },
+        "110": {
+            "code": "sn",
+            "consentType": 0
+        },
+        "111": {
+            "code": "lc",
+            "consentType": 0
+        },
+        "112": {
+            "code": "vc",
+            "consentType": 0
+        },
+        "113": {
+            "code": "sr",
+            "consentType": 0
+        },
+        "114": {
+            "code": "tt",
+            "consentType": 0
+        },
+        "115": {
+            "code": "tn",
+            "consentType": 0
+        },
+        "116": {
+            "code": "tc",
+            "consentType": 0
+        },
+        "117": {
+            "code": "uy",
+            "consentType": 0
+        },
+        "118": {
+            "code": "vi",
+            "consentType": 0
+        },
+        "119": {
+            "code": "ve",
+            "consentType": 0
+        },
+        "120": {
+            "code": "ge",
+            "consentType": 0
+        },
+        "122": {
+            "code": "la",
+            "consentType": 0
+        },
+        "123": {
+            "code": "kh",
+            "consentType": 0
+        },
+        "124": {
+            "code": "np",
+            "consentType": 0
+        },
+        "125": {
+            "code": "lk",
+            "consentType": 0
+        },
+        "126": {
+            "code": "mm",
+            "consentType": 0
+        },
+        "127": {
+            "code": "bn",
+            "consentType": 0
+        },
+        "128": {
+            "code": "li",
+            "consentType": 0
+        },
+        "129": {
+            "code": "gp",
+            "consentType": 0
+        },
+        "130": {
+            "code": "re",
+            "consentType": 0
+        },
+        "131": {
+            "code": "gg",
+            "consentType": 0
+        },
+        "132": {
+            "code": "bl",
+            "consentType": 0
+        },
+        "133": {
+            "code": "im",
+            "consentType": 1
+        },
+        "134": {
+            "code": "mf",
+            "consentType": 0
+        },
+        "135": {
+            "code": "gf",
+            "consentType": 0
+        },
+        "136": {
+            "code": "je",
+            "consentType": 1
+        },
+        "138": {
+            "code": "pf",
+            "consentType": 0
+        },
+        "140": {
+            "code": "wf",
+            "consentType": 0
+        },
+        "141": {
+            "code": "gi",
+            "consentType": 1
+        },
+        "142": {
+            "code": "yt",
+            "consentType": 0
+        },
+        "143": {
+            "code": "mu",
+            "consentType": 0
+        },
+        "144": {
+            "code": "by",
+            "consentType": 1
+        }
+    },
+    "defaultConsentType": 0
+}
