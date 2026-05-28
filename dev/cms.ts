@@ -42,7 +42,7 @@ class CMSAPI extends Server{
                   return fs.statSync(filePath).isFile();
                 });
                 fileNames.forEach(fileName => {
-                  links = links + `<a class="link" href="/html/${fileName}">${fileName}</a>\n`;
+                  links = links + `<a class="link" href="/html/${fileName.split(".")[0]}">${fileName.split(".")[0]}</a>\n`;
                 });
     
                 res.send(
@@ -71,7 +71,7 @@ class CMSAPI extends Server{
         }) 
 
         this.httpListener.get('/:folder/:filename', (req, res)=>{
-            res.sendFile(`/${req.params.folder}/${req.params.filename}`,{root: __dirname })
+            res.sendFile(`/${req.params.folder}/${req.params.filename}.${req.params.folder}`,{root: __dirname })
         })
 
         this.httpListener.get('/js/test/capitalGroup-ucp.js.lc-eaf1ce5f951ae7229cb81937bfb0b365-lc.min.js', (req, res)=>{
