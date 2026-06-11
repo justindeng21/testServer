@@ -61,7 +61,8 @@
            
         }
 
-        window.evidon.consentChangedCallback = function (){
+        window.evidon.consentChangedCallback = function (c,v,c){
+            console.log("consent changed")
             window.location.reload();
         }
 
