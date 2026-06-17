@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-
-<html>
-    <head>
-        <link rel="shortcut icon" href="https://dqm.crownpeak.com/assets/favicon.png">
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GTG Consent Mode Validation - Evidon 8962</title>
 
 <script type="text/javascript">
 (function () {
@@ -84,93 +85,190 @@
 })();
 </script>
 
-        <script>
-        window.dataLayer = window.dataLayer || [];
-        if (typeof gtag !== 'function') function gtag(){dataLayer.push(arguments);}
-        gtag('set', 'developer_id.dOGRkZj', true);
-        gtag('consent', 'default',{ 'ad_storage': 'denied', 'analytics_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied'});
-        </script>
+
+<!-- ===== Evidon CMP (staging) ===== -->
+<script type="text/javascript">
+    (function (id) {
+        function append(scriptid, url, async) {
+            var d = document, sn = 'script', f = d.getElementsByTagName(sn)[0];
+            if (!f) f = d.head;
+            var s = d.createElement(sn);
+            s.async = async;
+            s.id = scriptid;
+            s.src = url;
+            s.charset = 'utf-8';
+            f.parentNode.insertBefore(s, f);
+        }
+
+        function is2parttld(value) {
+            var tldindicators = ['co', 'com', 'info', 'web', 'info', 'gov', 'edu', 'biz', 'net', 'org'];
+            var countryindicators = ['uk', 'us', 'fr', 'es', 'de', 'at', 'au', 'ae', 'be', 'br', 'ca', 'ch', 'cn', 'co', 'cz', 'dk', 'eg', 'eu', 'fi', 'gb', 'gr', 'hk', 'hr', 'hu', 'ie', 'in', 'jp', 'mx', 'nl', 'no', 'nz', 'pl', 'ro', 'ru', 'se'];
+            return (tldindicators.indexOf(value) !== -1 || countryindicators.indexOf(value) !== -1);
+        }
+
+        function getRootDomain() {
+            var parts = window.location.hostname.split('.');
+            if (parts.length === 2) rootDomain = parts[0];
+            else if (parts.length > 2) {
+                // see if the next to last value is a common tld
+                var part = parts[parts.length - 2];
+                if (is2parttld(part)) {
+                    rootDomain = parts[parts.length - 3]; // go back one more
+                }
+                else {
+                    rootDomain = part;
+                }
+            }
+
+            return rootDomain;
+        }
+
+        window.evidon = {};
+        window.evidon.id = id;
+        window.evidon.test = false;  // set to true for non-production testing.
+		window.evidon.uriEncodeCookie = true;
 
 
-        <script type="text/javascript" >
-            (function (id) {
-                function append(scriptid, url, async) {
-                    var d = document, sn = 'script', f = d.getElementsByTagName(sn)[0];
-                    if (!f) f = d.head;
-                    var s = d.createElement(sn);
-                    s.async = async;
-                    s.id = scriptid;
-                    s.src = url;
-                    s.charset = 'utf-8';
-                    f.parentNode.insertBefore(s, f);
-                }
-            
-                function is2parttld(value) {
-                    var tldindicators = ['co', 'com', 'info', 'web', 'info', 'gov', 'edu', 'biz', 'net', 'org'];
-                    var countryindicators = ['uk', 'us', 'fr', 'es', 'de', 'at', 'au', 'ae', 'be', 'br', 'ca', 'ch', 'cn', 'co', 'cz', 'dk', 'eg', 'eu', 'fi', 'gb', 'gr', 'hk', 'hr', 'hu', 'ie', 'in', 'jp', 'mx', 'nl', 'no', 'nz', 'pl', 'ro', 'ru', 'se'];
-                    return (tldindicators.indexOf(value) !== -1 || countryindicators.indexOf(value) !== -1);
-                }
-            
-                function getRootDomain() {
-                    var parts = window.location.hostname.split('.');
-                    if (parts.length === 2) rootDomain = parts[0];
-                    else if (parts.length > 2) {
-                        // see if the next to last value is a common tld
-                        var part = parts[parts.length - 2];
-                        if (is2parttld(part)) {
-                            rootDomain = parts[parts.length - 3]; // go back one more
-                        }
-                        else {
-                            rootDomain = part;
-                        }
+        var cdn = '//staging.betrad.com/', rootDomain = getRootDomain(), noticecdn = cdn + 'sitenotice/';
+        append('evidon-notice', noticecdn + 'evidon-sitenotice-tag.js', false);
+        append('evidon-location', cdn + 'geo/country.js', true);
+        append('evidon-themes', noticecdn + id + '/snthemes.js', true);
+        if (rootDomain) append('evidon-settings', noticecdn + id + '/' + rootDomain + (window.evidon.test ? '/test' : '') + '/settingsV3.js', true);
+
+        window.evidon.priorConsentCallback = function (categories, vendors, cookies) {
+            // add the tags which need to wait for prior consent
+            // here.  This should be all your advertising tags and
+            // probably most of your social and tracking tags.
+
+        }
+
+        window.evidon.closeCallback = function () {
+            // this is executed if the user closed a UI element without either Accepting (providing consent)
+            // or Declining (declining to provide consent).
+        }
+
+        window.evidon.consentWithdrawnCallback = function () {
+
                     }
-                
-                    return rootDomain;
-                }
-            
-                window.evidon = {};
-                window.evidon.id = id;
-                window.evidon.test = false;  // set to true for non-production testing.
-                //window.evidon.userid = '';
-            
-                var cdn = '//c.evidon.com/', rootDomain = getRootDomain(), noticecdn = cdn + 'sitenotice/';
-                append('evidon-notice', noticecdn + 'evidon-sitenotice-tag.js', false);
-                append('evidon-location', cdn + 'geo/country.js', true);
-                append('evidon-themes', noticecdn + id + '/snthemes.js', true);
-                if (rootDomain) append('evidon-settings', noticecdn + id + '/' + rootDomain + (window.evidon.test ? '/test' : '') + '/settingsV3.js', true);
-            
-               window.evidon.priorConsentCallback = function (categories, vendors, cookies) {
-                    // add the tags which need to wait for prior consent
-                    // here.  This should be all your advertising tags and
-                    // probably most of your social and tracking tags.
 
-                }
-            
-                window.evidon.closeCallback = function () {
-                    // this is executed if the user closed a UI element without either Accepting (providing consent)
-                    // or Declining (declining to provide consent).
-                }
-            
-                window.evidon.consentWithdrawnCallback = function () {
-                    // this is exeucted if the user withdraws consent and elects to
-                    // no longer allow technologies to run on the site.
-                }
-            
-                window.evidon.consentDeclinedCallback = function () {
-                    // this is executed if the user explicitly declines giving consent by
-                    // using a Decline button
-                }
-            
-                window.evidon.consentRejectCallback = function () {
-                    // this is executed if the user explicitly revokes consent by
-                    // using the Opt-Out All / Reject button for Opt-Out Regulation only.
-                }
-            })(7654);
-        </script>
+        window.evidon.consentDeclinedCallback = function () {
+            // this is executed if the user explicitly declines giving consent by
+            // using a Decline button
+		window.evidon.notice.dropSuppressionCookie(365)
 
-    </head>
+		console.log("Supression cookie dropped")
 
-    <body>
+        }
+    })(7654);
+</script>
 
-    </body>
+<!-- ===== Consent Mode template shim =====
+     Property 7654 has templateEnabled = 1, so the CMP delegates the consent
+     update to window.evidon.updateGoogleConsent(). In production that function
+     is registered by the Evidon Consent Mode template inside GTM (GTM-N3PGW8SP).
+     This shim stands in for it so the page works before that template is
+     published. Defined AFTER the Evidon loader because that loader resets
+     window.evidon = {}. Mirrors evidon-sitenotice-tag.js:2337-2345. -->
+<script>
+  window.evidon = window.evidon || {};
+  window.evidon.updateGoogleConsent = function (s) {
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    var func = (s.ad_storage === 'granted' || s.analytics_storage === 'granted') ? 'granted' : 'denied';
+    gtag('consent', 'update', {
+      'ad_storage':            s.ad_storage,
+      'analytics_storage':     s.analytics_storage,
+      'ad_user_data':          s.ad_user_data,
+      'ad_personalization':    s.ad_personalization,
+      'functionality_storage': func,
+      'security_storage':      'granted'
+    });
+    gtag('set', 'ads_data_redaction', s.ad_storage === 'granted' ? false : true);
+    console.log('[GTG shim] updateGoogleConsent fired', s);
+  };
+</script>
+
+<!-- ===== Google Tag Manager ===== -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N3PGW8SP');</script>
+<!-- End Google Tag Manager -->
+
+<script>
+    setTimeout(function() {
+      window.evidon.notice.setDomain('GoogleGTGtest.com');
+    }, 2000);
+  </script>
+
+<style>
+  body { font: 15px/1.6 system-ui, sans-serif; margin: 0; background:#0f172a; color:#e2e8f0; }
+  header { background:#1e293b; padding:22px 28px; border-bottom:1px solid #334155; }
+  header h1 { margin:0; font-size:20px; }
+  header p { margin:6px 0 0; color:#94a3b8; font-size:13px; }
+  main { padding:28px; max-width:820px; margin:0 auto; }
+  table { width:100%; border-collapse:collapse; background:#1e293b; border-radius:10px; overflow:hidden; }
+  th, td { padding:10px 14px; text-align:left; border-bottom:1px solid #334155; font-size:14px; }
+  th { background:#273449; color:#cbd5e1; }
+  .granted { color:#4ade80; font-weight:700; }
+  .denied  { color:#f87171; font-weight:700; }
+  .unset   { color:#94a3b8; }
+  code { background:#0b1220; padding:1px 6px; border-radius:4px; color:#7dd3fc; }
+  .hint { color:#94a3b8; font-size:13px; margin-top:18px; }
+</style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N3PGW8SP"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<header>
+  <h1>GTG &mdash; Consent Mode Validation (Evidon 7654)</h1>
+  <p>Live page running the real Evidon CMP tag + GTM container GTM-N3PGW8SP. Interact with the CMP banner, then watch the flags below.</p>
+</header>
+
+<main>
+  <h2 style="font-size:16px;">Live Consent Mode state (read-only)</h2>
+  <p class="hint" style="margin-top:0;">
+    Reflects <code>google_tag_data.ics.entries</code> written by the CMP. Refreshes every second.
+    All consent calls are driven by the real Evidon CMP &mdash; this panel only observes.
+  </p>
+  <table id="state">
+    <thead><tr><th>Purpose</th><th>ICS default</th><th>ICS update</th></tr></thead>
+    <tbody></tbody>
+  </table>
+
+  <!-- <p class="hint">
+    For the video, pair this with <strong>Google Tag Assistant</strong>
+    (<code>tagassistant.google.com</code>) &rarr; <em>Consent</em> tab. The four required
+    purposes are <code>ad_storage</code>, <code>analytics_storage</code>,
+    <code>ad_user_data</code>, and <code>ad_personalization</code>. Also inspect raw calls with:
+    <br><code>dataLayer.filter(e =&gt; e[0] === 'consent')</code>
+  </p> -->
+</main>
+
+<script>
+  // Read-only observer. Does NOT fire any consent calls -- the Evidon CMP does that.
+  var PURPOSES = ['ad_storage','analytics_storage','ad_user_data','ad_personalization','functionality_storage','security_storage'];
+
+  function fmt(v) {
+    if (v === true)  return '<span class="granted">granted (true)</span>';
+    if (v === false) return '<span class="denied">denied (false)</span>';
+    return '<span class="unset">&mdash;</span>';
+  }
+
+  function render() {
+    var entries = (window.google_tag_data && window.google_tag_data.ics && window.google_tag_data.ics.entries) || {};
+    var rows = PURPOSES.map(function (p) {
+      var e = entries[p] || {};
+      return '<tr><td><code>' + p + '</code></td><td>' + fmt(e['default']) + '</td><td>' + fmt(e.update) + '</td></tr>';
+    }).join('');
+    document.querySelector('#state tbody').innerHTML = rows;
+  }
+
+  render();
+  setInterval(render, 1000);
+</script>
+</body>
 </html>
