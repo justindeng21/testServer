@@ -1,12 +1,12 @@
 {
     "cc": {
-        "enforce": true
+        "enforce": false
     },
     "gcc": {
-        "enforce": true
+        "enforce": false
     },
     "tcv2": {
-        "enforce": true
+        "enforce": false
     },
     "observe": {
         "percent": 100,
