@@ -9,7 +9,7 @@
         "enforce": true
     },
     "observe": {
-        "percent": 1,
+        "percent": 100,
         "pageScans": 3,
         "initialDelay": 3,
         "scanInterval": 5
